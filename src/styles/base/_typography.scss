@@ -1,0 +1,453 @@
+@font-face {
+   font-family: 'iconfont';
+   src:
+      url('/src/assets/fonts/icomoon.woff2') format('woff2');
+   font-weight: normal;
+   font-style: normal;
+   font-display: block;
+}
+
+[class*="--icon-"]::before {
+   font-family: 'iconfont';
+   line-height: 1 !important;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+[class*="--icon-arrow-up"]::before {
+   content: "\e900";
+}
+
+[class*="--icon-admin"]::before {
+   content: "\e901";
+}
+
+[class*="--icon-apple"]::before {
+   content: "\e902";
+}
+
+[class*="--icon-apple-ios"]::before {
+   content: "\e903";
+}
+
+[class*="--icon-arrow"]::before {
+   content: "\e905";
+}
+
+[class*="--icon-bag-payment"]::before {
+   content: "\e908";
+}
+
+[class*="--icon-calendar"]::before {
+   content: "\e909";
+}
+
+[class*="--icon-check"]::before {
+   content: "\e90c";
+}
+
+[class*="--icon-chevron"]::before {
+   content: "\e90d";
+}
+
+[class*="--icon-close"]::before {
+   content: "\e90e";
+}
+
+[class*="--icon-comments"]::before {
+   content: "\e90f";
+}
+
+[class*="--icon-customer-feedback"]::before {
+   content: "\e911";
+}
+
+[class*="--icon-customer-support"]::before {
+   content: "\e913";
+}
+
+[class*="--icon-customer-support"]::before {
+   content: "\e913";
+}
+
+[class*="--icon-dashboard"]::before {
+   content: "\e916";
+}
+
+[class*="--icon-discount"]::before {
+   content: "\e917";
+}
+
+[class*="--icon-error"]::before {
+   content: "\e920";
+}
+
+[class*="--icon-fb"]::before {
+   content: "\e922";
+   color: #4d4d4d;
+}
+
+[class*="--icon-free-shipping"]::before {
+   content: "\e924";
+}
+
+[class*="--icon-googlr-play"]::before {
+   content: "\e928";
+}
+
+[class*="--icon-great-support"]::before {
+   content: "\e929";
+}
+
+[class*="--icon-guarantee"]::before {
+   content: "\e92a";
+}
+
+[class*="--icon-home"]::before {
+   content: "\e92c";
+}
+
+[class*="--icon-instagram"]::before {
+   content: "\e92d";
+   color: #4d4d4d;
+}
+
+[class*="--icon-label"]::before {
+   content: "\e92e";
+}
+
+[class*="--icon-leaf"]::before {
+   content: "\e92f";
+}
+
+[class*="--icon-leaf-organic"]::before {
+   content: "\e933";
+}
+
+[class*="--icon-like"]::before {
+   content: "\e934";
+}
+
+[class*="--icon-link"]::before {
+   content: "\e935";
+   color: #4d4d4d;
+}
+
+[class*="--icon-location"]::before {
+   content: "\e936";
+}
+
+[class*="--icon-logo-leaf"]::before {
+   content: "\e939";
+}
+
+[class*="--icon-log-out"]::before {
+   content: "\e944";
+}
+
+[class*="--icon-minus"]::before {
+   content: "\e94a";
+}
+
+[class*="--icon-money-guarantee"]::before {
+   content: "\e94b";
+}
+
+[class*="--icon-order-history"]::before {
+   content: "\e94c";
+}
+
+[class*="--icon-phone"]::before {
+   content: "\e956";
+}
+
+[class*="--icon-pinterest"]::before {
+   content: "\e957";
+   color: #4d4d4d;
+}
+
+[class*="--icon-play"]::before {
+   content: "\e958";
+}
+
+[class*="--icon-quotes"]::before {
+   content: "\e95a";
+}
+
+[class*="--icon-secure-payment"]::before {
+   content: "\e95d";
+}
+
+[class*="--icon-settings"]::before {
+   content: "\e95f";
+}
+
+[class*="--icon-shevron"]::before {
+   content: "\e960";
+}
+
+[class*="--icon-shop-cart"]::before {
+   content: "\e961";
+}
+
+[class*="--icon-truck-deliv"]::before {
+   content: "\e966";
+}
+
+[class*="--icon-twitter"]::before {
+   content: "\e967";
+   // color: #4d4d4d;
+}
+
+[class*="--icon-view"]::before {
+   content: "\e968";
+}
+
+[class*="--icon-warning"]::before {
+   content: "\e96a";
+}
+
+[class*="--icon-search"]::before {
+   content: "\e921";
+}
+
+[class*="--icon-star-empty1"]::before {
+   content: "\e912";
+}
+
+[class*="--icon-star-full1"]::before {
+   content: "\e91c";
+}
+
+[class*="--icon-mail"]::before {
+   content: "\e926";
+}
+
+[class*="--icon-plus"]::before {
+   content: "\e925";
+}
+
+[class*="--icon-locked"]::before {
+   content: "\e91b";
+}
+
+
+
+
+
+
+// .--icon-arrow-up:before {
+//    content: "\e900";
+// }
+
+// .--icon-locked:before {
+//    content: "\e91b";
+// }
+
+
+// .--icon-admin:before {
+//    content: "\e901";
+// }
+
+// .--icon-apple:before {
+//    content: "\e902";
+// }
+
+// .--icon-apple-ios:before {
+//    content: "\e903";
+// }
+
+// .--icon-bag-payment:before {
+//    content: "\e908";
+// }
+
+// .--icon-calendar:before {
+//    content: "\e909";
+// }
+
+// .--icon-check:before {
+//    content: "\e90c";
+// }
+
+// .--icon-chevron:before {
+//    content: "\e90d";
+// }
+
+// .--icon-close:before {
+//    content: "\e90e";
+// }
+
+// .--icon-comments:before {
+//    content: "\e90f";
+// }
+
+// .--icon-customer-feedback:before {
+//    content: "\e911";
+// }
+
+// .--icon-customer-support:before {
+//    content: "\e913";
+// }
+
+// .--icon-dashboard:before {
+//    content: "\e916";
+// }
+
+// .--icon-discount:before {
+//    content: "\e917";
+// }
+
+// .--icon-error:before {
+//    content: "\e920";
+// }
+
+// .--icon-fb:before {
+//    content: "\e922";
+//    color: #4d4d4d;
+// }
+
+// .--icon-free-shipping:before {
+//    content: "\e924";
+// }
+
+// .--icon-googlr-play:before {
+//    content: "\e928";
+// }
+
+// .--icon-great-support:before {
+//    content: "\e929";
+// }
+
+// .--icon-guarantee:before {
+//    content: "\e92a";
+// }
+
+// .--icon-home:before {
+//    content: "\e92c";
+// }
+
+// .--icon-instagram:before {
+//    content: "\e92d";
+//    color: #4d4d4d;
+// }
+
+// .--icon-label:before {
+//    content: "\e92e";
+// }
+
+// .--icon-leaf:before {
+//    content: "\e92f";
+// }
+
+// .--icon-leaf-organic:before {
+//    content: "\e933";
+// }
+
+// .--icon-like:before {
+//    content: "\e934";
+// }
+
+// .--icon-link:before {
+//    content: "\e935";
+//    color: #4d4d4d;
+// }
+
+// .--icon-location:before {
+//    content: "\e936";
+// }
+
+// .--icon-logo-leaf:before {
+//    content: "\e939";
+// }
+
+// .--icon-log-out:before {
+//    content: "\e944";
+// }
+
+// .--icon-minus:before {
+//    content: "\e94a";
+// }
+
+// .--icon-money-guarantee:before {
+//    content: "\e94b";
+// }
+
+// .--icon-order-history:before {
+//    content: "\e94c";
+// }
+
+// .--icon-phone:before {
+//    content: "\e956";
+// }
+
+// .--icon-pinterest:before {
+//    content: "\e957";
+//    color: #4d4d4d;
+// }
+
+// .--icon-play:before {
+//    content: "\e958";
+// }
+
+// .--icon-quotes:before {
+//    content: "\e95a";
+// }
+
+// .--icon-secure-payment:before {
+//    content: "\e95d";
+// }
+
+// .--icon-settings:before {
+//    content: "\e95f";
+// }
+
+// .--icon-shevron:before {
+//    content: "\e960";
+// }
+
+// .--icon-shop-cart:before {
+//    content: "\e961";
+// }
+
+// .--icon-truck-deliv:before {
+//    content: "\e966";
+// }
+
+// .--icon-twitter:before {
+//    content: "\e967";
+//    color: #4d4d4d;
+// }
+
+// .--icon-view:before {
+//    content: "\e968";
+// }
+
+// .--icon-warning:before {
+//    content: "\e96a";
+// }
+
+// .--icon-arrow:before {
+//    content: "\e905";
+// }
+
+// .--icon-search:before {
+//    content: "\e921";
+// }
+
+// .--icon-star-empty1:before {
+//    content: "\e912";
+// }
+
+// .--icon-star-full1:before {
+//    content: "\e91c";
+// }
+
+// .--icon-mail:before {
+//    content: "\e926";
+// }
+
+// .--icon-plus:before {
+//    content: "\e925";
+// }

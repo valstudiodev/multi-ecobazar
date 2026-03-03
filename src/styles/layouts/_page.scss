@@ -1,0 +1,679 @@
+@use '../settings/settings' as *;
+@use '../settings/mixins' as *;
+
+.page {
+
+   // .page__hero
+   &__hero {
+      // display: none;
+   }
+
+   // .page__advantages
+   &__advantages {
+      // display: none;
+   }
+
+   // .page__categories
+   &__categories {
+      // display: none;
+      @include adaptiveValue('padding-block', 30, 15);
+   }
+
+   // .page__products
+   &__products {
+      // display: none;
+      @include adaptiveValue('padding-block', 30, 15);
+   }
+
+   // .page__featured-products
+   &__featured-products {
+      // display: none;
+      @include adaptiveValue('padding-block', 30, 15);
+   }
+
+   // .page__news
+   &__news {
+      // display: none;
+      @include adaptiveValue('padding-block', 30, 15);
+   }
+
+   &__testimonials {
+      // display: none;
+      @include adaptiveValue('padding-block', 60, 30);
+   }
+
+   // .page__follow
+   &__follow {
+      // display: none;
+      @include adaptiveValue('padding-block', 30, 15);
+   }
+
+   // .page__deals
+   &__sales {
+      // display: none;
+      @include adaptiveValue('padding-block', 30, 15);
+   }
+
+   // .page__deals
+   &__deals {
+      @include adaptiveValue('padding-block', 60, 30);
+   }
+
+   // .page__partners
+   &__partners {
+      // display: none;
+      @include adaptiveValue('padding-block', 60, 30);
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// hero
+// -----------------------------
+.hero {
+   // .hero__container
+   &__container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: minmax(toRem(288), auto);
+      grid-auto-rows: minmax(toRem(288), auto);
+      gap: toRem(24);
+
+      @media (max-width: toEm(865)) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: minmax(toRem(450), auto);
+
+      }
+      @media (max-width: toEm(570)) {
+        grid-template-columns: auto;
+        grid-auto-rows: auto;
+        grid-template-rows: auto;
+      }
+   }
+
+   // .hero__banner
+   &__banner {
+      position: relative;
+      grid-column: 2 span;
+      grid-row: 2 span;
+      border-radius: toRem(10);
+      overflow: hidden;
+      display: flex;
+
+      @media (max-width: toEm(865)) {
+        grid-row: 1 span;
+      }
+      @media (max-width: toEm(570)) {
+        grid-column: 1 span;
+      }
+   }
+
+   &__inner {
+      flex-grow: 1;
+   }
+
+   // .hero__image
+   &__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      @include overlay-decor(linear-gradient(108.43deg, rgba(0, 0, 0, 0.6) 10.399%, rgba(0, 0, 0, 0) 59.431%));
+
+      img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+
+      @media (max-width: toEm(570)) {
+        @include overlay($opacity:0.3);
+      }
+   }
+}
+
+.content-hero {
+   position: relative;
+   z-index: 2;
+   @include flex-column;
+   min-height: 100%;
+   @include adaptiveValue('padding-block', 155, 30);
+   @include adaptiveValue('padding-inline', 60, 20);
+   gap: toRem(28);
+   justify-content: center;
+
+
+   // .content-hero__title
+   &__title {
+      @include adaptiveValue('font-size', 48, 24);
+      color: $white;
+      font-weight: 600;
+      line-height: 1.2;
+      max-width: toRem(596);
+   }
+
+   // .content-hero__info
+   &__info {
+      color: $white;
+   }
+
+   // .content-hero__text
+   &__text {
+      color: $white;
+   }
+
+   &__button {
+
+      @media (max-width: toEm(570)) {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+   }
+}
+
+.info-content {
+   @include flex-column($gap:toRem(8));
+   border-left: toRem(1) solid $brandLight;
+   padding-left: toRem(12);
+   &__title {
+      @include adaptiveValue('font-size', 20, 16);
+      font-weight: 500;
+
+      span {
+         font-weight: 600;
+         background-color: $warning;
+         border-radius: toRem(5);
+         padding-block: toRem(4);
+         padding-inline: toRem(12);
+      }
+   }
+
+   &__text {
+      @include adaptiveValue('font-size', 14, 10);
+      color: $white;
+   }
+}
+
+.link-banner-top {
+   position: relative;
+   border-radius: toRem(10);
+   overflow: hidden;
+   display: flex;
+
+   &__inner {
+      flex-grow: 1;
+   }
+
+   // .link-banner-top__content
+   &__content {
+      position: relative;
+      z-index: 5;
+      @include flex-column;
+      @include adaptiveValue('padding-inline', 32, 20);
+      @include adaptiveValue('padding-top', 32, 20);
+      @include adaptiveValue('padding-bottom', 120, 40);
+
+      > * {
+         margin-bottom: toRem(12);
+         &:last-child {
+            margin-bottom: toRem(0);
+         }
+      }
+   }
+
+   // .link-banner-top__label
+   &__label {
+      text-transform: uppercase;
+      @include adaptiveValue('font-size', 14, 12);
+      font-weight: 500;
+      letter-spacing: ls(3%);
+      color: $gray900;
+      margin-bottom: toRem(8);
+   }
+
+   // .link-banner-top__title
+   &__title {
+      @include adaptiveValue('font-size', 32, 26);
+      font-weight: 600;
+      color: $gray900;
+      line-height: 1.2;
+   }
+
+   // .link-banner-top__category
+   &__category {
+      @include adaptiveValue('font-size', 14, 12);
+      color: $gray600;
+      @include adaptiveValue('margin-bottom', 24, 12);
+   }
+
+   // .link-banner-top__image
+   &__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+
+      @media (max-width: toEm(1060)) {
+      //   @include overlay($opacity:0.2);
+      }
+   }
+}
+
+.link-banner-bottom {
+   position: relative;
+   border-radius: toRem(10);
+   overflow: hidden;
+   display: flex;
+
+   &__inner {
+      flex-grow: 1;
+   }
+
+   // .link-banner-bottom__content
+   &__content {
+      position: relative;
+      z-index: 2;
+      @include flex-column($align-items:center);
+      @include adaptiveValue('padding-block', 67, 20);
+      @include adaptiveValue('padding-inline', 40, 20);
+
+      > * {
+         margin-bottom: toRem(12);
+         &:last-child {
+            margin-bottom: toRem(0);
+         }
+      }
+   }
+
+   // .link-banner-bottom__label
+   &__label {
+      @include adaptiveValue('font-size', 14, 12);
+      font-weight: 500;
+      line-height: 1;
+      color: $white;
+      text-transform: uppercase;
+   }
+
+   // .link-banner-bottom__title
+   &__title {
+      @include adaptiveValue('font-size', 32, 28);
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
+      color: $white;
+      max-width: toRem(343);
+      @include adaptiveValue('margin-bottom', 32, 20);
+   }
+
+   // .link-banner-bottom__image
+   &__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      @include overlay-decor(rgba(0, 38, 3, 0.8));
+
+      img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// advantages
+// -----------------------------
+.advantages {
+
+   // .advantages__container
+   &__container {}
+
+   // .advantages__items
+   &__items {
+      @include grid-adaptive($size: toRem(270), $gap: toRem(5));
+      row-gap: toRem(10);
+      @include adaptiveValue('padding-block', 40, 20);
+      @include adaptiveValue('padding-inline', 40, 20);
+      box-shadow: 0px 8px 40px 0px rgba(0, 38, 3, 0.08);
+      border-radius: toRem(8);
+   }
+}
+
+.item-advantages {
+
+   &__inner {
+      display: flex;
+      align-items: center;
+      gap: toRem(16);
+
+      @include hover {
+         .item-advantages__icon {
+            fill: $brandDark;
+         }
+         .item-advantages__title {
+            color: $brandDark;
+         }
+      }
+   }
+
+   &__icon {
+      width: toRem(40);
+      height: toRem(40);
+      fill: $brandPrimary;
+      @include transition;
+   }
+
+   // .item-advantages__content
+   &__content {
+      @include flex-column($gap:toRem(8));
+   }
+
+   // .item-advantages__title
+   &__title {
+      @include adaptiveValue('font-size', 16, 14);
+      font-weight: 600;
+      line-height: 1.2;
+      @include transition;
+   }
+
+   // .item-advantages__text
+   &__text {
+      @include adaptiveValue('font-size', 14, 12);
+      color: $gray400;
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// categories
+// -----------------------------
+.categories {
+
+   // .categories__container
+   &__container {}
+
+   // .categories__header
+   &__header {}
+
+   // .categories__items
+   &__items {
+      @include grid-adaptive($size: toRem(170), $gap: toRem(24));
+
+      @media (max-width: toEm(393)) {
+        display: flex;
+        overflow: auto;
+        margin-inline: toRem(-15);
+        padding-inline: toRem(15);
+      }
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// products
+// -----------------------------
+.products {
+
+   // .products__container
+   &__container {}
+
+   // .products__header
+   &__header {}
+
+   // .products__items
+   &__items {
+      @include grid-adaptive($size: toRem(240));
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// sales
+// -----------------------------
+.sales {
+
+   // .deals__container
+   &__container {
+      @include grid-adaptive($size: toRem(360), $gap: toRem(24));
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// deals
+// -----------------------------
+.deals {
+   background-color: rgba(247, 247, 247, 1);
+
+   // .deals__container
+   &__container {}
+
+   // .deals__header
+   &__header {}
+
+   // .deals__items
+   &__items {
+      display: grid;
+      grid-template-columns: repeat(5,1fr);
+      grid-template-rows: minmax(toRem(288), auto);
+      grid-auto-rows: minmax(toRem(288), auto);
+
+      .item-product-big {
+         grid-column: 2 span;
+         grid-row: 2 span;
+      }
+
+      @media (max-width: toEm(1150)) {
+         grid-template-columns: repeat(4, 1fr);
+         grid-template-rows: minmax(toRem(250), auto);
+         grid-auto-rows: minmax(toRem(250), auto);
+      }
+      @media (max-width: toEm(915)) {
+         grid-template-columns: repeat(3, 1fr);
+         grid-template-rows: minmax(toRem(220), auto) minmax(toRem(220), auto);
+         grid-auto-rows: auto;
+      }
+      @media (max-width: toEm(620)) {
+         grid-template-columns: auto;
+         grid-auto-rows: auto;
+
+         .item-product-big {
+            grid-column: 1 span;
+            grid-row: 1 span;
+         }
+      }
+   }
+}
+
+.amount-price {
+   display: flex;
+   align-items: center;
+   gap: toRem(2);
+   // .amount-price__current
+   &__current {
+      @include adaptiveValue('font-size', 16, 14);
+      font-weight: 500;
+   }
+
+   // .amount-price__old
+   &__old {
+      @include adaptiveValue('font-size', 16, 14);
+      color: $gray400;
+      text-decoration: line-through;
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// banner
+// -----------------------------
+
+
+// ===========================================================================================
+// -----------------------------
+// featured-products
+// -----------------------------
+.featured-products {
+
+   // .featured-products__items
+   &__items {
+      @include grid-adaptive($size: toRem(230));
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// news
+// -----------------------------
+.news {
+
+   // .news__container
+   &__container {}
+
+   // .news__title
+   &__title {
+      @include adaptiveValue('font-size', 32, 28);
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
+      @include adaptiveValue('margin-bottom', 32, 20);
+   }
+
+   // .news__items
+   &__items {
+      @include grid-adaptive($size: toRem(400), $gap: toRem(24));
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// testimonials
+// -----------------------------
+.testimonials {
+   background-color: $gray50;
+
+   // .testimonials__container
+   &__container {}
+
+   // .testimonials__header
+   &__header {}
+
+   // .testimonials__buttons
+   &__buttons {
+      display: flex;
+      align-items: center;
+      @include adaptiveValue('gap', 12, 6);
+   }
+}
+
+.slider-testimonials {
+
+   // .slider-testimonials__wrapper
+   &__wrapper {}
+
+   // .slider-testimonials__slide
+   &__slide {}
+}
+
+// ===========================================================================================
+// -----------------------------
+// partners
+// -----------------------------
+.partners {
+
+   // .partners__container
+   &__container {}
+
+   // .partners__item
+   &__item {
+      text-align: center;
+      padding-inline: 5%;
+      flex-grow: 1;
+      border-right: toRem(1) solid $gray100;
+
+      &:first-child {
+         padding-left: toRem(0);
+      }
+
+      &:last-child {
+         border-right: none;
+         padding-right: toRem(0);
+      }
+   }
+
+   &__list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      row-gap: toRem(20);
+   }
+
+   &__link {
+      filter: grayscale(1);
+      transition: all 0.3s;
+      opacity: 0.4;
+
+      @include hover {
+        filter: grayscale(0);
+        opacity: 1;
+      }
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// follow
+// -----------------------------
+.follow {
+
+   // .follow__container
+   &__container {}
+
+   // .follow__title
+   &__title {
+      @include adaptiveValue('font-size', 32, 28);
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
+      @include adaptiveValue('margin-bottom', 32, 20);
+   }
+
+   // .follow__items
+   &__items {
+      @include grid-adaptive($size: toRem(170), $gap: toRem(24));
+
+      @media (max-width: toEm($mobile)) {
+        display: flex;
+        overflow: auto;
+        margin-inline: toRem(-15);
+        padding-inline: toRem(15);
+        flex-wrap: nowrap;
+      }
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

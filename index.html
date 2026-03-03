@@ -1,0 +1,2620 @@
+<!doctype html>
+<html lang="en" init-page-loader>
+
+<head>
+   <meta charset="UTF-8" />
+   <style>
+      /* Миттєвий фон для всього вікна */
+      html {
+         background-color: #fff;
+      }
+
+      /* Ховаємо контент, поки немає статусу "ready" */
+      html[init-page-loader] body {
+         opacity: 0 !important;
+         visibility: hidden !important;
+         overflow: hidden;
+         /* Блокуємо скрол під час завантаження */
+      }
+
+      /* Повертаємо видимість та скрол */
+      html[init-page-loader="ready"] body {
+         opacity: 1 !important;
+         visibility: visible !important;
+         overflow: visible;
+         transition: opacity 0.6s ease-in-out !important;
+      }
+
+      /* Стиль прогрес-бару (щоб не чекати завантаження файлу CSS) */
+      #loader-progress-bar {
+         position: fixed;
+         top: 0;
+         left: 0;
+         height: 2px;
+         background-color: rgba(0, 179, 7, 1);
+         z-index: 100000;
+         width: 0%;
+         transition: width 0.4s ease, opacity 0.3s ease;
+         box-shadow: 0 0 10px rgba(0, 179, 7, 1);
+      }
+   </style>
+   <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+   <title>Ecobazar</title>
+</head>
+
+<body>
+
+   <div class="wrapper">
+      <header class="header">
+         <div class="header__top top-header">
+            <div class="top-header__container">
+               <address class="top-header__location">
+                  <a href="#" class="top-header__link top-header__link--icon-location">
+                     Store Location: Lincoln-
+                     344, Illinois, Chicago, USA
+                  </a>
+               </address>
+               <div class="top-header__actions actions-top-header">
+                  <div class="actions-top-header__lang lang-currency">
+                     <label for="form[lang]" class="lang-currency__element lang-currency__element--icon-shevron">
+                        <select name="language" id="language" class="lang-currency__select">
+                           <option value="en" class="lang-currency__item">Eng</option>
+                           <option value="uk" class="lang-currency__item">Ukr</option>
+                           <option value="eur" class="lang-currency__item">Eur</option>
+                        </select></label>
+                     <label for="form[currency]" class="lang-currency__element lang-currency__element--icon-shevron">
+                        <select name="language" id="language" class="lang-currency__select">
+                           <option value="usd" class="lang-currency__item">USD</option>
+                           <option value="uah" class="lang-currency__item">UAH</option>
+                           <option value="eur" class="lang-currency__item">EUR</option>
+                        </select></label>
+                  </div>
+                  <div class="actions-top-header__auth auth-top-header">
+                     <a href="#" target="_blank" class="auth-top-header__link">Sign In</a>
+                     /
+                     <a href="#" target="_blank" class="auth-top-header__link">Sign Up</a>
+                  </div>
+               </div>
+               <div class="icon-menu">
+                  <span></span>
+               </div>
+            </div>
+         </div>
+
+         <div class="header__body body-header">
+            <div class="body-header__container">
+               <figure class="body-header__logo logo-header">
+                  <a href="#" class="logo-header__inner">
+                     <img class="logo-header__icon" src="/src/assets/icons/logo-leaf.svg" alt="logo-icon">
+                     <cite class="logo-header__text">Ecobazar</cite>
+                  </a>
+               </figure>
+               <div class="body-header__search search-header">
+                  <form action="#" class="search-header__form search-header__form--icon-search">
+                     <input type="text" class="search-header__input" placeholder="Search">
+                     <button type="submit" class="search-header__button">Search</button>
+                  </form>
+               </div>
+               <div class="body-header__actions actions-body-header">
+                  <a href="#" class="actions-body-header__wishlist actions-body-header__wishlist--icon-like"></a>
+                  <a href="#" class="actions-body-header__cart cart-shopping">
+                     <div class="cart-shopping__icon cart-shopping__icon--icon-shop-cart">
+                        <span>2</span>
+                     </div>
+                     <div class="cart-shopping__content content-cart-shopping">
+                        <span class="content-cart-shopping__label">Shopping cart:</span>
+                        <span class="content-cart-shopping__amount">$57.00</span>
+                     </div>
+                  </a>
+               </div>
+            </div>
+         </div>
+
+         <div class="header__bottom bottom-header">
+            <div class="bottom-header__container">
+               <nav class="bottom-header__menu menu-header menu-dropdown">
+                  <ul class="menu-header__list menu-dropdown__list">
+                     <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                        <a href="#"
+                           class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron">Home</a>
+                        <ul class="menu-dropdown__submenu submenu-dropdown">
+                           <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                           <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                        </ul>
+                     </li>
+                     <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                        <a href="#"
+                           class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron">Shop</a>
+                        <ul class="menu-dropdown__submenu submenu-dropdown">
+                           <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                           <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                           <li><a href="#" class="submenu-dropdown__link">Item 3</a></li>
+                        </ul>
+                     </li>
+                     <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                        <a href="#"
+                           class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron">Pages</a>
+                        <ul class="menu-dropdown__submenu submenu-dropdown">
+                           <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                           <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                           <li><a href="#" class="submenu-dropdown__link">Item 3</a></li>
+                        </ul>
+                     </li>
+                     <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                        <a href="#"
+                           class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron">Blog</a>
+                        <ul class="menu-dropdown__submenu submenu-dropdown">
+                           <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                           <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                           <li><a href="#" class="submenu-dropdown__link">Item 3</a></li>
+                        </ul>
+                     </li>
+                     <li class="menu-header__item">
+                        <a href="#" class="menu-header__link">About Us</a>
+                     </li>
+                     <li class="menu-header__item">
+                        <a href="#" class="menu-header__link">Contact Us</a>
+                     </li>
+                  </ul>
+               </nav>
+               <a href="#" class="bottom-header__link bottom-header__link--icon-phone">(219) 555-0114</a>
+            </div>
+         </div>
+
+      </header>
+
+      <main class="page">
+         <section class="page__hero hero">
+            <div class="hero__container">
+               <article class="hero__banner">
+                  <a href="#" class="hero__inner">
+                     <div class="hero__content content-hero">
+                        <h1 class="content-hero__title">Fresh & Healthy <br>
+                           Organic Food
+                        </h1>
+                        <div class="content-hero__info info-content">
+                           <h3 class="info-content__title">Sale up to <span>30% OFF</span></h3>
+                           <span class="info-content__text">Free shipping on all your order.</span>
+                        </div>
+                        <span class="content-hero__button button button--icon-arrow button--big-white">Shop now</span>
+                     </div>
+                     <div class="hero__image">
+                        <img src="/src/assets/img/banners/hero-img-banner.webp" alt="hero image banner">
+                     </div>
+                  </a>
+               </article>
+               <article class="hero__banner-link link-banner-top">
+                  <a href="#" class="link-banner-top__inner">
+                     <div class="link-banner-top__content">
+                        <span class="link-banner-top__label">Summer Sale</span>
+                        <h3 class="link-banner-top__title">75% OFF</h3>
+                        <span class="link-banner-top__category">Only Fruit & Vegetable</span>
+                        <div class="link-banner-top__link link-arrow link-arrow--icon-arrow">Shop Now</div>
+                     </div>
+                     <div class="link-banner-top__image">
+                        <img src="/src/assets/img/banners/hero-img-shop-01.webp" alt="hero image banner small">
+                     </div>
+                  </a>
+               </article>
+               <article class="hero__banner-link link-banner-bottom">
+                  <a href="#" class="link-banner-bottom__inner">
+                     <div class="link-banner-bottom__content">
+                        <span class="link-banner-bottom__label">Best Deal</span>
+                        <h3 class="link-banner-bottom__title">Special Products Deal of the Month</h3>
+                        <div class="link-banner-bottom__link link-arrow link-arrow--icon-arrow">Shop Now</div>
+                     </div>
+                     <div class="link-banner-bottom__image">
+                        <img src="/src/assets/img/banners/hero-img-shop-02.webp" alt="hero image banner small">
+                     </div>
+                  </a>
+               </article>
+            </div>
+         </section>
+
+         <div class="page__advantages advantages">
+            <div class="advantages__container">
+               <div class="advantages__items">
+                  <article class="item-advantages">
+                     <a href="#" class="item-advantages__inner">
+                        <figure class="item-advantages__logo">
+                           <svg class="item-advantages__icon">
+                              <use href="/src/assets/icons/symbol-defs.svg#icon-truck-deliv"></use>
+                           </svg>
+                        </figure>
+                        <div class="item-advantages__content">
+                           <h3 class="item-advantages__title">Free Shipping</h3>
+                           <div class="item-advantages__text">
+                              <p>Free shipping on all your order</p>
+                           </div>
+                        </div>
+                     </a>
+                  </article>
+                  <article class="item-advantages">
+                     <a href="#" class="item-advantages__inner">
+                        <figure class="item-advantages__logo">
+                           <svg class="item-advantages__icon">
+                              <use href="/src/assets/icons/symbol-defs.svg#icon-great-support"></use>
+                           </svg>
+                        </figure>
+                        <div class="item-advantages__content">
+                           <h3 class="item-advantages__title">Customer Support 24/7</h3>
+                           <div class="item-advantages__text">
+                              <p>Instant access to Support</p>
+                           </div>
+                        </div>
+                     </a>
+                  </article>
+                  <article class="item-advantages">
+                     <a href="#" class="item-advantages__inner">
+                        <figure class="item-advantages__logo">
+                           <svg class="item-advantages__icon">
+                              <use href="/src/assets/icons/symbol-defs.svg#icon-customer-feedback"></use>
+                           </svg>
+                        </figure>
+                        <div class="item-advantages__content">
+                           <h3 class="item-advantages__title">100% Secure Payment</h3>
+                           <div class="item-advantages__text">
+                              <p>We ensure your money is save</p>
+                           </div>
+                        </div>
+                     </a>
+                  </article>
+                  <article class="item-advantages">
+                     <a href="#" class="item-advantages__inner">
+                        <figure class="item-advantages__logo">
+                           <svg class="item-advantages__icon">
+                              <use href="/src/assets/icons/symbol-defs.svg#icon-money-guarantee"></use>
+                           </svg>
+                        </figure>
+                        <div class="item-advantages__content">
+                           <h3 class="item-advantages__title">Money-Back Guarantee</h3>
+                           <div class="item-advantages__text">
+                              <p>30 Days Money-Back Guarantee</p>
+                           </div>
+                        </div>
+                     </a>
+                  </article>
+               </div>
+            </div>
+         </div>
+
+         <section class="page__categories categories">
+            <div class="categories__container">
+               <div class="categories__header header-block">
+                  <h2 class="header-block__title">Popular Categories</h2>
+                  <a href="#" class="header-block__link link-arrow link-arrow--icon-arrow">View All</a>
+               </div>
+               <div class="categories__items">
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-01.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Fresh Fruit</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-02.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Fresh Vegetables</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-03.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Meat & Fish</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-04.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Snacks</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-05.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Beverages</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-06.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Beauty & Health</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-07.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Bread & Bakery</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-08.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Baking Needs</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-09.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Cooking</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-10.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Diabetic Food</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-11.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Dish Detergents</h3>
+                     </a>
+                  </article>
+                  <article class="item-categories">
+                     <a href="#" class="item-categories__inner">
+                        <div class="item-categories__image">
+                           <img src="/src/assets/img/categories/categories-img-12.webp" alt="categories image">
+                        </div>
+                        <h3 class="item-categories__title">Oil</h3>
+                     </a>
+                  </article>
+               </div>
+            </div>
+         </section>
+
+         <section class="page__products products">
+            <div class="products__container">
+               <div class="products__header header-block">
+                  <h2 class="header-block__title">Popular Products</h2>
+                  <a href="#" class="header-block__link link-arrow link-arrow--icon-arrow">View All</a>
+               </div>
+               <div class="products__items">
+                  <!-- apple -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-apple.webp" alt="item product">
+                        </a>
+                        <div class="item-product__labels">
+                           <a href="#" class="item-sale-label item-sale-label--orange">
+                              <span class="item-sale-label__title">Sale</span>
+                              <span class="item-sale-label__label">50%</span>
+                           </a>
+                        </div>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Green Apple</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$14.99</span>
+                                 <span class="amount-price__old">$20.99</span>
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="apple-star5" name="apple-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="apple-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="apple-star4" name="apple-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="apple-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="apple-star3" name="apple-rating" value="3"
+                                    checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="apple-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="apple-star2" name="apple-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="apple-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="apple-star1" name="apple-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="apple-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- orange -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-orange.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Fresh Indian Malta</a>
+                              </h3>
+                              <span class="item-product__amount">$20.00</span>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- cabbage -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-cabbage.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Chinese cabbage</a>
+                              </h3>
+                              <span class="item-product__amount">$12.00</span>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- lettuce -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-lettuce.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Green Lettuce</a>
+                              </h3>
+                              <span class="item-product__amount">$9.00</span>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- eggplant -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-eggplant.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Eggplant</a>
+                              </h3>
+                              <span class="item-product__amount">$34.00</span>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- Big Potatoes -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-potatoes.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Big Potatoes</a>
+                              </h3>
+                              <span class="item-product__amount">$20.00</span>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- Corn -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-corn.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Corn</a>
+                              </h3>
+                              <span class="item-product__amount">$20.00</span>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- Fresh Cauliflower -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-cauliflower.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Fresh
+                                    Cauliflower</a>
+                              </h3>
+                              <span class="item-product__amount">$12.00</span>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- Green Capsicum -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-capsicum.webp" alt="item product">
+                        </a>
+                        <div class="item-product__labels">
+                           <a href="#" class="item-sale-label item-sale-label--orange">
+                              <span class="item-sale-label__title">Sale</span>
+                              <span class="item-sale-label__label">50%</span>
+                           </a>
+                        </div>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Green Capsicum</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$12.00</span>
+                                 <span class="amount-price__old">$24.00</span>
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- Green Chili -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-chili.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Green Chili</a>
+                              </h3>
+                              <span class="item-product__amount">$34.00</span>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+               </div>
+            </div>
+         </section>
+
+         <div class="page__sales sales">
+            <div class="sales__container">
+               <article class="item-sale">
+                  <a href="#" class="item-sale__inner">
+                     <div class="item-sale__content content-sale">
+                        <div class="content-sale__label">Best Deals</div>
+                        <h3 class="content-sale__title">Sale of the Month</h3>
+                        <div class="content-sale__countdown countdown">
+                           <div class="countdown__timer">
+                              <div class="countdown__digist">
+                                 <span>00</span>
+                                 <span>00</span>
+                                 <span>00</span>
+                                 <span>00</span>
+                              </div>
+                              <div class="countdown__labels">
+                                 <span>Days</span>
+                                 <span>Hours</span>
+                                 <span>Mins</span>
+                                 <span>Secs</span>
+                              </div>
+                           </div>
+                        </div>
+                        <span class="button button--icon-arrow button--medium-white">Shop now</span>
+                     </div>
+                     <img class="item-sale__image" src="/src/assets/img/banners/sale-banner-img-01.webp"
+                        alt="sale banner">
+                  </a>
+               </article>
+               <article class="item-sale">
+                  <a href="#" class="item-sale__inner">
+                     <div class="item-sale__content content-sale">
+                        <div class="content-sale__label">Best Deals</div>
+                        <h3 class="content-sale__title content-sale__title--margin">Sale of the Month</h3>
+                        <div class="content-sale__info info-sale info-sale--margin">
+                           <span class="info-sale__label">Started at</span>
+                           <div class="info-sale__value">$79.99</div>
+                        </div>
+                        <span class="button button--icon-arrow button--medium-white">Shop now</span>
+                     </div>
+                     <img class="item-sale__image" src="/src/assets/img/banners/sale-banner-img-02.webp"
+                        alt="sale banner">
+                  </a>
+               </article>
+               <article class="item-sale item-sale--black">
+                  <a href="#" class="item-sale__inner">
+                     <div class="item-sale__content content-sale">
+                        <div class="content-sale__label">Best Deals</div>
+                        <h3 class="content-sale__title content-sale__title--margin">Sale of the Month</h3>
+                        <div class="content-sale__info info-sale info-sale--gap">
+                           <span class="info-sale__label">Up to</span>
+                           <div class="info-sale__value info-sale__value--black">64% OFF</div>
+                        </div>
+                        <span class="button button--icon-arrow button--medium-white">Shop now</span>
+                     </div>
+                     <img class="item-sale__image" src="/src/assets/img/banners/sale-banner-img-03.webp"
+                        alt="sale banner">
+                  </a>
+               </article>
+            </div>
+         </div>
+
+         <section class="page__deals deals">
+            <div class="deals__container">
+               <div class="deals__header header-block">
+                  <h2 class="header-block__title">Hot Deals</h2>
+                  <a href="#" class="header-block__link link-arrow link-arrow--icon-arrow">View All</a>
+               </div>
+               <div class="deals__items">
+                  <!-- product-cart-big -->
+                  <article class="item-product-big">
+                     <a href="#" class="item-product-big__inner">
+                        <div class="item-product-big__labels">
+                           <div class="item-sale-label item-sale-label--orange">
+                              <span class="item-sale-label__title">Sale</span>
+                              <span class="item-sale-label__label">50%</span>
+                           </div>
+                           <div class="item-sale-label item-sale-label--blue">
+                              <span class="item-sale-label__title">best</span>
+                              <span class="item-sale-label__label">Sale</span>
+                           </div>
+                        </div>
+                        <div class="item-product-big__top">
+                           <div class="item-product-big__image">
+                              <img src="/src/assets/img/banners/hot-deal-img-apples.webp"
+                                 alt="hot deal apple item product">
+                           </div>
+                           <div class="item-product-big__actions">
+                              <button type="button" class="button-action-like button-action-like--bg">
+                                 <svg class="button-action-like__icon">
+                                    <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                                 </svg>
+                              </button>
+                              <span class="button button--icon-shop-cart button--medium-green">Add to Cart</span>
+                              <button type="button"
+                                 class="button-quick-view button-quick-view--icon-view button-quick-view--bg"></button>
+                           </div>
+                        </div>
+                        <div class="item-product-big__content content-item-pd-big">
+                           <h3 class="content-item-pd-big__title">Chinese cabbage</h3>
+                           <div class="content-item-pd-big__prices price-item-big">
+                              <span class="price-item-big__current">$12.00</span>
+                              <span class="price-item-big__old">$24.00</span>
+                           </div>
+                           <div class="content-item-pd-big__raiting rating-item-big">
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="product-cart-big-apple-star5" name="r"
+                                    value="rating-pd-cart-big-apple">
+                                 <label class="rating__label rating__label--icon-star-full1"
+                                    for="product-cart-big-apple-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="product-cart-big-apple-star4" name="r"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1"
+                                    for="product-cart-big-apple-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="product-cart-big-apple-star3" name="r"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1"
+                                    for="product-cart-big-apple-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="product-cart-big-apple-star2" name="r"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1"
+                                    for="product-cart-big-apple-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="product-cart-big-apple-star1" name="r"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1"
+                                    for="product-cart-big-apple-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                              <div class="rating-item-big__feedback">(524 Feedback)</div>
+                           </div>
+                        </div>
+                        <div class="content-item-pd-big__bottom bottom-content-item-big">
+                           <h4 class="bottom-content-item-big__subtitle">Hurry up! Offer ends In:</h4>
+                           <div class="bottom-content-item-big__countdown countdown-cart">
+                              <div class="countdown-cart__timer">
+                                 <div class="countdown-cart__digist">
+                                    <span>00</span>
+                                    <span>00</span>
+                                    <span>00</span>
+                                    <span>00</span>
+                                 </div>
+                                 <div class="countdown-cart__labels">
+                                    <span>Days</span>
+                                    <span>Hours</span>
+                                    <span>Mins</span>
+                                    <span>Secs</span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                  </article>
+                  <!-- cabbage -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-cabbage.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Chinese cabbage</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$12.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- lettuce -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-lettuce.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Green Lettuce</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$9.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- eggplant -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-eggplant.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Eggplant</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$34.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- Fresh Cauliflower -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-cauliflower.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Fresh
+                                    Cauliflower</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$12.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- Green Capsicum -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-capsicum.webp" alt="item product">
+                        </a>
+                        <div class="item-product__labels">
+                           <a href="#" class="item-sale-label item-sale-label--orange">
+                              <span class="item-sale-label__title">Sale</span>
+                              <span class="item-sale-label__label">50%</span>
+                           </a>
+                        </div>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Green Capsicum</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$9.00</span>
+                                 <span class="amount-price__old">$20.99</span>
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- Green Chili -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-chili.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Green Chili</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$34.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- Big Potatoes -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-potatoes.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Big Potatoes</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$20.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- Corn -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-corn.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Corn</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$20.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- sweet paper -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-sweet-pepper.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Red Chili</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$12.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- tomatoes -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-tamatoes.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Red Tomatos</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$12.00</span>
+                                 <span class="amount-price__old">$24.00</span>
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- mango -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-mango.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Red Tomatos</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$34.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+               </div>
+            </div>
+         </section>
+
+         <section class="page__featured-products featured-products">
+            <div class="featured-products__container">
+               <div class="featured-products__header header-block">
+                  <h2 class="header-block__title">Featured Products</h2>
+                  <a href="#" class="header-block__link link-arrow link-arrow--icon-arrow">View All</a>
+               </div>
+               <div class="featured-products__items">
+                  <!-- apple -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-apple.webp" alt="item product">
+                        </a>
+                        <div class="item-product__labels">
+                           <a href="#" class="item-sale item-sale--orange">
+                              <span class="item-sale__title">Sale</span>
+                              <span class="item-sale__label">50%</span>
+                           </a>
+                        </div>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Green Apple</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$14.99</span>
+                                 <span class="amount-price__old">$20.99</span>
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- orange -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-orange.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Fresh Indian Malta</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$20.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- cabbage -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-cabbage.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Chinese cabbage</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$12.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- lettuce -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-lettuce.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Green Lettuce</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$9.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+                  <!-- eggplant -->
+                  <article class="item-product">
+                     <div class="item-product__inner">
+                        <a href="#" class="item-product__image">
+                           <img src="/src/assets/img/products/product-img-eggplant.webp" alt="item product">
+                        </a>
+                        <div class="item-product__body">
+                           <div class="item-product__content">
+                              <h3 class="item-product__title">
+                                 <a href="#" class="item-product__link">Eggplant</a>
+                              </h3>
+                              <div class="item-product__amount amount-price">
+                                 <span class="amount-price__current">$34.00</span>
+                                 <!-- <span class="amount-price__old">$24.00</span> -->
+                              </div>
+                              <fieldset class="rating">
+                                 <legend class="visually-hidden">Оцініть товар</legend>
+                                 <input class="rating__item" type="radio" id="pr-rt-star5" name="product-rating"
+                                    value="5">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star5">
+                                    <span class="visually-hidden">Rating 5 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star4" name="product-rating"
+                                    value="4">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star4">
+                                    <span class="visually-hidden">Rating 4 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star3" name="product-rating"
+                                    value="3" checked>
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star3">
+                                    <span class="visually-hidden">Rating 3 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star2" name="product-rating"
+                                    value="2">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star2">
+                                    <span class="visually-hidden">Rating 2 stars</span>
+                                 </label>
+
+                                 <input class="rating__item" type="radio" id="pr-rt-star1" name="product-rating"
+                                    value="1">
+                                 <label class="rating__label rating__label--icon-star-full1" for="pr-rt-star1">
+                                    <span class="visually-hidden">Rating 1 stars</span>
+                                 </label>
+                              </fieldset>
+                           </div>
+                           <button type="button"
+                              class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"></button>
+                        </div>
+                        <div class="item-product__actions">
+                           <button type="button" class="button-action-like">
+                              <svg class="button-action-like__icon">
+                                 <use href="/src/assets/icons/symbol-defs.svg#icon-like"></use>
+                              </svg>
+                           </button>
+                           <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
+                        </div>
+                     </div>
+                  </article>
+               </div>
+            </div>
+         </section>
+
+         <section class="page__news news">
+            <div class="news__container">
+               <h2 class="news__title">Latest News</h2>
+               <div class="news__items">
+                  <article class="item-news">
+                     <div class="item-news__inner">
+                        <div class="item-news__header">
+                           <a href="#" class="item-news__image">
+                              <img src="/src/assets/img/news/news-img-01.webp" alt="News article preview image">
+                           </a>
+                           <div class="date">
+                              <span class="date__day">18</span>
+                              <span class="date__month">Nov</span>
+                           </div>
+                        </div>
+                        <div class="item-news__content content-news">
+                           <ul class="content-news__actions actions">
+                              <li class="actions__item">
+                                 <a href="#" class="actions__link actions__link--icon-label">Food</a>
+                              </li>
+                              <li class="actions__item">
+                                 <a href="#" class="actions__link actions__link--icon-admin">By Admin</a>
+                              </li>
+                              <li class="actions__item">
+                                 <a href="#" class="actions__link actions__link--icon-comments">65 Comments</a>
+                              </li>
+                           </ul>
+                           <h3 class="content-news__title">
+                              <a href="#" class="content-news__link">Curabitur porttitor orci
+                                 eget neque accumsan venenatis. Nunc
+                                 fermentum.
+                              </a>
+                           </h3>
+                           <a href="#" class="link-arrow link-arrow--semibold link-arrow--icon-arrow">View
+                              All</a>
+                        </div>
+                     </div>
+                  </article>
+                  <article class="item-news">
+                     <div class="item-news__inner">
+                        <div class="item-news__header">
+                           <a href="#" class="item-news__image">
+                              <img src="/src/assets/img/news/news-img-02.webp" alt="News article preview image">
+                           </a>
+                           <div class="date">
+                              <span class="date__day">29</span>
+                              <span class="date__month">jan</span>
+                           </div>
+                        </div>
+                        <div class="item-news__content content-news">
+                           <ul class="content-news__actions actions">
+                              <li class="actions__item">
+                                 <a href="#" class="actions__link actions__link--icon-label">Food</a>
+                              </li>
+                              <li class="actions__item">
+                                 <a href="#" class="actions__link actions__link--icon-admin">By Admin</a>
+                              </li>
+                              <li class="actions__item">
+                                 <a href="#" class="actions__link actions__link--icon-comments">65 Comments</a>
+                              </li>
+                           </ul>
+                           <h3 class="content-news__title">
+                              <a href="#" class="content-news__link">Eget lobortis lorem lacinia. Vivamus pharetra
+                                 semper,
+                              </a>
+                           </h3>
+                           <a href="#" class="link-arrow link-arrow--semibold link-arrow--icon-arrow">View
+                              All</a>
+                        </div>
+                     </div>
+                  </article>
+                  <article class="item-news">
+                     <div class="item-news__inner">
+                        <div class="item-news__header">
+                           <a href="#" class="item-news__image">
+                              <img src="/src/assets/img/news/news-img-03.webp" alt="News article preview image">
+                           </a>
+                           <div class="date">
+                              <span class="date__day">21</span>
+                              <span class="date__month">feb</span>
+                           </div>
+                        </div>
+                        <div class="item-news__content content-news">
+                           <ul class="content-news__actions actions">
+                              <li class="actions__item">
+                                 <a href="#" class="actions__link actions__link--icon-label">Food</a>
+                              </li>
+                              <li class="actions__item">
+                                 <a href="#" class="actions__link actions__link--icon-admin">By Admin</a>
+                              </li>
+                              <li class="actions__item">
+                                 <a href="#" class="actions__link actions__link--icon-comments">65 Comments</a>
+                              </li>
+                           </ul>
+                           <h3 class="content-news__title">
+                              <a href="#" class="content-news__link">Maecenas blandit risus elementum mauris malesuada.
+                              </a>
+                           </h3>
+                           <a href="#" class="link-arrow link-arrow--semibold link-arrow--icon-arrow">View
+                              All</a>
+                        </div>
+                     </div>
+                  </article>
+               </div>
+            </div>
+         </section>
+
+         <section class="page__testimonials testimonials">
+            <div class="testimonials__container">
+               <div class="testimonials__header header-block">
+                  <h2 class="header-block__title">Client Testimonials</h2>
+                  <div class="header-block__buttons-testimonials">
+                     <button type="button" class="button-arrow button-arrow--left button-arrow--icon-arrow"></button>
+                     <button type="button" class="button-arrow button-arrow--right button-arrow--icon-arrow"></button>
+                  </div>
+               </div>
+               <div class="testimonials__body">
+                  <!-- Slider main container -->
+                  <div class="testimonials__slider slider-testimonials swiper">
+                     <!-- Additional required wrapper -->
+                     <div class="slider-testimonials__wrapper swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="slider-testimonials__slide swiper-slide">
+                           <article class="item-review">
+                              <h2 class="item-review__title visually-hidden">Title review</h2>
+                              <div class="item-review__icon item-review__icon--icon-quotes"></div>
+                              <blockquote class="item-review__text">
+                                 <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus
+                                    imperdiet elit eu magna
+                                    dictum, bibendum
+                                    cursus velit sodales. Donec sed neque eget
+                                 </p>
+                              </blockquote>
+                              <div class="item-review__body">
+                                 <figure class="item-review__author author-review">
+                                    <img src="/src/assets/img/authors/author-img-01.webp" alt="image of author"
+                                       class="author-review__image">
+                                    <div class="author-review__content">
+                                       <cite class="author-review__name">Robert Fox</cite>
+                                       <span class="author-review__label">Customer</span>
+                                    </div>
+                                 </figure>
+                                 <fieldset class="rating">
+                                    <legend class="visually-hidden">Оцініть товар</legend>
+                                    <input class="rating__item" type="radio" id="slide1-star5" name="slide1-rating"
+                                       value="5">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide1-star5">
+                                       <span class="visually-hidden">Rating 5 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide1-star4" name="slide1-rating"
+                                       value="4">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide1-star4">
+                                       <span class="visually-hidden">Rating 4 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide1-star3" name="slide1-rating"
+                                       value="3" checked>
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide1-star3">
+                                       <span class="visually-hidden">Rating 3 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide1-star2" name="slide1-rating"
+                                       value="2">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide1-star2">
+                                       <span class="visually-hidden">Rating 2 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide1-star1" name="slide1-rating"
+                                       value="1">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide1-star1">
+                                       <span class="visually-hidden">Rating 1 stars</span>
+                                    </label>
+                                 </fieldset>
+                              </div>
+                           </article>
+                        </div>
+                        <div class="slider-testimonials__slide swiper-slide">
+                           <article class="item-review">
+                              <h2 class="item-review__title visually-hidden">Title review</h2>
+                              <div class="item-review__icon item-review__icon--icon-quotes"></div>
+                              <blockquote class="item-review__text">
+                                 <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus
+                                    imperdiet elit eu magna
+                                    dictum, bibendum
+                                    cursus velit sodales. Donec sed neque eget
+                                 </p>
+                              </blockquote>
+                              <div class="item-review__body">
+                                 <figure class="item-review__author author-review">
+                                    <img src="/src/assets/img/authors/author-img-02.webp" alt="image of author"
+                                       class="author-review__image">
+                                    <div class="author-review__content">
+                                       <cite class="author-review__name">Dianne Russell</cite>
+                                       <span class="author-review__label">Customer</span>
+                                    </div>
+                                 </figure>
+                                 <fieldset class="rating">
+                                    <legend class="visually-hidden">Оцініть товар</legend>
+                                    <input class="rating__item" type="radio" id="slide2-star5" name="slide2-rating"
+                                       value="5">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide2-star5">
+                                       <span class="visually-hidden">Rating 5 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide2-star4" name="slide2-rating"
+                                       value="4">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide2-star4">
+                                       <span class="visually-hidden">Rating 4 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide2-star3" name="slide2-rating"
+                                       value="3" checked>
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide2-star3">
+                                       <span class="visually-hidden">Rating 3 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide2-star2" name="slide2-rating"
+                                       value="2">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide2-star2">
+                                       <span class="visually-hidden">Rating 2 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide2-star1" name="slide2-rating"
+                                       value="1">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide2-star1">
+                                       <span class="visually-hidden">Rating 1 stars</span>
+                                    </label>
+                                 </fieldset>
+                              </div>
+                           </article>
+                        </div>
+                        <div class="slider-testimonials__slide swiper-slide">
+                           <article class="item-review">
+                              <h2 class="item-review__title visually-hidden">Title review</h2>
+                              <div class="item-review__icon item-review__icon--icon-quotes"></div>
+                              <blockquote class="item-review__text">
+                                 <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus
+                                    imperdiet elit eu magna
+                                    dictum, bibendum
+                                    cursus velit sodales. Donec sed neque eget
+                                 </p>
+                              </blockquote>
+                              <div class="item-review__body">
+                                 <figure class="item-review__author author-review">
+                                    <img src="/src/assets/img/authors/author-img-03.webp" alt="image of author"
+                                       class="author-review__image">
+                                    <div class="author-review__content">
+                                       <cite class="author-review__name">Eleanor Pena</cite>
+                                       <span class="author-review__label">Customer</span>
+                                    </div>
+                                 </figure>
+                                 <fieldset class="rating">
+                                    <legend class="visually-hidden">Оцініть товар</legend>
+                                    <input class="rating__item" type="radio" id="slide3-star5" name="slide3-rating"
+                                       value="5">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide3-star5">
+                                       <span class="visually-hidden">Rating 5 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide3-star4" name="slide3-rating"
+                                       value="4">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide3-star4">
+                                       <span class="visually-hidden">Rating 4 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide3-star3" name="slide3-rating"
+                                       value="3" checked>
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide3-star3">
+                                       <span class="visually-hidden">Rating 3 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide3-star2" name="slide3-rating"
+                                       value="2">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide3-star2">
+                                       <span class="visually-hidden">Rating 2 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide3-star1" name="slide3-rating"
+                                       value="1">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide3-star1">
+                                       <span class="visually-hidden">Rating 1 stars</span>
+                                    </label>
+                                 </fieldset>
+                              </div>
+                           </article>
+                        </div>
+                        <div class="slider-testimonials__slide swiper-slide">
+                           <article class="item-review">
+                              <h2 class="item-review__title visually-hidden">Title review</h2>
+                              <div class="item-review__icon item-review__icon--icon-quotes"></div>
+                              <blockquote class="item-review__text">
+                                 <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus
+                                    imperdiet elit eu magna
+                                    dictum, bibendum
+                                    cursus velit sodales. Donec sed neque eget
+                                 </p>
+                              </blockquote>
+                              <div class="item-review__body">
+                                 <figure class="item-review__author author-review">
+                                    <img src="/src/assets/img/authors/author-img-02.webp" alt="image of author"
+                                       class="author-review__image">
+                                    <div class="author-review__content">
+                                       <cite class="author-review__name">Dianne Russell</cite>
+                                       <span class="author-review__label">Customer</span>
+                                    </div>
+                                 </figure>
+                                 <fieldset class="rating">
+                                    <legend class="visually-hidden">Оцініть товар</legend>
+                                    <input class="rating__item" type="radio" id="slide4-star5" name="slide4-rating"
+                                       value="5">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide4-star5">
+                                       <span class="visually-hidden">Rating 5 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide4-star4" name="slide4-rating"
+                                       value="4">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide4-star4">
+                                       <span class="visually-hidden">Rating 4 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide4-star3" name="slide4-rating"
+                                       value="3" checked>
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide4-star3">
+                                       <span class="visually-hidden">Rating 3 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide4-star2" name="slide4-rating"
+                                       value="2">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide4-star2">
+                                       <span class="visually-hidden">Rating 2 stars</span>
+                                    </label>
+
+                                    <input class="rating__item" type="radio" id="slide4-star1" name="slide4-rating"
+                                       value="1">
+                                    <label class="rating__label rating__label--icon-star-full1" for="slide4-star1">
+                                       <span class="visually-hidden">Rating 1 stars</span>
+                                    </label>
+                                 </fieldset>
+                              </div>
+                           </article>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <div class="page__partners partners">
+            <div class="partners__container">
+               <ul class="partners__list">
+                  <li class="partners__item">
+                     <a href="#" class="partners__link">
+                        <img src="/src/assets/img/partners/01.svg" alt="">
+                     </a>
+                  </li>
+                  <li class="partners__item">
+                     <a href="#" class="partners__link">
+                        <img src="/src/assets/img/partners/02.svg" alt="">
+                     </a>
+                  </li>
+                  <li class="partners__item">
+                     <a href="#" class="partners__link">
+                        <img src="/src/assets/img/partners/03.svg" alt="">
+                     </a>
+                  </li>
+                  <li class="partners__item">
+                     <a href="#" class="partners__link">
+                        <img src="/src/assets/img/partners/04.svg" alt="">
+                     </a>
+                  </li>
+                  <li class="partners__item">
+                     <a href="#" class="partners__link">
+                        <img src="/src/assets/img/partners/05.svg" alt="">
+                     </a>
+                  </li>
+                  <li class="partners__item">
+                     <a href="#" class="partners__link">
+                        <img src="/src/assets/img/partners/06.svg" alt="">
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+
+         <section class="page__follow follow">
+            <div class="follow__container">
+               <h2 class="follow__title">Follow us on Instagram</h2>
+               <div class="follow__items">
+                  <div class="item-follow">
+                     <a href="#" class="item-follow__link">
+                        <img src="/src/assets/img/follow/follow-img-01.webp" alt="Instagram post preview"
+                           class="item-follow__img">
+                     </a>
+                     <a href="#" class="media-link media-link--icon-instagram"></a>
+                  </div>
+                  <div class="item-follow">
+                     <a href="#" class="item-follow__link">
+                        <img src="/src/assets/img/follow/follow-img-02.webp" alt="Instagram post preview"
+                           class="item-follow__img">
+                     </a>
+                     <a href="#" class="media-link media-link--icon-instagram"></a>
+                  </div>
+                  <div class="item-follow">
+                     <a href="#" class="item-follow__link">
+                        <img src="/src/assets/img/follow/follow-img-03.webp" alt="Instagram post preview"
+                           class="item-follow__img">
+                     </a>
+                     <a href="#" class="media-link media-link--icon-instagram"></a>
+                  </div>
+                  <div class="item-follow">
+                     <a href="#" class="item-follow__link">
+                        <img src="/src/assets/img/follow/follow-img-04.webp" alt="Instagram post preview"
+                           class="item-follow__img">
+                     </a>
+                     <a href="#" class="media-link media-link--icon-instagram"></a>
+                  </div>
+                  <div class="item-follow">
+                     <a href="#" class="item-follow__link">
+                        <img src="/src/assets/img/follow/follow-img-05.webp" alt="Instagram post preview"
+                           class="item-follow__img">
+                     </a>
+                     <a href="#" class="media-link media-link--icon-instagram"></a>
+                  </div>
+                  <div class="item-follow">
+                     <a href="#" class="item-follow__link">
+                        <img src="/src/assets/img/follow/follow-img-06.webp" alt="Instagram post preview"
+                           class="item-follow__img">
+                     </a>
+                     <a href="#" class="media-link media-link--icon-instagram"></a>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+      </main>
+
+      <footer class="footer">
+         <div class="footer__container">
+            <p>Footer</p>
+         </div>
+      </footer>
+   </div>
+
+
+   <div id="app"></div>
+   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+   <script type="module" src="src/main.js"></script>
+</body>
+
+</html>
