@@ -179,7 +179,7 @@
    @include flex-link-arrow;
    @include adaptiveValue('gap', 12, 6);
    color: $brandPrimary;
-   @include link-hover-underline($height: toRem(2), $color: $brandDark);
+   // @include link-hover-underline($height: toRem(2), $color: $brandDark);
    @include transition;
    font-weight: 500;
    flex-shrink: 0;
@@ -192,10 +192,6 @@
    &--semibold {
       font-weight: 600;
       line-height: 1.2;
-   }
-
-   @include hover {
-     color: $brandDark;
    }
 }
 
@@ -225,19 +221,21 @@
 }
 
 .social-media-link {
-   @include icon-hover-bg(toRem(40),$use-scale: true,$color:rgba(0, 179, 7, 1));
 
-   &::before {
-      color: $gray700;
-      transition: color 0.3s ease;
-      font-size: toRem(22);
-   }
+   &__icon {
+      @include icon-hover-bg(toRem(40), $use-scale: true, $color: rgba(0, 179, 7, 1));
+      &::before {
+            color: $gray700;
+            transition: color 0.3s ease;
+            font-size: toRem(22);
+         }
 
-   @include hover {
-     &::before {
-         color: $white;
-         z-index: 2;
-     }
+      @include hover {
+      &::before {
+            color: $white;
+            z-index: 5;
+         }
+      }
    }
 }
 
@@ -611,7 +609,6 @@
    border-radius: toRem(5);
    background-color: $white;
    transition: box-shadow 0.4s ease,border-color 0.4s ease;
-   overflow: hidden;
    flex-shrink: 0;
 
    // .item-categories__inner
@@ -620,6 +617,7 @@
       padding-inline: toRem(5);
       padding-top: toRem(16);
       padding-bottom: toRem(24);
+      overflow: hidden;
    }
 
    // .item-categories__image

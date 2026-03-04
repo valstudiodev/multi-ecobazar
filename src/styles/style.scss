@@ -118,7 +118,20 @@ html[data-input="keyboard"] {
    >* :focus-visible {
          outline: toRem(2) solid $black;
          outline-offset: toRem(4);
+         position: relative;
+         z-index: 10;
+
+      .item-categories__title {
+            color: $brandDark;
+         }
       }
+
+    &:focus-within {
+      .item-product__actions {
+         translate: 0 0;
+      }
+   }
+
    .is-active {
       .submenu-dropdowne {
          display: block;
@@ -139,6 +152,9 @@ html[data-input="touch"] {
             }
          }
       }
+   }
+   .item-product__actions {
+      translate: 0 0;
    }
 }
 
