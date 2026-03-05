@@ -37,17 +37,18 @@
 // Buttons-active
 // -----------------------------
 .icon-menu {
+   // display: none;
    position: relative;
    width: toRem(30);
    height: toRem(20);
-   z-index: 10;
+   z-index: 20;
    flex-shrink: 0;
 
    &::before,
    &::after {
       content: "";
       position: absolute;
-      left: 0;
+      right: 0;
       width: 100%;
       height: toRem(2);
       border-radius: toRem(10);
@@ -66,7 +67,7 @@
    span {
       position: absolute;
       top: 50%;
-      left: 0;
+      right: 0;
       translate: 0 -50%;
       background-color: $gray900;
       width: 100%;
@@ -179,11 +180,14 @@
    @include flex-link-arrow;
    @include adaptiveValue('gap', 12, 6);
    color: $brandPrimary;
-   // @include link-hover-underline($height: toRem(2), $color: $brandDark);
    @include transition;
    font-weight: 500;
    flex-shrink: 0;
    @include adaptiveValue('font-size', 16, 14);
+
+   &--hover {
+      @include link-hover-underline($height: toRem(2), $color: $brandDark);
+   }
 
    &::before {
       font-size: toRem(14);

@@ -1,2 +1,226 @@
 @use '../settings/settings' as *;
 @use '../settings/mixins' as *;
+
+
+.footer {
+   background-color: $gray900;
+   color: $gray400;
+}
+
+.body-footer {
+   @include adaptiveValue('padding-block', 60, 30);
+   border-bottom: toRem(1) solid $gray800;
+   // .body-footer__container
+   &__container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: toRem(30);
+      flex-wrap: wrap;
+
+      @media (max-width: toEm(430)) {
+      //   flex-direction: column;
+      }
+   }
+
+   // .body-footer__content
+   &__content {}
+
+   // .body-footer__column
+   &__column {}
+}
+
+.content-footer {
+   @include flex-column($gap: toRem(16));
+   // flex-grow: 1;
+
+   @media (max-width: toEm(999)) {
+      width: 100%;
+
+   }
+
+   // .content-footer__text
+   &__text {
+      @include adaptiveValue('font-size', 14, 12);
+      max-width: toRem(336);
+      color: $gray500;
+   }
+}
+
+.logo-footer {
+
+   // .logo-footer__inner
+   &__inner {
+      display: flex;
+      align-items: center;
+      gap: toRem(8);
+   }
+
+   // .logo-footer__icon
+   &__icon {}
+
+   // .logo-footer__text
+   &__text {
+      font-style: normal;
+      color: $white;
+      @include adaptiveValue('font-size', 32, 26);
+      font-weight: 500;
+      @include transition;
+
+      @include hover {
+        color: $brandPrimary;
+      }
+   }
+}
+
+.contacts-footer {
+   display: flex;
+   align-items: center;
+   gap: toRem(16);
+   // .contacts-footer__phone
+   &__phone {
+      color: $white;
+      @include adaptiveValue('font-size', 14, 12);
+      font-weight: 500;
+      border-bottom: toRem(2) solid $brandPrimary;
+      padding-bottom: toRem(6);
+      @include transition;
+
+      @include hover {
+         // color: $gray400;
+            border-color: $brandDark;
+      }
+   }
+
+   // .contacts-footer__email
+   &__email {
+      color: $white;
+      @include adaptiveValue('font-size', 14, 12);
+      font-weight: 500;
+      border-bottom: toRem(2) solid $brandPrimary;
+      padding-bottom: toRem(6);
+      @include transition;
+
+      @include hover {
+         // color: $gray400;
+            border-color: $brandDark;
+      }
+   }
+}
+
+.column-footer {
+   @include flex-column($gap: toRem(20));
+
+   @media (max-width: toEm(610)) {
+     flex-grow: 1;
+   }
+
+   // .column-footer__title
+   &__title {
+      @include adaptiveValue('font-size', 16, 14);
+      font-weight: 500;
+      color: $white;
+   }
+
+   // .column-footer__list
+   &__list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: toRem(12);
+   }
+
+   // .column-footer__item
+   &__item {}
+
+   // .column-footer__link
+   &__link {
+      @include transition;
+
+      @include hover {
+        color: $white;
+      }
+   }
+}
+
+.bottom-footer {
+   @include adaptiveValue('padding-block', 24, 15);
+
+   // .bottom-footer__container
+   &__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @include adaptiveValue('gap', 30, 15);
+      flex-wrap: wrap;
+
+      @media (max-width: toEm(435)) {
+         // flex-direction: column;
+         // justify-content: center;
+         // text-align: center;
+         // align-items: center;
+      }
+   }
+
+   // .bottom-footer__copyright
+   &__copyright {
+      @include link-hover-underline($height: toRem(1), $color: $gray400);
+   }
+}
+
+.payments-footer {
+
+   // .payments-footer__list
+   &__list {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: toRem(8);
+
+      @media (max-width: toEm(435)) {
+      //   justify-content: center;
+      }
+   }
+
+   // .payments-footer__item
+   &__item {
+      border: toRem(1) solid $gray800;
+      border-radius: toRem(6);
+      height: toRem(32);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: toRem(6);
+      transition: box-shadow 0.4s ease;
+
+      @include hover {
+        box-shadow: 0 0px 2px 2px rgba(242, 242, 242, 1);
+      }
+   }
+
+   // .payments-footer__link
+   &__link {
+
+      &--secure {
+         display: flex;
+         flex-direction: column;
+         color: $white;
+      }
+   }
+
+   &__icon {
+      display: flex;
+      align-items: center;
+      gap: toRem(3);
+      font-size: toRem(11);
+      line-height: 1;
+      &::before {
+         color: $white;
+         font-size: toRem(8);
+      }
+   }
+
+   &__secure {
+      font-size: toRem(12);
+   }
+}

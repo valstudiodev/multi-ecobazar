@@ -6,11 +6,13 @@
    // .page__hero
    &__hero {
       // display: none;
+      @include adaptiveValue('padding-top', 220, 130);
    }
 
    // .page__advantages
    &__advantages {
       // display: none;
+      @include adaptiveValue('padding-block', 30, 15);
    }
 
    // .page__categories
@@ -68,6 +70,7 @@
 
    // .page__banner
    &__banner {
+      // display: none;
       @include adaptiveValue('padding-top', 60, 30);
       @include adaptiveValue('padding-bottom', 30, 15);
    }

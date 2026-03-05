@@ -51,35 +51,38 @@
          <div class="header__top top-header">
             <div class="top-header__container">
                <address class="top-header__location">
-                  <a href="#" class="top-header__link top-header__link--icon-location">
+                  <a href="#" class="top-header__link top-header__link--icon-location"
+                     aria-label="Our store location: Lincoln 344, Illinois, Chicago, USA">
                      Store Location: Lincoln-
                      344, Illinois, Chicago, USA
                   </a>
                </address>
                <div class="top-header__actions actions-top-header">
                   <div class="actions-top-header__lang lang-currency">
-                     <label for="form[lang]" class="lang-currency__element lang-currency__element--icon-shevron">
-                        <select name="language" id="language" class="lang-currency__select">
+                     <div class="lang-currency__group lang-currency__group--icon-shevron">
+                        <label for="header-language" class="visually-hidden">Select Language</label>
+                        <select name="language" id="header-language" class="lang-currency__select">
                            <option value="en" class="lang-currency__item">Eng</option>
                            <option value="uk" class="lang-currency__item">Ukr</option>
                            <option value="eur" class="lang-currency__item">Eur</option>
-                        </select></label>
-                     <label for="form[currency]" class="lang-currency__element lang-currency__element--icon-shevron">
-                        <select name="language" id="language" class="lang-currency__select">
+                        </select>
+                     </div>
+                     <div class="lang-currency__group lang-currency__group--icon-shevron">
+                        <label for="header-currency" class="visually-hidden">Select Currency</label>
+                        <select name="language" id="header-currency" class="lang-currency__select">
                            <option value="usd" class="lang-currency__item">USD</option>
                            <option value="uah" class="lang-currency__item">UAH</option>
                            <option value="eur" class="lang-currency__item">EUR</option>
-                        </select></label>
+                        </select>
+                     </div>
                   </div>
-                  <div class="actions-top-header__auth auth-top-header">
+                  <nav class="actions-top-header__auth auth-top-header" aria-label="User account">
                      <a href="#" target="_blank" class="auth-top-header__link">Sign In</a>
-                     /
+                     <span aria-hidden="true" class="auth-top-header__separator">/</span>
                      <a href="#" target="_blank" class="auth-top-header__link">Sign Up</a>
-                  </div>
+                  </nav>
                </div>
-               <div class="icon-menu">
-                  <span></span>
-               </div>
+
             </div>
          </div>
 
@@ -109,6 +112,10 @@
                      </div>
                   </a>
                </div>
+               <button type="button" class="icon-menu" aria-label="Open mobile menu" aria-expanded="false"
+                  aria-controls="mobile-navigation">
+                  <span></span>
+               </button>
             </div>
          </div>
 
@@ -159,7 +166,9 @@
                      </li>
                   </ul>
                </nav>
-               <a href="#" class="bottom-header__link bottom-header__link--icon-phone">(219) 555-0114</a>
+               <a href="#" class="bottom-header__link bottom-header__link--icon-phone">
+                  <span>(219) 555-0114</span>
+               </a>
             </div>
          </div>
 
@@ -292,7 +301,8 @@
             <div class="categories__container">
                <div class="categories__header header-block">
                   <h2 class="header-block__title">Popular Categories</h2>
-                  <a href="#" class="header-block__link link-arrow link-arrow--icon-arrow">View All</a>
+                  <a href="#" class="header-block__link link-arrow link-arrow--hover link-arrow--icon-arrow">View
+                     All</a>
                </div>
                <div class="categories__items">
                   <article class="item-categories">
@@ -399,7 +409,8 @@
             <div class="products__container">
                <div class="products__header header-block">
                   <h2 class="header-block__title">Popular Products</h2>
-                  <a href="#" class="header-block__link link-arrow link-arrow--icon-arrow">View All</a>
+                  <a href="#" class="header-block__link link-arrow link-arrow--hover link-arrow--icon-arrow">View
+                     All</a>
                </div>
                <div class="products__items">
                   <!-- apple -->
@@ -1091,7 +1102,8 @@
             <div class="deals__container">
                <div class="deals__header header-block">
                   <h2 class="header-block__title">Hot Deals</h2>
-                  <a href="#" class="header-block__link link-arrow link-arrow--icon-arrow">View All</a>
+                  <a href="#" class="header-block__link link-arrow link-arrow--hover link-arrow--icon-arrow">View
+                     All</a>
                </div>
                <div class="deals__items">
                   <!-- product-cart-big -->
@@ -1170,7 +1182,7 @@
                               <div class="rating-item-big__feedback">(524 Feedback)</div>
                            </div>
                         </div>
-                        <div class="content-item-pd-big__bottom bottom-content-item-big">
+                        <div class="item-product-big__bottom bottom-content-item-big">
                            <h4 class="bottom-content-item-big__subtitle">Hurry up! Offer ends In:</h4>
                            <div class="bottom-content-item-big__countdown countdown-cart">
                               <div class="countdown-cart__timer">
@@ -1899,7 +1911,8 @@
             <div class="featured-products__container">
                <div class="featured-products__header header-block">
                   <h2 class="header-block__title">Featured Products</h2>
-                  <a href="#" class="header-block__link link-arrow link-arrow--icon-arrow">View All</a>
+                  <a href="#" class="header-block__link link-arrow link-arrow--hover link-arrow--icon-arrow">View
+                     All</a>
                </div>
                <div class="featured-products__items">
                   <!-- apple -->
@@ -2602,42 +2615,6 @@
             </div>
          </div>
 
-         <section class="page__subscribe subscribe">
-            <div class="subscribe__container">
-               <div class="subscribe__content content-subscribe">
-                  <h2 class="content-subscribe__title">Subcribe our Newsletter</h2>
-                  <div class="content-subscribe__text">
-                     <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu
-                        magna.
-                     </p>
-                  </div>
-               </div>
-               <div class="subscribe__form">
-                  <form action="#" class="form-subscribe">
-                     <input type="email" class="form-subscribe__input" placeholder="Your email address">
-                     <button class="form-subscribe__button button button--big-green">Subscribe</button>
-                  </form>
-               </div>
-               <div class="subscribe__actions actions-subscribe">
-                  <a href="#" class="social-media-link" aria-label="Facebook">
-                     <span class="social-media-link__icon social-media-link__icon--icon-fb" aria-hidden="true"></span>
-                  </a>
-                  <a href="#" class="social-media-link" aria-label="twitter">
-                     <span class="social-media-link__icon social-media-link__icon--icon-twitter"
-                        aria-hidden="true"></span>
-                  </a>
-                  <a href="#" class="social-media-link" aria-label="pinterest">
-                     <span class="social-media-link__icon social-media-link__icon--icon-pinterest"
-                        aria-hidden="true"></span>
-                  </a>
-                  <a href="#" class="social-media-link" aria-label="instagram">
-                     <span class="social-media-link__icon social-media-link__icon--icon-instagram"
-                        aria-hidden="true"></span>
-                  </a>
-               </div>
-            </div>
-         </section>
-
          <section class="page__follow follow">
             <div class="follow__container">
                <h2 class="follow__title">Follow us on Instagram</h2>
@@ -2688,13 +2665,177 @@
             </div>
          </section>
 
+         <section class="page__subscribe subscribe">
+            <div class="subscribe__container">
+               <div class="subscribe__content content-subscribe">
+                  <h2 class="content-subscribe__title">Subcribe our Newsletter</h2>
+                  <div class="content-subscribe__text">
+                     <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu
+                        magna.
+                     </p>
+                  </div>
+               </div>
+               <div class="subscribe__form">
+                  <form action="#" class="form-subscribe">
+                     <input type="email" class="form-subscribe__input" placeholder="Your email address">
+                     <button class="form-subscribe__button button button--big-green">Subscribe</button>
+                  </form>
+               </div>
+               <div class="subscribe__actions actions-subscribe">
+                  <a href="#" class="social-media-link" aria-label="Facebook">
+                     <span class="social-media-link__icon social-media-link__icon--icon-fb" aria-hidden="true"></span>
+                  </a>
+                  <a href="#" class="social-media-link" aria-label="twitter">
+                     <span class="social-media-link__icon social-media-link__icon--icon-twitter"
+                        aria-hidden="true"></span>
+                  </a>
+                  <a href="#" class="social-media-link" aria-label="pinterest">
+                     <span class="social-media-link__icon social-media-link__icon--icon-pinterest"
+                        aria-hidden="true"></span>
+                  </a>
+                  <a href="#" class="social-media-link" aria-label="instagram">
+                     <span class="social-media-link__icon social-media-link__icon--icon-instagram"
+                        aria-hidden="true"></span>
+                  </a>
+               </div>
+            </div>
+         </section>
+
       </main>
 
-      <footer class="footer">
-         <div class="footer__container">
-            <p>Footer</p>
+      <footer class="footer" aria-labelledby="footer">
+         <div class="footer__body body-footer">
+            <div class="body-footer__container">
+               <div class="body-footer__content content-footer">
+                  <figure class="content-footer__logo logo-footer">
+                     <a href="#" class="logo-footer__inner" aria-label="Ecobazar - Home page">
+                        <img class="logo-footer__icon" src="/src/assets/icons/logo-leaf.svg" alt="" aria-hidden="true">
+                        <cite class="logo-footer__text">Ecobazar</cite>
+                     </a>
+                  </figure>
+                  <div class="content-footer__text">
+                     <p>Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna
+                        congue nec.
+                     </p>
+                  </div>
+                  <div class="content-footer__contacts contacts-footer">
+                     <a href="tel:2195550114" class="contacts-footer__phone" aria-label="Call us: (219) 555-0114">(219)
+                        555-0114</a>
+                     <span aria-hidden="true">or</span>
+                     <a href="emailto:Proxy@gmail.com" class="contacts-footer__email"
+                        aria-label="Email us: Proxy@gmail.com">Proxy@gmail.com</a>
+                  </div>
+               </div>
+               <div class="body-footer__column column-footer" aria-labelledby="footer-account">
+                  <h4 class="column-footer__title" id="footer-account">My Account</h4>
+                  <ul class="column-footer__list">
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">My Account</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Order History</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Shoping Cart</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Wishlist</a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="body-footer__column column-footer" aria-labelledby="footer-helps">
+                  <h4 class="column-footer__title" id="footer-helps">Helps</h4>
+                  <ul class="column-footer__list">
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Contact</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Faqs</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Terms & Condition</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Privacy Policy</a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="body-footer__column column-footer" aria-labelledby="footer-proxy">
+                  <h4 class="column-footer__title" id="footer-proxy">Proxy</h4>
+                  <ul class="column-footer__list">
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">About</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Shop</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Product</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Track Order</a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="body-footer__column column-footer" aria-labelledby="footer-categories">
+                  <h4 class="column-footer__title" id="footer-categories">Categories</h4>
+                  <ul class="column-footer__list">
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Fruit & Vegetables</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Meat & Fish</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Bread & Bakery</a>
+                     </li>
+                     <li class="column-footer__item">
+                        <a href="#" class="column-footer__link">Beauty & Health</a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <div class="footer__bottom bottom-footer">
+            <div class="bottom-footer__container">
+               <a href="#" class="bottom-footer__copyright">Ecobazar eCommerce © 2021. All Rights Reserved</a>
+               <div class="bottom-footer__payments payments-footer">
+                  <h2 class="visually-hidden">Payment methods</h2>
+                  <ul class="payments-footer__list">
+                     <li class="payments-footer__item">
+                        <a href="#" class="payments-footer__link" aria-label="Apple Pay">
+                           <img src="/src/assets/icons/apple-pay.svg" alt="" aria-hidden="true">
+                        </a>
+                     </li>
+                     <li class="payments-footer__item">
+                        <a href="#" class="payments-footer__link" aria-label="Visa Card">
+                           <img src="/src/assets/icons/visa-logo.svg" alt="" aria-hidden="true">
+                        </a>
+                     </li>
+                     <li class="payments-footer__item">
+                        <a href="#" class="payments-footer__link" aria-label="Discover Payment">
+                           <img src="/src/assets/icons/discover-logo.svg" alt="" aria-hidden="true">
+                        </a>
+                     </li>
+                     <li class="payments-footer__item">
+                        <a href="#" class="payments-footer__link" aria-label="Mastercard">
+                           <img src="/src/assets/icons/mastercard.svg" alt="" aria-hidden="true">
+                        </a>
+                     </li>
+                     <li class="payments-footer__item payments-footer__item--secure">
+                        <a href="#" class="payments-footer__link payments-footer__link--secure"
+                           aria-label="Secure Payment">
+                           <span class="payments-footer__icon payments-footer__icon--icon-locked"
+                              aria-hidden="true">Secure</span>
+                           <span class="payments-footer__secure" aria-hidden="true">Payment</span>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </div>
          </div>
       </footer>
+
    </div>
 
 

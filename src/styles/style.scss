@@ -113,6 +113,15 @@ html[data-input="mouse"] {
          }
       }
    }
+
+   &:focus-visible {
+      .lang-currency__group {
+         &::before {
+            rotate: 180deg;
+         }
+      }
+   }
+
 }
 html[data-input="keyboard"] {
    >* :focus-visible {
@@ -124,7 +133,11 @@ html[data-input="keyboard"] {
       .item-categories__title {
             color: $brandDark;
          }
-      }
+   }
+
+   & footer :focus-visible {
+      outline-color: $white;
+   }
 
     &:focus-within {
       .item-product__actions {
@@ -156,5 +169,14 @@ html[data-input="touch"] {
    .item-product__actions {
       translate: 0 0;
    }
+
+   &:focus-visible {
+      .lang-currency__group {
+            &::before {
+               rotate: 90deg;
+            }
+         }
+   }
+
 }
 

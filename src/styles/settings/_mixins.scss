@@ -570,7 +570,6 @@ $item-sale-options: (
 }
 
 @mixin link-hover-underline($height, $color) {
-   position: relative;
 
    &::after {
       content: "";

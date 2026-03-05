@@ -2,6 +2,7 @@
 
 export function movingElements() {
    // buttonsMovement()
+   dynamicAdaptHeader()
 }
 // ===========================================================================================
 function buttonsMovement() {
@@ -63,3 +64,43 @@ window.addEventListener('resize', handleResponsive);
 
 // 3. Викликаємо функцію відразу при завантаженні сторінки
 handleResponsive();
+
+
+// ===========================================================================================
+// -----------------------------
+// dynamicAdaptHeader
+// -----------------------------
+function dynamicAdaptHeader() {
+   const topHeader = document.querySelector('.top-header')
+   const header = document.querySelector('.header')
+   const menu = document.querySelector('.menu-header')
+
+   const phoneHeader = document.querySelector('.bottom-header__link')
+   const searchHeader = document.querySelector('.search-header__form')
+
+   const bottomContainer = document.querySelector('.bottom-header__container')
+   const actionsHeader = document.querySelector('.actions-body-header')
+   const placeSearch = document.querySelector('.body-header__search')
+
+   if (header) {
+      const media = window.matchMedia("(max-width: 767.98px)")
+      media.addEventListener("change", (e) => {
+         dynamicAdaptHeaderInit(media)
+      })
+      dynamicAdaptHeaderInit(media)
+   }
+
+   function dynamicAdaptHeaderInit(media) {
+      if (media.matches) {
+         bottomContainer.insertAdjacentElement('beforeend', searchHeader)
+         actionsHeader.insertAdjacentElement('beforeend', phoneHeader)
+         menu.insertAdjacentElement('beforeend', topHeader)
+      } else {
+         bottomContainer.insertAdjacentElement('beforeend', phoneHeader)
+         placeSearch.insertAdjacentElement('beforeend', searchHeader)
+         header.insertAdjacentElement("afterbegin", topHeader)
+      }
+      searchHeader.classList.toggle('--dynamic', media.matches)
+      phoneHeader.classList.toggle('--dynamic', media.matches)
+   }
+}
