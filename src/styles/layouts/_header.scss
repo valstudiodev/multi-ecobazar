@@ -3,8 +3,8 @@
 
 
 .header {
-   // display: none;
-   position: fixed;
+  //  display: none;
+   position: sticky;
    top: 0;
    left: 0;
    width: 100%;
@@ -128,7 +128,7 @@
 
       &:focus-within {
          &::before {
-            rotate: 180deg; 
+            rotate: 180deg;
          }
       }
 

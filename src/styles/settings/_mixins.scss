@@ -260,8 +260,8 @@ $button-sizes: (
    cursor: pointer;
    transition: 0.3s ease;
 
-   &:hover {
-      background: map.get($o, hover-bg);
+   @include hover {
+       background: map.get($o, hover-bg);
       color: map.get($o, hover-color);
    }
 }
@@ -301,7 +301,6 @@ $item-sale-options: (
 
    background: map.get($o, bg);
 }
-
    &:hover {
       background: map.get($o, hover-bg);
    }

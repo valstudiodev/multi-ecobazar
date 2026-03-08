@@ -6,12 +6,12 @@
    // .page__hero
    &__hero {
       // display: none;
-      @include adaptiveValue('padding-top', 220, 130);
+      padding-top: toRem(24);
    }
 
    // .page__advantages
    &__advantages {
-      display: none;
+      // display: none;
       @include adaptiveValue('padding-block', 30, 15);
    }
 
@@ -641,7 +641,6 @@
       }
    }
 }
-
 
 // ===========================================================================================
 // -----------------------------

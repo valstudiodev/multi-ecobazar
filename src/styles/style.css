@@ -1,7 +1,6 @@
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Poppins:100,200,300,regular,500,600,700,800,900);
 .breadcrumbs {
-  display: none;
   position: relative;
 }
 .breadcrumbs::before {
@@ -92,20 +91,8 @@ html[data-input=mouse] .breadcrumbs__link:hover {
      object-fit: cover;
 }
 
-@media (min-width: 84.375em) {
-  .catalog {
-    padding-top: 250px;
-  }
-}
-@media (min-width: 20em) and (max-width: 84.375em) {
-  .catalog {
-    padding-top: clamp( 150px , 118.932038835px  +  9.7087378641vw , 250px );
-  }
-}
-@media (max-width: 20em) {
-  .catalog {
-    padding-top: 150px;
-  }
+.catalog {
+  padding-top: 2.125rem;
 }
 @media (min-width: 84.375em) {
   .catalog {
@@ -511,6 +498,197 @@ html[data-input=mouse] .breadcrumbs__link:hover {
   height: 0.875rem;
 }
 
+.banner-filter {
+  position: relative;
+  aspect-ratio: 312/295;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+.banner-filter__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding-top: 1.5rem;
+  padding-inline: 0.625rem;
+  width: 100%;
+  height: 100%;
+}
+.banner-filter__content > * {
+  margin-bottom: 0.75rem;
+}
+.banner-filter__content > *:last-child {
+  margin-bottom: 0rem;
+}
+@media (min-width: 84.375em) {
+  .banner-filter__title {
+    font-size: 24px;
+  }
+}
+@media (min-width: 20em) and (max-width: 84.375em) {
+  .banner-filter__title {
+    font-size: clamp( 20px , 18.7572815534px  +  0.3883495146vw , 24px );
+  }
+}
+@media (max-width: 20em) {
+  .banner-filter__title {
+    font-size: 20px;
+  }
+}
+.banner-filter__title {
+  text-align: center;
+  margin-bottom: 0.125rem;
+}
+@media (min-width: 84.375em) {
+  .banner-filter__title span {
+    font-size: 32px;
+  }
+}
+@media (min-width: 20em) and (max-width: 84.375em) {
+  .banner-filter__title span {
+    font-size: clamp( 26px , 24.1359223301px  +  0.5825242718vw , 32px );
+  }
+}
+@media (max-width: 20em) {
+  .banner-filter__title span {
+    font-size: 26px;
+  }
+}
+.banner-filter__title span {
+  font-weight: 600;
+  color: rgb(255, 138, 0);
+  padding-right: 0.25rem;
+}
+@media (min-width: 84.375em) {
+  .banner-filter__text {
+    font-size: 16px;
+  }
+}
+@media (min-width: 20em) and (max-width: 84.375em) {
+  .banner-filter__text {
+    font-size: clamp( 14px , 13.3786407767px  +  0.1941747573vw , 16px );
+  }
+}
+@media (max-width: 20em) {
+  .banner-filter__text {
+    font-size: 14px;
+  }
+}
+.banner-filter__text {
+  color: rgb(77, 77, 77);
+  text-align: center;
+}
+.banner-filter__image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.banner-filter__link::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+@media (min-width: 84.375em) {
+  .sales-filter__title {
+    font-size: 20px;
+  }
+}
+@media (min-width: 20em) and (max-width: 84.375em) {
+  .sales-filter__title {
+    font-size: clamp( 18px , 17.3786407767px  +  0.1941747573vw , 20px );
+  }
+}
+@media (max-width: 20em) {
+  .sales-filter__title {
+    font-size: 18px;
+  }
+}
+.sales-filter__title {
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.sales-filter__items {
+  display: grid;
+  gap: 1rem;
+}
+
+.filter-item {
+  position: relative;
+  border: 0.0625rem solid rgb(230, 230, 230);
+  border-radius: 0.375rem;
+  overflow: hidden;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+.filter-item__inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.0625rem;
+}
+.filter-item__image {
+  width: 6.25rem;
+  aspect-ratio: 1;
+  padding: 0.3125rem;
+}
+.filter-item__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.filter-item__body {
+  max-width: 12.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  padding-block: 1.5rem;
+}
+@media (min-width: 84.375em) {
+  .filter-item__title {
+    font-size: 14px;
+  }
+}
+@media (min-width: 20em) and (max-width: 84.375em) {
+  .filter-item__title {
+    font-size: clamp( 12px , 11.3786407767px  +  0.1941747573vw , 14px );
+  }
+}
+@media (max-width: 20em) {
+  .filter-item__title {
+    font-size: 12px;
+  }
+}
+.filter-item__title {
+  color: rgb(77, 77, 77);
+}
+.filter-item__link::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+html[data-input=mouse] .filter-item:hover {
+  border-color: rgb(0, 179, 7);
+}
+html[data-input=mouse] .filter-item:hover .filter-item__title {
+  color: rgb(44, 116, 47);
+}
+
 .content-catalog {
   flex-grow: 1;
 }
@@ -518,6 +696,21 @@ html[data-input=mouse] .breadcrumbs__link:hover {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fill, minmax(min(14.375rem, 100%), 1fr));
+}
+@media (min-width: 84.375em) {
+  .content-catalog__items {
+    margin-bottom: 40px;
+  }
+}
+@media (min-width: 20em) and (max-width: 84.375em) {
+  .content-catalog__items {
+    margin-bottom: clamp( 20px , 13.786407767px  +  1.9417475728vw , 40px );
+  }
+}
+@media (max-width: 20em) {
+  .content-catalog__items {
+    margin-bottom: 20px;
+  }
 }
 .item-filter__list {
   display: flex;
@@ -625,7 +818,7 @@ address {
 }
 
 .header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -1739,20 +1932,8 @@ html[data-input=mouse] .payments-footer__item:hover {
   font-size: 0.75rem;
 }
 
-@media (min-width: 84.375em) {
-  .page__hero {
-    padding-top: 220px;
-  }
-}
-@media (min-width: 20em) and (max-width: 84.375em) {
-  .page__hero {
-    padding-top: clamp( 130px , 102.0388349515px  +  8.7378640777vw , 220px );
-  }
-}
-@media (max-width: 20em) {
-  .page__hero {
-    padding-top: 130px;
-  }
+.page__hero {
+  padding-top: 1.5rem;
 }
 .page__advantages {
   display: none;
@@ -5229,6 +5410,9 @@ html[data-input=keyboard] .button-wishlist:focus::before,
 html[data-input=keyboard] .button-wishlist:focus-visible::before {
   color: rgb(0, 179, 7);
 }
+html[data-input=keyboard] .catalog:focus-visible {
+  outline-offset: rgb(35, 136, 255);
+}
 
 html[data-input=touch] .menu-dropdown__item--submenu.is-active .menu-dropdown__link::before {
   rotate: 0deg;
@@ -5251,4 +5435,4 @@ html[data-input=touch] .social-media-link__icon::before {
 
 .item-filter[open] .item-filter__icon::before {
   rotate: 180deg;
-}
+}/*# sourceMappingURL=style.css.map */

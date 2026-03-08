@@ -154,9 +154,10 @@ html[data-input="keyboard"] {
       }
    }
 
-   .catalog {
-      &:focus-visible {
-         outline-offset: $blue;
+   :focus-visible {
+    .item-categories__title  {
+        color: $brandDark;
+        outline-color: red;
       }
    }
 }
@@ -175,7 +176,6 @@ html[data-input="touch"] {
    .item-product__actions {
       translate: 0 0;
    }
-
    &:focus-visible {
       .lang-currency__group {
          &::before {

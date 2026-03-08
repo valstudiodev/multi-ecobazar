@@ -362,6 +362,7 @@
    opacity: 0;
    transition: opacity 0.4s ease;
    z-index: 2;
+   cursor: pointer;
 
    &::before {
       font-size: toRem(28);
@@ -651,7 +652,6 @@
       @include item-sale(black);
    }
 }
-
 
 // ===============================================================
 .item-product {
@@ -1042,7 +1042,6 @@
    background-color: $white;
    border-radius: toRem(8);
    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.01);
-   // padding: toRem(24);
    @include adaptiveValue('padding', 24, 12);
    display: flex;
    flex-direction: column;
@@ -1107,6 +1106,19 @@
       @include adaptiveValue('font-size', 14, 12);
       color: $gray400;
    }
+}
+
+.rating-review {
+  display: flex;
+  align-items: center;
+  gap: toRem(4);
+  flex-direction: row-reverse;
+		// .rating-review__star
+		&__star {
+      background: url("/src/assets/icons/star-full-color.svg") 0 0 / 100% no-repeat;
+      width: toRem(16);
+      height: toRem(16);
+		}
 }
 
 // ===============================================================
@@ -1190,6 +1202,7 @@
    text-align: center;
    padding-inline: toRem(35);
    padding-block: toRem(35);
+   aspect-ratio: 424 / 536;
 
    // .content-sale__label
    &__label {
@@ -1211,6 +1224,15 @@
       &--margin {
          margin-bottom: toRem(14);
       }
+   }
+
+   &__link {
+      @include button-click-area;
+   }
+
+   &__btn {
+    position: relative;
+    z-index: 10;
    }
 }
 
