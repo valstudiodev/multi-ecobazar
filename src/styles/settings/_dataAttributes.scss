@@ -1,4 +1,7 @@
 @use "sass:math";
+@use './settings' as *;
+@use './mixins' as *;
+
 
 // ===========================================================================================
 // -----------------------------
@@ -7,12 +10,16 @@
 [data-accordion-body] {
    height: 0;
    overflow: hidden;
-   transition: height 0.35s ease, opacity 0.3s ease;
+   transition: height 0.4s ease, opacity 0.4s ease;
    opacity: 0;
 }
 
-[data-accordion].is-open [data-accordion-body] {
-   opacity: 1;
+[data-accordion] {
+   &.is-open {
+      [data-accordion-body] {
+         opacity: 1;
+      }
+   }
 }
 
 [data-accordion] {
@@ -20,20 +27,15 @@
       .header-accordion__title {
          color: red;
       }
-
-      // .button-more {
-      //    span {
-      //       &::after {
-      //          rotate: 0deg;
-      //       }
-      //    }
-      // }
+      .item-filter__title {
+         color: $brandDark;
+      }
    }
 }
 
 [data-accordion-icon] {
    .is-open & {
-      // background-color: red;
+
    }
 }
 

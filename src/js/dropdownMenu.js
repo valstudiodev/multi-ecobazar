@@ -62,3 +62,25 @@ export function initDropdowns() {
       }
    });
 }
+
+
+const submenuLinks = document.querySelectorAll('.menu-dropdown__item--submenu > a');
+
+submenuLinks.forEach(link => {
+   // Функція для зміни стану
+   const toggleMenu = (state) => {
+      link.setAttribute('aria-expanded', state);
+   };
+
+   // Якщо меню відкривається по ховеру (CSS)
+   link.parentElement.addEventListener('mouseenter', () => toggleMenu('true'));
+   link.parentElement.addEventListener('mouseleave', () => toggleMenu('false'));
+
+   // Якщо меню відкривається по кліку або через Tab (Focus)
+   link.addEventListener('focus', () => toggleMenu('true'));
+   // Для закриття при втраті фокусу останнього елемента підменю потрібна складніша логіка,
+   // але aria-expanded на самому посиланні — це вже 90% успіху.
+});
+
+
+

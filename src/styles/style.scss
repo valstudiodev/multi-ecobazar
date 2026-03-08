@@ -1,6 +1,6 @@
 @use "sass:math";
 // =====================Pages===========================
-
+@use './pages/catalog';
 // =====================Settings===========================
 @use './settings/settings' as *;
 @use './settings/reset';
@@ -24,8 +24,8 @@
 html,
 body {
    // background-color: $white;
-   margin: 0;
-   padding: 0;
+   // margin: 0;
+   // padding: 0;
 }
 
 // html {
@@ -90,28 +90,11 @@ body {
 // -----------------------------
 // data-input
 // -----------------------------
+
+// --- 2. MOUSE MODE ---
 html[data-input="mouse"] {
-   .menu-dropdown__item--submenu {
-      &:hover> {
-         .menu-dropdown__submenu {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transform: translateY(0);
-         }
-         .menu-dropdown__link {
-            &::before {
-               rotate: -180deg;
-            }
-         }
-      }
-      &:active> {
-         .button-action-like {
-            &::before {
-               // background-color: $brandPrimary;
-            }
-         }
-      }
+   :focus:not(:focus-visible) {
+      outline: none;
    }
 
    &:focus-visible {
@@ -123,45 +106,68 @@ html[data-input="mouse"] {
    }
 
 }
-html[data-input="keyboard"] {
-   >* :focus-visible {
-         outline: toRem(2) solid $black;
-         outline-offset: toRem(4);
-         position: relative;
-         z-index: 10;
 
-      .item-categories__title {
-            color: $brandDark;
-         }
+// --- 1. KEYBOARD MODE ---
+html[data-input="keyboard"] {
+   :focus-visible {
+      outline: toRem(2) solid $black;
+      outline-offset: toRem(4);
    }
 
    & footer :focus-visible {
       outline-color: $white;
    }
 
-    &:focus-within {
-      .item-product__actions {
-         translate: 0 0;
-      }
-   }
-
    .is-active {
       .submenu-dropdowne {
          display: block;
       }
+
       .menu-dropdown__link {
          &::before {
-            rotate: -180deg;
+            rotate: 0deg;
          }
       }
    }
+
+   .item-product {
+      &:focus-within {
+         .item-product__actions {
+            translate: 0 0;
+         }
+      }
+      &:focus-visible {
+         .item-product__title {
+            color: $brandDark;
+         }
+      }
+   }
+
+   .button-quick-view,
+   .button-shop-cart,
+   .button-wishlist {
+      &:focus,
+      &:focus-visible {
+         &::before {
+            color: $brandPrimary;
+         }
+      }
+   }
+
+   .catalog {
+      &:focus-visible {
+         outline-offset: $blue;
+      }
+   }
 }
+
+// --- 3. TOUCH MODE ---
 html[data-input="touch"] {
    .menu-dropdown__item--submenu {
       &.is-active {
          .menu-dropdown__link {
             &::before {
-               rotate: -180deg;
+               rotate: 0deg;
             }
          }
       }
@@ -172,11 +178,28 @@ html[data-input="touch"] {
 
    &:focus-visible {
       .lang-currency__group {
-            &::before {
-               rotate: 90deg;
-            }
+         &::before {
+            rotate: 90deg;
          }
+      }
    }
-
+   .social-media-link__icon{
+      &::after {
+         scale: 1;
+         opacity: 1;
+         z-index: -1;
+         background-color: $gray400;
+      }
+      &::before {
+         color: $white;
+      }
+   }
 }
 
+.item-filter[open] {
+   .item-filter__icon {
+      &::before {
+         rotate: 180deg;
+      }
+   }
+}

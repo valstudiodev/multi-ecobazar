@@ -1,0 +1,482 @@
+@use '../settings/settings' as *;
+@use '../settings/mixins' as *;
+
+
+// ===========================================================================================
+// -----------------------------
+// breadcrumbs
+// -----------------------------
+.breadcrumbs {
+   display: none;
+   position: relative;
+
+   &::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     z-index: 1;
+     background:linear-gradient(95.02deg, rgba(0, 0, 0, 0.7) 0.034%, rgba(0, 0, 0, 0) 91.305%) ;
+   }
+
+   // .breadcrumbs__container
+   &__container {}
+
+   // .breadcrumbs__list
+   &__list {
+      position: relative;
+      z-index: 2;
+      color: $gray400;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: toRem(12);
+      @include adaptiveValue('padding-block', 48, 20);
+
+      @media (max-width: toEm($mobile)) {
+        overflow: auto;
+        flex-wrap: nowrap;
+        margin-inline: toRem(-15);
+        padding-inline: toRem(15);
+      }
+   }
+
+   // .breadcrumbs__item
+   &__item {
+      display: flex;
+      align-items: center;
+      gap: toRem(12);
+      flex-shrink: 0;
+      &:not(:last-child) {
+         &::after {
+            content: "\e90d";
+            font-family: 'iconfont';
+            rotate: 90deg;
+            font-size: toRem(12);
+         }
+      }
+   }
+
+   // .breadcrumbs__link
+   &__link {
+      position: relative;
+
+      @include adaptiveValue('font-size', 16, 14);
+      @include transition;
+
+      @include hover {
+        color: $white;
+      }
+   }
+
+   // .breadcrumbs__image
+   &__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// catalog
+// -----------------------------
+.catalog {
+   // display: none;
+   @include adaptiveValue('padding-top', 250, 150);
+   @include adaptiveValue('padding-bottom', 80, 40);
+
+   // .catalog__container
+   &__container {}
+
+   // .catalog__form
+   &__form {}
+
+   // .catalog__header
+   &__header {
+      // display: none;
+   }
+
+   // .catalog__body
+   &__body {
+      display: flex;
+      gap: toRem(24);
+      align-items: flex-start;
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// header-catalog
+// -----------------------------
+.header-catalog {
+   display: flex;
+   justify-content: space-between;
+   gap: toRem(30);
+   margin-bottom: toRem(26);
+
+   @media (max-width: toEm(705)) {
+     flex-wrap: wrap;
+   }
+
+   &__body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      @include adaptiveValue('gap', 20, 10);
+      flex-grow: 1;
+   }
+
+   // .header-catalog__filter
+   &__filter {
+      flex-basis: toRem(312);
+      margin-left: toRem(-332);
+      transition: all 0.3s;
+      visibility: hidden;
+      flex-basis: toRem(312);
+
+      @media (max-width: toEm(915)) {
+         margin-left: toRem(0);
+         visibility: visible;
+
+      }
+      @media (max-width: toEm(704)) {
+         flex-basis: 100%;
+      }
+   }
+
+   // .header-catalog__button
+   &__button {
+      @media (max-width: toEm(705)) {
+        width: 100%;
+        justify-content: center;
+      }
+   }
+
+   // .header-catalog__sort
+   &__sort {}
+
+   // .header-catalog__result
+   &__result {
+      display: flex;
+      align-items: center;
+      gap: toRem(2);
+      flex-shrink: 0;
+      @include adaptiveValue('font-size', 16, 13);
+
+      span {
+         font-weight: 600;
+         color: $gray900;
+         @include adaptiveValue('font-size', 16, 13);
+      }
+
+      p   {
+         color: $gray600;
+      }
+   }
+}
+
+.sort-catalog {
+   display: flex;
+   align-items: center;
+   gap: toRem(8);
+   flex-shrink: 0;
+
+   // .sort-catalog__label
+   &__label {
+      @include adaptiveValue('font-size', 14, 12);
+      color: $gray500;
+   }
+
+   // .sort-catalog__body
+   &__body {
+      position: relative;
+
+      &::before {
+         display: inline-block;
+         position: absolute;
+         top: 50%;
+         right: toRem(16);
+         translate: 0 -50%;
+         font-size: toRem(12);
+         pointer-events: none;
+         color: $gray700;
+         @include transition;
+         z-index: 5;
+      }
+
+      &:focus-within {
+         &::before {
+            rotate: 180deg;
+         }
+      }
+   }
+
+   // .sort-catalog__select
+   &__select {
+      @include default-border($color: $gray100);
+      border-radius: toRem(4);
+      max-width: toRem(166);
+      padding-block: toRem(10);
+      padding-left: toRem(16);
+      @include adaptiveValue('padding-right', 60, 40);
+      color: $gray700;
+      appearance: none;
+   }
+
+   // .sort-catalog__item
+   &__item {}
+}
+
+// ===========================================================================================
+// -----------------------------
+// filter
+// -----------------------------
+.filter {
+   transition: all 0.3s ease;
+   flex-basis: toRem(336);
+
+   @media (max-width: toEm(915)) {
+      margin-left: toRem(-356);
+   }
+   @media (max-width: toEm(780)) {
+      display: none;
+   }
+}
+
+.item-filter {
+   max-width: toRem(350);
+   padding-bottom: toRem(20);
+
+   &:not(:last-child) {
+      border-bottom: toRem(1) solid $gray100;
+      margin-bottom: toRem(20);
+   }
+
+   &__header {
+      display: flex;
+      align-items: center;
+      @include adaptiveValue('gap', 160, 40);
+      cursor: pointer;
+      justify-content: space-between;
+   }
+
+   &__title {
+      @include adaptiveValue('font-size', 20, 14);
+      font-weight: 500;
+      @include transition;
+   }
+
+   &__body {
+      padding-top: toRem(20);
+   }
+
+   &__icon {
+      &::before {
+         font-size: toRem(12);
+         transition: rotate 0.4s ease;
+         will-change: rotate;
+      }
+   }
+}
+
+.categories-filter {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: toRem(20);
+
+   // .categories-filter__item
+   &__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 0.1875rem;
+      outline-offset: -0.0625rem;
+      cursor: pointer;
+
+      &:has(.categories-filter__input:focus-visible) {
+         outline: toRem(1) solid $greenGray900;
+         outline-offset: toRem(4);
+      }
+
+      &:has(.categories-filter__input:checked) {
+         &::before {
+            outline-color: $brandPrimary;
+            border-color: $white;
+            background-color: $brandPrimary;
+         }
+      }
+
+      &::before {
+         content: "";
+         transition: all 0.2s;
+         width: 20px;
+         flex-shrink: 0;
+         aspect-ratio: 1;
+         border-radius: 50%;
+         outline-offset: toRem(-1);
+         outline: toRem(1) solid $gray200;
+         border: toRem(4) solid transparent;
+      }
+   }
+
+   // .categories-filter__input
+   &__input {
+      appearance: none;
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: 0;
+   }
+
+   // .categories-filter__subtitle
+   &__text {
+      font-size: toRem(14);
+   }
+
+   &__count {
+      color: $gray500;
+      font-size: toRem(14);
+   }
+}
+
+.filter-rating {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: toRem(20);
+
+   // .filter-rating__item
+   &__item {
+      display: inline-flex;
+      align-items: center;
+      gap: toRem(8);
+
+      &::before {
+         content: "";
+         width: toRem(20);
+         height: toRem(20);
+         @include default-border($color: $gray200);
+         border-radius: toRem(3);
+         background-color: $white;
+         cursor: pointer;
+      }
+
+      &:has(.filter-rating__input:focus-visible) {
+         outline: toRem(1) solid $gray900;
+         border-radius: toRem(3);
+         outline-offset: toRem(4);
+      }
+
+      &:has(.filter-rating__input:checked) {
+         &::before {
+            font-family: "iconfont";
+            content: "\e90c";
+            background-color: $brandPrimary;
+            border-color: $brandPrimary;
+            color: $white;
+            font-size: toRem(9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         }
+      }
+   }
+
+   // .filter-rating__input
+   &__input {
+      appearance: none;
+      position: absolute;
+      width: 0;
+      left: 0;
+      opacity: 0;
+   }
+
+   &__inner {
+      display: inline-flex;
+      align-items: center;
+      gap: toRem(2);
+   }
+
+   // .filter-rating__stars
+   &__stars {
+      display: inline-flex;
+      align-items: center;
+      gap: toRem(4);
+      flex-direction: row-reverse;
+   }
+
+   // .filter-rating__text
+   &__text {
+      line-height: 1.5;
+      @include adaptiveValue('font-size', 14, 12);
+   }
+}
+
+.icon-star {
+   background: url("/src/assets/icons/star-empty.svg") 0 0 / 100% no-repeat;
+   width: toRem(14);
+   height: toRem(14);
+
+   &--active {
+      background: url("/src/assets/icons/star-full-color.svg") 0 0 / 100% no-repeat;
+      width: toRem(14);
+      height: toRem(14);
+   }
+}
+
+// ===========================================================================================
+// -----------------------------
+// content-catalog
+// -----------------------------
+.content-catalog {
+   flex-grow: 1;
+   // .content-catalog__items
+   &__items {
+      @include grid-adaptive($size: toRem(230), $gap: toRem(24));
+   }
+
+   // .content-catalog__pages
+   &__pages {}
+}
+
+.item-filter {
+
+   // .item-filter__body
+   &__body {}
+
+   // .item-filter__list
+   &__list {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: toRem(8);
+   }
+
+   // .item-filter__item
+   &__item {
+
+
+   }
+
+   // .item-filter__button
+   &__button {
+      padding-block: toRem(6);
+      padding-inline: toRem(16);
+      background-color: $gray50;
+      border-radius: toRem(30);
+      text-align: center;
+
+      &.active {
+         background-color: $brandPrimary;
+         color: $white;
+      }
+   }
+}

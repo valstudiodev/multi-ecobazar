@@ -2,6 +2,8 @@
 
 export function formUtils() {
    typeSwitcher()
+   updateCartAccessible()
+
 }
 // ===========================================================================================
 
@@ -58,3 +60,15 @@ export function typeSwitcher() {
       }
    });
 }
+
+
+// function updateCartAccessible(count) {
+//    const container = document.getElementById('cart-counter-container');
+
+//    if (container) {
+//       container.innerHTML = `
+//       <span class="visually-hidden">Items in cart:</span>
+//       <span id="cart-counter-value">${count}</span>
+//     `;
+//    }
+// }

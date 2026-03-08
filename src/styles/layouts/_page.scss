@@ -11,7 +11,7 @@
 
    // .page__advantages
    &__advantages {
-      // display: none;
+      display: none;
       @include adaptiveValue('padding-block', 30, 15);
    }
 

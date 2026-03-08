@@ -16,7 +16,7 @@ function initApp() {
    initLoadAnimation()
    initUtils()
    initDropdowns()
-   // initEffects()
+   initEffects()
    movingElements()
    // formUtils()
 }

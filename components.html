@@ -41,10 +41,86 @@
                            remains in its
                            place.
                         </p>
+                        <p>I build websites that stay stable even after content updates or changes. Everything
+                           remains in its
+                           place.
+                        </p>
                      </div>
                   </div>
                </div>
             </article>
+         </div>
+
+         <div class="components__item">
+            <details class="item-filter" data-accordion>
+               <summary class="item-filter__header" data-accordion-btn>
+                  <h3 class="item-filter__title">All Categories</h3>
+                  <span class="item-filter__icon item-filter__icon--icon-chevron icon-active" aria-hidden="true"
+                     data-accordion-icon></span>
+               </summary>
+               <div class="item-filter__body" data-accordion-body>
+                  <fieldset class="item-filter__categories categories-filter">
+                     <legend class="visually-hidden">Filter by category</legend>
+                     <label for="fresh-fruit" class="categories-filter__item">
+                        <input id="fresh-fruit" type="radio" name="category-filter" value="fresh-fruit"
+                           class="categories-filter__input">
+                        <span class="categories-filter__text">
+                           Fresh Fruit
+                           <span class="categories-filter__count" aria-label="134 items available">(134)</span>
+                        </span>
+                     </label>
+                     <label for="vegetables" class="categories-filter__item">
+                        <input id="vegetables" type="radio" name="category-filter" value="vegetables"
+                           class="categories-filter__input">
+                        <span class="categories-filter__text">
+                           Vegetables
+                           <span class="categories-filter__count" aria-label="150 items available">(150)</span>
+                        </span>
+                     </label>
+                     <label for="cooking" class="categories-filter__item">
+                        <input id="cooking" type="radio" name="category-filter" value="fresh-fruit"
+                           class="categories-filter__input">
+                        <span class="categories-filter__text">
+                           Cooking
+                           <span class="categories-filter__count" aria-label="54 items available">(54)</span>
+                        </span>
+                     </label>
+                     <label for="snacks" class="categories-filter__item">
+                        <input id="snacks" type="radio" name="category-filter" value="fresh-fruit"
+                           class="categories-filter__input">
+                        <span class="categories-filter__text">
+                           Snacks
+                           <span class="categories-filter__count" aria-label="47 items available">(47)</span>
+                        </span>
+                     </label>
+                     <label for="beverages" class="categories-filter__item">
+                        <input id="beverages" type="radio" name="category-filter" value="fresh-fruit"
+                           class="categories-filter__input">
+                        <span class="categories-filter__text">
+                           Beverages
+                           <span class="categories-filter__count" aria-label="43 items available">(43)</span>
+                        </span>
+                     </label>
+                     <label for="beauty-health" class="categories-filter__item">
+                        <input id="beauty-health" type="radio" name="category-filter" value="fresh-fruit"
+                           class="categories-filter__input">
+                        <span class="categories-filter__text">
+                           Beauty & Health
+                           <span class="categories-filter__count" aria-label="38 items available">(38)</span>
+                        </span>
+                     </label>
+                     <label for="bread-bakery" class="categories-filter__item">
+                        <input id="bread-bakery" type="radio" name="category-filter" value="fresh-fruit"
+                           class="categories-filter__input">
+                        <span class="categories-filter__text">
+                           Bread & Bakery
+                           <span class="categories-filter__count" aria-label="134 items available">(134)</span>
+                        </span>
+                     </label>
+
+                  </fieldset>
+               </div>
+            </details>
          </div>
 
          <div class="components__item">
@@ -165,7 +241,7 @@
 
          <div class="components__item">
             <fieldset class="rating">
-               <legend class="visually-hidden">Оцініть товар</legend>
+               <legend class="visually-hidden">Raiting of product</legend>
                <input class="rating__item" type="radio" id="star5" name="r" value="5">
                <label class="rating__label rating__label--icon-star-full1" for="star5">
                   <span class="visually-hidden">Rating 5 stars</span>
@@ -206,6 +282,11 @@
          </div>
 
          <div class="components__item">
+            <button type="button" class="button-wishlist button-wishlist--icon-like"
+               aria-label="Add to wishlist"></button>
+         </div>
+
+         <div class="components__item">
             <button type="button" class="button-quick-view button-quick-view--icon-view"></button>
          </div>
 
@@ -225,16 +306,26 @@
          </div>
 
          <div class="components__item">
-            <a href="#" class="item-sale-label item-sale-label--orange">
+            <a href="#" target="_blank" class="item-sale-label item-sale-label--orange">
+               <span class="visually-hidden">Discount:</span>
                <span class="item-sale-label__title">Sale</span>
                <span class="item-sale-label__label">50%</span>
             </a>
          </div>
 
          <div class="components__item">
-            <a href="#" class="item-sale-label item-sale-label--blue">
+            <a href="#" target="_blank" class="item-sale-label item-sale-label--blue">
+               <span class="visually-hidden">Discount:</span>
                <span class="item-sale-label__title">best</span>
                <span class="item-sale-label__label">Sale</span>
+            </a>
+         </div>
+
+         <div class="components__item">
+            <a href="#" target="_blank" class="item-sale-label item-sale-label--black">
+               <span class="visually-hidden">Out of Stock:</span>
+               <span class="item-sale-label__title">Out of</span>
+               <span class="item-sale-label__label">Stock</span>
             </a>
          </div>
 

@@ -131,6 +131,30 @@
    }
 }
 
+.button-filter {
+   color: $white;
+   @include adaptiveValue('font-size', 14, 12);
+   background-color: $brandPrimary;
+   padding-block: toRem(14);
+   padding-inline: toRem(32);
+   border-radius: toRem(43);
+   display: flex;
+   align-items: center;
+   gap: toRem(12);
+   @include transition;
+
+   &::after {
+     content: "";
+     background: url("/src/assets/icons/filter-icon.svg") 0 0 / 100% no-repeat;
+     width: toRem(20);
+     height: toRem(17);
+   }
+
+   @include hover {
+     background-color: $brandDark;
+   }
+}
+
 .button {
    @include flex-link-arrow;
    @include adaptiveValue('gap', 16, 6);
@@ -177,7 +201,9 @@
 }
 
 .link-arrow {
-   @include flex-link-arrow;
+   // @include flex-link-arrow;
+   display: flex;
+   align-items: center;
    @include adaptiveValue('gap', 12, 6);
    color: $brandPrimary;
    @include transition;
@@ -189,8 +215,11 @@
       @include link-hover-underline($height: toRem(2), $color: $brandDark);
    }
 
-   &::before {
-      font-size: toRem(14);
+   &__icon {
+
+      &::before {
+         font-size: toRem(14);
+      }
    }
 
    &--semibold {
@@ -258,12 +287,6 @@
       background-color: $gray50;
    }
 
-   &:focus:not(:focus-visible) {
-      .button-action-like__icon {
-         fill: $brandPrimary;
-      }
-   }
-
    @include hover {
       background-color: $brandPrimary;
 
@@ -271,6 +294,26 @@
 
       .button-action-like__icon {
          fill: $white;
+      }
+   }
+}
+
+.button-wishlist {
+   @include square-icon($width: toRem(40), $height: toRem(40));
+   @include default-border($color: $gray50);
+   @include transition;
+
+   &::before {
+      color: $gray900;
+         @include transition;
+   }
+
+   @include hover {
+      background-color: $brandPrimary;
+      border-color: $brandPrimary;
+
+      &::before {
+         color: $white;
       }
    }
 }
@@ -287,13 +330,6 @@
 
    &--bg {
       background-color: $gray50;
-   }
-
-   &:focus,
-   &:focus-visible {
-      &::before {
-         color: $brandPrimary;
-      }
    }
 
    @include hover {
@@ -445,71 +481,6 @@
 // -----------------------------
 // rating
 // -----------------------------
-// ============== option #1 =================
-// .rating {
-//    display: inline-flex;
-//    flex-direction: row-reverse;
-//    justify-content: flex-end;
-//    border: none;
-//    padding: 0;
-//    margin: 0;
-
-//    &__item {
-//       // Ховаємо інпут, залишаючи його доступним
-//       position: absolute;
-//       width: 1px;
-//       height: 1px;
-//       margin: -1px;
-//       clip: rect(0 0 0 0);
-//       overflow: hidden;
-
-
-//       // Коли обрано — фарбуємо всі попередні (візуально зліва)
-//       &:checked~.rating__label {
-//          .rating__icon {
-//             fill: $warning;
-//             stroke: $warning;
-//          }
-//       }
-
-//       // Фокус при роботі з Tab
-//       &:focus-visible+.rating__label {
-//          outline: 2px solid $warning;
-//          outline-offset: 3px;
-//          border-radius: 4px;
-//       }
-//    }
-
-//    &__label {
-//       cursor: pointer;
-//       padding: 0 4px;
-//       transition: transform 0.2s ease;
-
-//       // ГОЛОВНЕ: клік проходить крізь SVG на label
-//       .rating__icon {
-//          pointer-events: none;
-//          width: toRem(20);
-//          aspect-ratio: 1;
-//          fill: #ccc;
-//          transition: fill 0.2s ease, transform 0.2s ease;
-//       }
-
-//       // Hover ефект
-//       &:hover,
-//       &:hover~.rating__label {
-//          .rating__icon {
-//             // fill: lighten(gold, 10%);
-//             stroke: $warning;
-//             transform: scale(1.1);
-//          }
-//       }
-
-//       &:active {
-//          transform: scale(0.98);
-//       }
-//    }
-// }
-
 // ============== option #2 =================
 .rating {
    display: inline-flex;
@@ -622,6 +593,7 @@
       padding-top: toRem(16);
       padding-bottom: toRem(24);
       overflow: hidden;
+      min-height: 100%;
    }
 
    // .item-categories__image
@@ -630,6 +602,7 @@
       overflow: hidden;
       will-change: scale;
       transition: scale 0.4s ease;
+      flex-grow: 1;
 
       img {
          width: 100%;
@@ -673,7 +646,12 @@
    &--blue {
       @include item-sale(blue);
    }
+
+   &--black {
+      @include item-sale(black);
+   }
 }
+
 
 // ===============================================================
 .item-product {
@@ -685,8 +663,11 @@
 
    // .item-product__inner
    &__inner {
+      display: flex;
+      flex-direction: column;
       position: relative;
       overflow: hidden;
+      min-height: 100%;
    }
 
    // .item-product__image
@@ -732,6 +713,11 @@
       color: $gray700;
       @include adaptiveValue('font-size', 14, 12);
       @include transition;
+      text-transform: capitalize;
+
+      &:focus-visible {
+         color: red;
+      }
    }
 
    // .item-product__amount

@@ -49,6 +49,59 @@ document.addEventListener("click", (e) => {
    }
 });
 
+// const accordions = document.querySelectorAll('details[data-accordion]');
+
+// accordions.forEach(el => {
+//    const summary = el.querySelector('[data-accordion-btn]');
+//    const body = el.querySelector('[data-accordion-body]'); // Шукаємо за атрибутом
+
+//    if (!summary || !body) return; // Захист від помилок, якщо структура інша
+
+//    summary.addEventListener('click', (e) => {
+//       e.preventDefault(); // Важливо: зупиняємо стандартне відкриття
+
+//       // Перевіряємо стан через атрибут open
+//       if (el.hasAttribute('open')) {
+//          collapse(el, body);
+//       } else {
+//          expand(el, body);
+//       }
+//    });
+// });
+
+// function expand(el, body) {
+//    el.style.overflow = 'hidden';
+//    el.setAttribute('open', ''); // Додаємо open відразу
+
+//    const height = body.scrollHeight; // Вимірюємо реальну висоту контенту
+//    body.style.height = '0px';
+
+//    // Маленький хак для браузера, щоб він помітив зміну висоти
+//    body.offsetHeight;
+
+//    body.style.height = height + 'px';
+
+//    // Очищаємо висоту після анімації для адаптивності
+//    body.addEventListener('transitionend', () => {
+//       if (el.hasAttribute('open')) body.style.height = 'auto';
+//    }, { once: true });
+// }
+
+// function collapse(el, body) {
+//    // Встановлюємо поточну висоту в px замість auto для старту анімації
+//    body.style.height = body.scrollHeight + 'px';
+//    body.offsetHeight;
+
+//    body.style.height = '0px';
+
+//    body.addEventListener('transitionend', () => {
+//       // Тільки якщо ми все ще в стані закриття, прибираємо open
+//       if (body.style.height === '0px') {
+//          el.removeAttribute('open');
+//       }
+//    }, { once: true });
+// }
+
 // ===========================================================================================
 // -----------------------------
 // SLIDER

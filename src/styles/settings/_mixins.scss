@@ -275,6 +275,11 @@ $item-sale-options: (
    blue: (
       bg: rgba(35, 136, 255, 1),
       hover-bg: rgb(13, 81, 158)
+   ),
+
+   black: (
+      bg: #000,
+      hover-bg: rgba(24, 22, 22, 0.8)
    )
 );
 
@@ -570,6 +575,7 @@ $item-sale-options: (
 }
 
 @mixin link-hover-underline($height, $color) {
+   position: relative;
 
    &::after {
       content: "";

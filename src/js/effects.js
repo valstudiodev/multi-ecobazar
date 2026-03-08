@@ -3,7 +3,8 @@
 document.addEventListener('click', documentActions)
 
 export function initEffects() {
-   initScrollHeader();
+   // initScrollHeader()
+
 }
 // ===========================================================================================
 // window.addEventListener('scroll', scrollHeader)
@@ -153,3 +154,28 @@ function documentActions(e) {
 //       });
 //    });
 // }
+
+
+
+// 1. Знаходимо всі кнопки за класом
+const buttons = document.querySelectorAll('.item-filter__button');
+
+// 2. Проходимо циклом по кожній кнопці в колекції
+buttons.forEach(function (btn) {
+
+   // 3. Для кожної окремої кнопки (btn) вішаємо слухача
+   btn.addEventListener('click', function () {
+
+      // При кліку додаємо клас 'active' саме тій кнопці, на яку натиснули
+      this.classList.toggle('active');
+
+      // Якщо хочете, щоб при кліку на одну кнопку з інших клас зникав:
+      // buttons.forEach(el => el.classList.remove('active'));
+      // this.classList.add('active');
+   });
+
+});
+
+
+
+
