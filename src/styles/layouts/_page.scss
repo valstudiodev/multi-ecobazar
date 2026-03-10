@@ -44,12 +44,6 @@
       @include adaptiveValue('padding-block', 60, 30);
    }
 
-   // .page__subscribe
-   &__subscribe {
-      // display: none;
-      @include adaptiveValue('padding-block', 40, 20);
-   }
-
    // .page__follow
    &__follow {
       // display: none;
@@ -81,7 +75,6 @@
       @include adaptiveValue('padding-block', 60, 30);
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // hero
@@ -148,7 +141,6 @@
       }
    }
 }
-
 .content-hero {
    position: relative;
    z-index: 2;
@@ -190,7 +182,6 @@
       }
    }
 }
-
 .info-content {
    @include flex-column($gap:toRem(8));
    border-left: toRem(1) solid $brandLight;
@@ -213,7 +204,6 @@
       color: $white;
    }
 }
-
 .link-banner-top {
    position: relative;
    border-radius: toRem(10);
@@ -293,7 +283,6 @@
       }
    }
 }
-
 .link-banner-bottom {
    position: relative;
    border-radius: toRem(10);
@@ -364,7 +353,6 @@
       }
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // advantages
@@ -384,7 +372,6 @@
       border-radius: toRem(8);
    }
 }
-
 .item-advantages {
 
    &__inner {
@@ -428,7 +415,6 @@
       color: $gray400;
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // categories
@@ -453,7 +439,6 @@
       }
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // products
@@ -471,7 +456,6 @@
       @include grid-adaptive($size: toRem(240));
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // sales
@@ -483,7 +467,6 @@
       @include grid-adaptive($size: toRem(360), $gap: toRem(24));
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // deals
@@ -530,15 +513,20 @@
       }
    }
 }
-
 .amount-price {
    display: flex;
    align-items: center;
    gap: toRem(2);
+
    // .amount-price__current
    &__current {
       @include adaptiveValue('font-size', 16, 14);
       font-weight: 500;
+      color: $gray900;
+
+      &--accent {
+        color: $brandDark;
+      }
    }
 
    // .amount-price__old
@@ -548,7 +536,6 @@
       text-decoration: line-through;
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // banner
@@ -585,7 +572,6 @@
       }
    }
 }
-
 .content-banner {
    position: relative;
    z-index: 2;
@@ -641,7 +627,6 @@
       }
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // featured-products
@@ -653,7 +638,6 @@
       @include grid-adaptive($size: toRem(230));
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // news
@@ -677,7 +661,6 @@
       @include grid-adaptive($size: toRem(400), $gap: toRem(24));
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // testimonials
@@ -698,7 +681,6 @@
       @include adaptiveValue('gap', 12, 6);
    }
 }
-
 .slider-testimonials {
 
    // .slider-testimonials__wrapper
@@ -707,7 +689,6 @@
    // .slider-testimonials__slide
    &__slide {}
 }
-
 // ===========================================================================================
 // -----------------------------
 // partners
@@ -753,13 +734,14 @@
       }
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // subscribe
 // -----------------------------
 .subscribe {
+  // display: none;
    background-color: rgba(247, 247, 247, 1);
+   @include adaptiveValue('padding-block', 40, 20);
    // .subscribe__container
    &__container {
       display: flex;
@@ -777,14 +759,13 @@
 
    // .subscribe__actions
    &__actions {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: toRem(20);
+      gap: toRem(8);
       flex-grow: 1;
       justify-content: center;
    }
 }
-
 .content-subscribe {
    flex-grow: 1;
    display: flex;
@@ -810,7 +791,6 @@
       color: $gray400;
    }
 }
-
 .form-subscribe {
    display: flex;
    align-items: center;
@@ -858,7 +838,6 @@
       }
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // follow

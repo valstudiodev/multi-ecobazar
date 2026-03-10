@@ -155,11 +155,11 @@
       @include adaptiveValue('gap', 30, 15);
       flex-wrap: wrap;
 
-      @media (max-width: toEm(435)) {
-         // flex-direction: column;
-         // justify-content: center;
-         // text-align: center;
-         // align-items: center;
+      @media (max-width: toEm(400)) {
+         flex-direction: column;
+         justify-content: center;
+         text-align: center;
+         align-items: center;
       }
    }
 
@@ -178,8 +178,8 @@
       flex-wrap: wrap;
       gap: toRem(8);
 
-      @media (max-width: toEm(435)) {
-      //   justify-content: center;
+      @media (max-width: toEm(400)) {
+        justify-content: center;
       }
    }
 

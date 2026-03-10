@@ -15,7 +15,6 @@
       padding-top: toRem(50);
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // visually-hidden
@@ -31,7 +30,6 @@
    white-space: nowrap;
    border: 0;
 }
-
 // ===========================================================================================
 // -----------------------------
 // Buttons-active
@@ -80,7 +78,6 @@
       display: none;
    }
 }
-
 .menu-open {
    .icon-menu {
       &::before {
@@ -100,7 +97,6 @@
       }
    }
 }
-
 .icon-more {
    position: relative;
    width: toRem(15);
@@ -130,7 +126,6 @@
       translate: 0 -50%;
    }
 }
-
 .button-filter {
    color: $white;
    @include adaptiveValue('font-size', 14, 12);
@@ -154,7 +149,6 @@
      background-color: $brandDark;
    }
 }
-
 .button {
    @include flex-link-arrow;
    @include adaptiveValue('gap', 16, 6);
@@ -199,7 +193,6 @@
       @include button(gray, big);
    }
 }
-
 .link-arrow {
    // @include flex-link-arrow;
    display: flex;
@@ -227,7 +220,6 @@
       line-height: 1.2;
    }
 }
-
 .button-arrow {
    @include square-icon($width: toRem(45),$height: toRem(45));
    background-color: $white;
@@ -252,26 +244,25 @@
      }
    }
 }
-
 .social-media-link {
 
    &__icon {
-      @include icon-hover-bg(toRem(40), $use-scale: true, $color: rgba(0, 179, 7, 1));
+      // @include icon-hover-bg(toRem(40), $use-scale: true, $color: rgba(0, 179, 7, 1));
+      @include bg-icon-circle(toRem(40),toRem(40),transparent,$brandPrimary);
       &::before {
-            color: $gray700;
-            transition: color 0.3s ease;
-            font-size: toRem(22);
-         }
+          color: $gray700;
+          transition: color 0.3s ease;
+          font-size: toRem(18);
+        }
 
       @include hover {
       &::before {
-            color: $white;
-            z-index: 5;
-         }
+          color: $white;
+          z-index: 5;
+        }
       }
    }
 }
-
 .button-action-like {
    @include square-icon($width: toRem(40),$height: toRem(40));
    @include default-border($color: $gray50);
@@ -297,7 +288,6 @@
       }
    }
 }
-
 .button-wishlist {
    @include square-icon($width: toRem(40), $height: toRem(40));
    @include default-border($color: $gray50);
@@ -317,7 +307,6 @@
       }
    }
 }
-
 .button-quick-view {
    @include square-icon($width: toRem(40),$height:toRem(40));
    @include default-border($color: $gray50);
@@ -341,7 +330,6 @@
       }
    }
 }
-
 .button-shop-cart {
    @include square-icon($width: toRem(40),$height:toRem(40));
    transition: all 0.5s ease;
@@ -356,7 +344,6 @@
      background-color: $brandDark !important;
    }
 }
-
 .media-link {
    @include abs-center;
    opacity: 0;
@@ -379,7 +366,6 @@
      opacity: 1;
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // accordion-menu
@@ -420,7 +406,6 @@
       }
    }
 }
-
 .header-accordion {
    display: flex;
    align-items: center;
@@ -435,7 +420,6 @@
       transition: color 0.3s;
    }
 }
-
 .button-more {
    width: toRem(28);
    aspect-ratio: 1;
@@ -477,7 +461,6 @@
       }
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // rating
@@ -542,7 +525,6 @@
       fill: #ccc;
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // rating
@@ -575,7 +557,6 @@
       @include adaptiveValue('gap', 16, 8);
    }
 }
-
 // ===========================================================================================
 // -----------------------------
 // items
@@ -633,7 +614,6 @@
       }
    }
 }
-
 .item-sale-label {
    display: flex;
    align-items: center;
@@ -652,7 +632,6 @@
       @include item-sale(black);
    }
 }
-
 // ===============================================================
 .item-product {
    position: relative;
@@ -660,6 +639,11 @@
    @include default-border($color: $gray100);
    @include transition;
    @include overlap-border($shadow:0px 0px 12px 0px rgba(32, 181, 38, 0.32),$border-color:$brandDark);
+
+   &--border-radius {
+      border-radius: toRem(8);
+      @include overlap-border($shadow:0px 0px 12px 0px rgba(32, 181, 38, 0.32),$border-color:$brandDark,$radius: toRem(8));
+   }
 
    // .item-product__inner
    &__inner {
@@ -762,7 +746,6 @@
       }
    }
 }
-
 .item-product-big {
    position: relative;
    background-color: $white;
@@ -811,12 +794,10 @@
       }
    }
 }
-
 .button--icon-shop-cart {
    width: 100%;
    justify-content: center;
 }
-
 .content-item-pd-big {
    @include flex-column($align-items:center,$gap:toRem(8));
    @include adaptiveValue('margin-bottom', 18, 12);
@@ -828,7 +809,6 @@
       @include transition;
    }
 }
-
 .price-item-big {
    display: flex;
    align-items: center;
@@ -848,7 +828,6 @@
       color: $gray400;
    }
 }
-
 .rating-item-big {
    display: flex;
    align-items: center;
@@ -856,7 +835,6 @@
    // .rating-item-big__feedback
    &__feedback {}
 }
-
 .bottom-content-item-big {
    // @include flex-column($align-items:center);
 
@@ -872,7 +850,6 @@
    // .bottom-content-item-big__countdown
    &__countdown {}
 }
-
 // ===============================================================
 .item-news {
    overflow: hidden;
@@ -914,7 +891,6 @@
      box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.08);
    }
 }
-
 .content-news {
    overflow: hidden;
    @include flex-column;
@@ -942,7 +918,6 @@
       @include adaptiveValue('margin-bottom', 20, 10);
    }
 }
-
 .date {
    @include flex-column($align-items: center);
    font-weight: 500;
@@ -968,7 +943,6 @@
       text-transform: uppercase;
    }
 }
-
 // ==============================================================
 .actions {
    display: flex;
@@ -1037,7 +1011,6 @@
       }
    }
 }
-
 .item-review {
    background-color: $white;
    border-radius: toRem(8);
@@ -1074,7 +1047,6 @@
    // .item-review__author
    &__author {}
 }
-
 .author-review {
    display: flex;
    align-items: center;
@@ -1107,7 +1079,6 @@
       color: $gray400;
    }
 }
-
 .rating-review {
   display: flex;
   align-items: center;
@@ -1120,7 +1091,6 @@
       height: toRem(16);
 		}
 }
-
 // ===============================================================
 .item-sale {
    position: relative;
@@ -1159,7 +1129,6 @@
       }
    }
 }
-
 .info-sale {
    display: flex;
    align-items: center;
@@ -1195,7 +1164,6 @@
       }
    }
 }
-
 .content-sale {
    position: relative;
    z-index: 2;
@@ -1235,7 +1203,6 @@
     z-index: 10;
    }
 }
-
 .countdown {
    color: $white;
    max-width: toRem(290);
@@ -1284,7 +1251,6 @@
       }
    }
 }
-
 .countdown-cart {
    max-width: toRem(250);
    margin: 0 auto;

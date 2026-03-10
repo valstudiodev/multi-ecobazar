@@ -389,7 +389,8 @@ $item-sale-options: (
 
 @mixin overlap-border (
    $shadow: 0 0px 3px 0px rgba(0, 0, 0, 1),
-   $border-color: black
+   $border-color: black,
+   $radius: none
 )
 {
    margin: 0 -1px -1px 0;
@@ -407,6 +408,7 @@ $item-sale-options: (
       box-shadow: $shadow;
       border: 1px solid $border-color;
       transition: opacity 0.4s ease;
+      border-radius: $radius;
    }
 
    @include hover {
@@ -427,6 +429,28 @@ $item-sale-options: (
       bottom: 0;
       z-index: 1;
    }
+}
+
+@mixin bg-icon-circle (
+  $width,
+  $height,
+  $bg: transparent,
+  $bg-hover,
+  $transition: 0.4s
+) {
+  width: $width;
+  height: $height;
+  background-color: $bg;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color $transition ease;
+
+  @include hover {
+    background-color: $bg-hover;
+  }
 }
 // ===========================================================================================
 // -----------------------------
@@ -504,6 +528,20 @@ $item-sale-options: (
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+}
+
+@mixin abs-left ($left) {
+    position: absolute;
+    top: 50%;
+    left: $left;
+    translate: 0 -50%;
+}
+
+@mixin abs-right ($right) {
+    position: absolute;
+    top: 50%;
+    right: $right;
+    translate: 0 -50%;
 }
 
 @mixin abs-pos($top: null, $right: null, $bottom: null, $left: null) {
@@ -743,6 +781,17 @@ $item-sale-options: (
    @if $lh !=null {
       line-height: $lh;
    }
+}
+
+@mixin bg-circle (
+  $width,
+  $height,
+  $bg,
+) {
+  width: $width;
+  height: $height;
+  background-color: $bg;
+  border-radius: 50%;
 }
 
 // ===========================================================================================

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en" init-page-loader>
+
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      /* Миттєвий фон для всього вікна */
+      html {
+        background-color: #fff;
+      }
+
+      /* Ховаємо контент, поки немає статусу "ready" */
+      html[init-page-loader] body {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        overflow: hidden;
+        /* Блокуємо скрол під час завантаження */
+      }
+
+      /* Повертаємо видимість та скрол */
+      html[init-page-loader="ready"] body {
+        opacity: 1 !important;
+        visibility: visible !important;
+        overflow: visible;
+        transition: opacity 0.6s ease-in-out !important;
+      }
+
+      /* Стиль прогрес-бару (щоб не чекати завантаження файлу CSS) */
+      #loader-progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background-color: rgba(0, 179, 7, 1);
+        z-index: 100000;
+        width: 0%;
+        transition: width 0.4s ease, opacity 0.3s ease;
+        box-shadow: 0 0 10px rgba(0, 179, 7, 1);
+      }
+
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="public/favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+    <title>Chinese Cabbage</title>
+  </head>
+
+  <body>
+
+    <div class="wrapper">
+
+      <header class="header">
+        <div class="header__top top-header">
+          <div class="top-header__container">
+            <address class="top-header__location">
+              <a href="#" class="top-header__link top-header__link--icon-location"
+                aria-label="Our store location: Lincoln 344, Illinois, Chicago, USA">
+                Store Location: Lincoln-
+                344, Illinois, Chicago, USA
+              </a>
+            </address>
+            <div class="top-header__actions actions-top-header">
+              <div class="actions-top-header__lang lang-currency">
+                <div class="lang-currency__group lang-currency__group--icon-shevron">
+                  <label for="header-language" class="visually-hidden">Select Language</label>
+                  <select name="language" id="header-language" class="lang-currency__select">
+                    <option value="en" class="lang-currency__item">Eng</option>
+                    <option value="uk" class="lang-currency__item">Ukr</option>
+                    <option value="eur" class="lang-currency__item">Eur</option>
+                  </select>
+                </div>
+                <div class="lang-currency__group lang-currency__group--icon-shevron">
+                  <label for="header-currency" class="visually-hidden">Select Currency</label>
+                  <select name="language" id="header-currency" class="lang-currency__select">
+                    <option value="usd" class="lang-currency__item">USD</option>
+                    <option value="uah" class="lang-currency__item">UAH</option>
+                    <option value="eur" class="lang-currency__item">EUR</option>
+                  </select>
+                </div>
+              </div>
+              <nav class="actions-top-header__auth auth-top-header" aria-label="User account">
+                <a href="#" target="_blank" class="auth-top-header__link">Sign In</a>
+                <span aria-hidden="true" class="auth-top-header__separator">/</span>
+                <a href="#" target="_blank" class="auth-top-header__link">Sign Up</a>
+              </nav>
+            </div>
+
+          </div>
+        </div>
+        <div class="header__body body-header">
+          <div class="body-header__container">
+            <figure class="body-header__logo logo-header">
+              <a href="./index.html" class="logo-header__inner" aria-label="Ecobazar - Home page">
+                <img class="logo-header__icon" src="/src/assets/icons/logo-leaf.svg" alt="" aria-hidden="true">
+                <span class="logo-header__text">Ecobazar</span>
+              </a>
+            </figure>
+            <div class="body-header__search search-header" role="search">
+              <form action="#" class="search-header__form search-header__form--icon-search">
+                <label for="header-search-input" class="visually-hidden">Search for products</label>
+                <input type="text" id="header-search-input" class="search-header__input" placeholder="Search">
+                <button type="submit" class="search-header__button" aria-label="Submit search">Search</button>
+              </form>
+            </div>
+            <div class="body-header__actions actions-body-header">
+              <a href="#" class="actions-body-header__wishlist" aria-label="Wishlist, 0 items">
+                <span class="actions-body-header__icon actions-body-header__icon--icon-like" aria-hidden="true"></span>
+              </a>
+              <a href="#" class="actions-body-header__cart cart-shopping"
+                aria-label="Shopping cart, 2 items, total price 57 dollars">
+                <div class="cart-shopping__icon cart-shopping__icon--icon-shop-cart" id="cart-counter-container"
+                  aria-label="Shopping cart, 2 items, total price 57 dollars" aria-live="polite" aria-atomic="true">
+                  <span>2</span>
+                </div>
+                <div class="cart-shopping__content content-cart-shopping" aria-hidden="true">
+                  <span class="content-cart-shopping__label">Shopping cart:</span>
+                  <span class="content-cart-shopping__amount">$57.00</span>
+                </div>
+              </a>
+            </div>
+            <button type="button" class="icon-menu" aria-label="Open mobile menu" aria-expanded="false"
+              aria-controls="mobile-navigation">
+              <span></span>
+            </button>
+          </div>
+        </div>
+        <div class="header__bottom bottom-header">
+          <div class="bottom-header__container">
+            <nav class="bottom-header__menu menu-header menu-dropdown" aria-label="Main navigation">
+              <h2 class="visually-hidden">Header menu</h2>
+              <ul class="menu-header__list menu-dropdown__list">
+                <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                  <a href="#" class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron"
+                    aria-haspopup="true" aria-expanded="false" id="home-menu-link">Home</a>
+                  <ul class="menu-dropdown__submenu submenu-dropdown" aria-labelledby="home-menu-link">
+                    <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                    <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                  </ul>
+                </li>
+                <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                  <a href="#" class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron"
+                    aria-haspopup="true" aria-expanded="false" id="shop-menu-link">Shop</a>
+                  <ul class="menu-dropdown__submenu submenu-dropdown" aria-labelledby="shop-menu-link">
+                    <li><a href="./catalog.html" target="_blank" class="submenu-dropdown__link">Catalog</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                  <a href="#" class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron"
+                    aria-haspopup="true" aria-expanded="false" id="pages-menu-link">Pages</a>
+                  <ul class="menu-dropdown__submenu submenu-dropdown" aria-labelledby="pages-menu-link">
+                    <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                    <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                    <li><a href="#" class="submenu-dropdown__link">Item 3</a></li>
+                  </ul>
+                </li>
+                <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                  <a href="#" class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron"
+                    aria-haspopup="true" aria-expanded="false" id="blog-menu-link">Blog</a>
+                  <ul class="menu-dropdown__submenu submenu-dropdown" aria-labelledby="blog-menu-link">
+                    <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                    <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                    <li><a href="#" class="submenu-dropdown__link">Item 3</a></li>
+                  </ul>
+                </li>
+                <li class="menu-header__item">
+                  <a href="#" class="menu-header__link">About Us</a>
+                </li>
+                <li class="menu-header__item">
+                  <a href="#" class="menu-header__link">Contact Us</a>
+                </li>
+              </ul>
+            </nav>
+            <a href="#" class="bottom-header__link bottom-header__link--icon-phone"
+              aria-label="Phone number is 219-555-0114">
+              <span aria-hidden="true">(219) 555-0114</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <aside class="breadcrumbs">
+        <div class="breadcrumbs__container">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a href="#" class="breadcrumbs__link breadcrumbs__link--icon-home" aria-label="Home page"></a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="#" class="breadcrumbs__link">Categories</a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="#" class="breadcrumbs__link" aria-current="page">Vegetables</a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="#" class="breadcrumbs__link" aria-current="page">Chinese Cabbage</a>
+            </li>
+          </ul>
+          <img class="breadcrumbs__image" src="/src/assets/img/banners/breadcrumbs-banner.webp" alt=""
+            aria-hidden="true">
+        </div>
+      </aside>
+
+      <main class="product">
+        <section class="product__body body-product">
+          <div class="body-product__container">
+            <div class="body-product__gallery gallery-product">
+              <div class="gallery-product__thumbs thumbs-product-slider">
+                <button type="button"
+                  class="thumbs-product-slider__btn thumbs-product-slider__btn--prev thumbs-product-slider__btn--icon-shevron"></button>
+                <div thumbsSlider="" class="thumbs-product-slider__thumbs swiper">
+                  <div class="thumbs-product-slider__wrap  swiper-wrapper">
+                    <div class="thumbs-product-slider__slide  swiper-slide">
+                      <img src="/src/assets/img/products/product-cabbage/product-cabbage-01.webp" alt="">
+                    </div>
+                    <div class="thumbs-product-slider__slide  swiper-slide">
+                      <img src="/src/assets/img/products/product-img-apple.webp" alt="">
+                    </div>
+                    <div class="thumbs-product-slider__slide  swiper-slide">
+                      <img src="/src/assets/img/products/product-img-cabbage.webp" alt="">
+                    </div>
+                    <div class="thumbs-product-slider__slide  swiper-slide">
+                      <img src="/src/assets/img/products/product-img-chili.webp" alt="">
+                    </div>
+                    <div class="thumbs-product-slider__slide  swiper-slide">
+                      <img src="/src/assets/img/products/product-img-eggplant.webp" alt="">
+                    </div>
+                  </div>
+                </div>
+                <button type="button"
+                  class="thumbs-product-slider__btn thumbs-product-slider__btn--next thumbs-product-slider__btn--icon-shevron "></button>
+              </div>
+              <!-- Slider main container -->
+              <div class="gallery-product__slider slider-main-product swiper">
+                <!-- Additional required wrapper -->
+                <div class="slider-main-product__wrapper swiper-wrapper">
+                  <!-- Slides -->
+                  <div class="slider-main-product__slide swiper-slide">
+                    <div class="slider-main-product__image">
+                      <img src="/src/assets/img/products/product-cabbage/product-cabbage-01.webp" alt="">
+                    </div>
+                  </div>
+                  <div class="slider-main-product__slide swiper-slide">
+                    <div class="slider-main-product__image">
+                      <img src="/src/assets/img/products/product-img-apple.webp" alt="">
+                    </div>
+                  </div>
+                  <div class="slider-main-product__slide swiper-slide">
+                    <div class="slider-main-product__image">
+                      <img src="/src/assets/img/products/product-img-cabbage.webp" alt="">
+                    </div>
+                  </div>
+                  <div class="slider-main-product__slide swiper-slide">
+                    <div class="slider-main-product__image">
+                      <img src="/src/assets/img/products/product-img-chili.webp" alt="">
+                    </div>
+                  </div>
+                  <div class="slider-main-product__slide swiper-slide">
+                    <div class="slider-main-product__image">
+                      <img src="/src/assets/img/products/product-img-eggplant.webp" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="body-product__content content-product">
+              <div class="content-product__header header-product">
+                <h1 class="header-product__title">Chinese Cabbage</h1>
+                <a href="#" target="_blank" class="header-product__label">In Stock</a>
+              </div>
+              <div class="content-product__info info-product">
+                <form action="#" class="info-product__review review-product">
+                  <fieldset class="review-product__rating rating">
+                    <legend class="visually-hidden">Raiting of product</legend>
+                    <input class="rating__item" type="radio" id="star5" name="r" value="5">
+                    <label class="rating__label rating__label--icon-star-full1" for="star5">
+                      <span class="visually-hidden">Rating 5 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="star4" name="r" value="4">
+                    <label class="rating__label rating__label--icon-star-full1" for="star4">
+                      <span class="visually-hidden">Rating 4 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="star3" name="r" value="3" checked>
+                    <label class="rating__label rating__label--icon-star-full1" for="star3">
+                      <span class="visually-hidden">Rating 3 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="star2" name="r" value="2">
+                    <label class="rating__label rating__label--icon-star-full1" for="star2">
+                      <span class="visually-hidden">Rating 2 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="star1" name="r" value="1">
+                    <label class="rating__label rating__label--icon-star-full1" for="star1">
+                      <span class="visually-hidden">Rating 1 stars</span>
+                    </label>
+                  </fieldset>
+                  <a href="#" target="_blank" class="review-product__quantity">4 Review</a>
+                </form>
+                <div class="info-product__sku">
+                  <span>SKU:</span>2,51,594
+                </div>
+              </div>
+              <div class="content-product__prices prices-product">
+                <div class="prices-product__amount amount-price">
+                  <span class="visually-hidden">Old price:</span>
+                  <span class="amount-price__old"><del>$48.00</del></span>
+                  <span class="visually-hidden">Current price:</span>
+                  <span class="amount-price__current amount-price__current--accent"><ins
+                      style="text-decoration: none;">$17.28</ins></span>
+                </div>
+                <span class="prices-product__label">64% Off</span>
+              </div>
+              <div class="content-product__description description-product">
+                <div class="description-product__actions">
+                  <div class="description-product__brand brand-product">
+                    <span class="brand-product__title" aria-label="Brand logo of company">Brand:</span>
+                    <a href="#" class="brand-product__body">
+                      <img src="/src/assets/icons/leaf-organic.svg" alt="" class="brand-product__logo"
+                        aria-hidden="true">
+                      <span class="brand-product__label">farmary</span>
+                    </a>
+                  </div>
+                  <div class="description-product__social social-product">
+                    <span class="social-product__title" aria-label="Share with Social Media">Share item:</span>
+                    <div class="social-product__items">
+                      <a href="#" class="social-product__link social-product__link--icon-fb" aria-label="Facebook"></a>
+                      <a href="#" class="social-product__link social-product__link--icon-twitter"
+                        aria-label="Twitter"></a>
+                      <a href="#" class="social-product__link social-product__link--icon-pinterest"
+                        aria-label="Pinterest"></a>
+                      <a href="#" class="social-product__link social-product__link--icon-instagram"
+                        aria-label="Instagram"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="description-product__text">
+                  <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla
+                    nibh diam, blandit vel
+                    consequat nec, ultrices et ipsum. Nulla varius magna a consequat pulvinar.
+                  </p>
+                </div>
+              </div>
+              <form action="#" class="content-product__actions actions-product">
+                <div class="actions-product__quantity quantity-product">
+                  <button type="button" class="quantity-product__btn quantity-product__btn--icon-minus"></button>
+                  <input value="1" type="number" class="quantity-product__input">
+                  <button type="button" class="quantity-product__btn quantity-product__btn--icon-plus"></button>
+                </div>
+                <button type="button"
+                  class="actions-product__btn button button--icon-shop-cart button--medium-green">Add
+                  to Cart</button>
+                <button type="button" class="actions-product__whishlist actions-product__whishlist--icon-like"></button>
+              </form>
+              <div class="content-product__navigation navigation-product">
+                <div class="navigation-product__current current-navigation">
+                  <h4 class="current-navigation__subtitle">Category:</h4>
+                  <a href="#" target="_blank" class="current-navigation__link">Vegetables</a>
+                </div>
+                <div class="navigation-product__tags tags-navigation">
+                  <h4 class="tags-navigation__subtitle">Tag:</h4>
+                  <ul class="tags-navigation__list">
+                    <li class="tags-navigation__item">
+                      <a href="#" target="_blank" class="tags-navigation__link">Vegetables</a>
+                    </li>
+                    <li class="tags-navigation__item">
+                      <a href="#" target="_blank" class="tags-navigation__link">Healthy</a>
+                    </li>
+                    <li class="tags-navigation__item">
+                      <a href="#" target="_blank" class="tags-navigation__link">Chinese Cabbage</a>
+                    </li>
+                    <li class="tags-navigation__item">
+                      <a href="#" target="_blank" class="tags-navigation__link">Green Cabbage</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="product__tabs tabs-product">
+          <div class="tabs-product__container">
+            <ul class="tabs-product__navigation navigation-tabs">
+              <li class="navigation-tabs__item">
+                <button type="button" class="navigation-tabs__button">Descriptions</button>
+              </li>
+              <li class="navigation-tabs__item">
+                <button type="button" class="navigation-tabs__button">Additional Information</button>
+              </li>
+              <li class="navigation-tabs__item">
+                <button type="button" class="navigation-tabs__button">Customer Feedback</button>
+              </li>
+            </ul>
+            <div class="tabs-product__body body-tabs-product">
+              <div class="body-tabs-product__item">
+                <div class="body-tabs-product__descriptions descriptions-tab">
+                  <div class="descriptions-tab__content">
+                    <p>Sed commodo aliquam dui ac porta. Fusce ipsum felis, imperdiet at posuere ac, viverra at mauris.
+                      Maecenas tincidunt
+                      ligula a sem vestibulum pharetra. Maecenas auctor tortor lacus, nec laoreet nisi porttitor vel.
+                      Etiam tincidunt metus
+                      vel dui interdum sollicitudin. Mauris sem ante, vestibulum nec orci vitae, aliquam mollis lacus.
+                      Sed et condimentum
+                      arcu, id molestie tellus. Nulla facilisi. Nam scelerisque vitae justo a convallis. Morbi urna
+                      ipsum, placerat quis
+                      commodo quis, egestas elementum leo. Donec convallis mollis enim. Aliquam id mi quam. Phasellus
+                      nec fringilla elit.
+                    </p>
+                    <p>
+                      Nulla mauris tellus, feugiat quis pharetra sed, gravida ac dui. Sed iaculis, metus faucibus
+                      elementum tincidunt, turpis
+                      mi viverra velit, pellentesque tristique neque mi eget nulla. Proin luctus elementum neque et
+                      pharetra.
+                    </p>
+                    <ul>
+                      <li>100 g of fresh leaves provides.</li>
+                      <li>Aliquam ac est at augue volutpat elementum.</li>
+                      <li>Quisque nec enim eget sapien molestie.</li>
+                      <li>Proin convallis odio volutpat finibus posuere.</li>
+                    </ul>
+                    <p>Cras et diam maximus, accumsan sapien et, sollicitudin velit. Nulla blandit eros non turpis
+                      lobortis iaculis at ut
+                      massa.
+                    </p>
+                  </div>
+                  <div class="descriptions-tab__media media-tab">
+                    <div class="media-tab__image">
+                      <img src="/src/assets/img/products/product-cabbage/imag-video.webp" alt="">
+                      <button type="button" class="media-tab__play">
+                        <img class="media-tab__icon" src="/src/assets/icons/play.svg" alt="" aria-hidden="true">
+                      </button>
+                    </div>
+                    <div class="media-tab__info info-tab">
+                      <article class="info-tab__item">
+                        <figure class="info-tab__icon">
+                          <img src="/src/assets/icons/discount.svg" alt="" aria-hidden="true">
+                        </figure>
+                        <div class="info-tab__body">
+                          <h5 class="info-tab__title">64% Discount</h5>
+                          <div class="info-tab__text">
+                            <p>Save your 64% money with us</p>
+                          </div>
+                        </div>
+                      </article>
+                      <article class="info-tab__item">
+                        <figure class="info-tab__icon">
+                          <img src="/src/assets/icons/leaf-organic.svg" alt="" aria-hidden="true">
+                        </figure>
+                        <div class="info-tab__body">
+                          <h5 class="info-tab__title">100% Organic</h5>
+                          <div class="info-tab__text">
+                            <p>100% Organic Vegetables</p>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="body-tabs-product__item"></div>
+              <div class="body-tabs-product__item"></div> -->
+            </div>
+          </div>
+        </div>
+
+        <section class="product__related related-product">
+          <div class="related-product__container">
+            <h2 class="related-product__title">Related Products</h2>
+            <div class="related-product__items">
+              <!-- green apple -->
+              <article class="item-product item-product--border-radius" aria-labelledby="product-green-apple-title">
+                <div class="item-product__inner">
+                  <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
+                    <img src="/src/assets/img/products/product-img-apple.webp" alt="product cauliflower">
+                  </a>
+                  <div class="item-product__body">
+                    <div class="item-product__content">
+                      <h3 class="item-product__title">
+                        <a href="#" class="item-product__link" id="product-green-apple-title">Green
+                          Apple</a>
+                      </h3>
+                      <div class="item-product__amount amount-price">
+                        <span class="visually-hidden">Current price:</span>
+                        <span class="amount-price__current"><ins style="text-decoration: none;">$14.99</ins></span>
+                      </div>
+                      <fieldset class="rating">
+                        <legend class="visually-hidden">Raiting of product</legend>
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 5 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="" checked>
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 4 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 3 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 2 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 1 stars</span>
+                        </label>
+                      </fieldset>
+                    </div>
+                    <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
+                      aria-label="Add cauliflower to the cart"></button>
+                  </div>
+                  <div class="item-product__actions">
+                    <button type="button" class="button-wishlist button-wishlist--icon-like"
+                      aria-label="Add to wishlist"></button>
+                    <button type="button" class="button-quick-view button-quick-view--icon-view"
+                      aria-label="Quick view cauliflower"></button>
+                  </div>
+                </div>
+              </article>
+              <!-- Fresh Cauliflower -->
+              <article class="item-product item-product--border-radius" aria-labelledby="product-cauliflower-title">
+                <div class="item-product__inner">
+                  <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
+                    <img src="/src/assets/img/products/product-img-cauliflower.webp" alt="product cauliflower">
+                  </a>
+                  <div class="item-product__body">
+                    <div class="item-product__content">
+                      <h3 class="item-product__title">
+                        <a href="#" class="item-product__link" id="product-cauliflower-title">Fresh
+                          Cauliflower</a>
+                      </h3>
+                      <div class="item-product__amount amount-price">
+                        <span class="visually-hidden">Current price:</span>
+                        <span class="amount-price__current"><ins style="text-decoration: none;">$12.00</ins></span>
+                      </div>
+                      <fieldset class="rating">
+                        <legend class="visually-hidden">Raiting of product</legend>
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 5 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="" checked>
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 4 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 3 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 2 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 1 stars</span>
+                        </label>
+                      </fieldset>
+                    </div>
+                    <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
+                      aria-label="Add cauliflower to the cart"></button>
+                  </div>
+                  <div class="item-product__actions">
+                    <button type="button" class="button-wishlist button-wishlist--icon-like"
+                      aria-label="Add to wishlist"></button>
+                    <button type="button" class="button-quick-view button-quick-view--icon-view"
+                      aria-label="Quick view cauliflower"></button>
+                  </div>
+                </div>
+              </article>
+              <!-- Green Capsicum -->
+              <article class="item-product item-product--border-radius" aria-labelledby="product-green-capsicum-title">
+                <div class="item-product__inner">
+                  <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
+                    <img src="/src/assets/img/products/product-img-capsicum.webp" alt="product capsicum">
+                  </a>
+                  <div class="item-product__labels">
+                    <a href="#" class="item-sale-label item-sale-label--orange">
+                      <span class="visually-hidden">Discount:</span>
+                      <span class="item-sale-label__title">Sale</span>
+                      <span class="item-sale-label__label">50%</span>
+                    </a>
+                  </div>
+                  <div class="item-product__body">
+                    <div class="item-product__content">
+                      <h3 class="item-product__title">
+                        <a href="#" class="item-product__link" id="product-green-capsicum-title">Green
+                          Capsicum</a>
+                      </h3>
+                      <div class="item-product__amount amount-price">
+                        <span class="visually-hidden">Current price:</span>
+                        <span class="amount-price__current"><ins style="text-decoration: none;">$9.00</ins></span>
+                        <span class="visually-hidden">Old price:</span>
+                        <span class="amount-price__old"><del>$20.99</del></span>
+                      </div>
+                      <fieldset class="rating">
+                        <legend class="visually-hidden">Raiting of product</legend>
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 5 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="" checked>
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 4 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 3 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 2 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 1 stars</span>
+                        </label>
+                      </fieldset>
+                    </div>
+                    <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
+                      aria-label="Add green capsicum to the cart"></button>
+                  </div>
+                  <div class="item-product__actions">
+                    <button type="button" class="button-wishlist button-wishlist--icon-like"
+                      aria-label="Add to wishlist"></button>
+                    <button type="button" class="button-quick-view button-quick-view--icon-view"
+                      aria-label="Quick view green capsicum"></button>
+                  </div>
+                </div>
+              </article>
+              <!-- ladies-finger -->
+              <article class="item-product item-product--border-radius" aria-labelledby="product-ladies-finger-title">
+                <div class="item-product__inner">
+                  <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
+                    <img src="/src/assets/img/products/product-img-ledies-finger.webp" alt="product ladies-finger">
+                  </a>
+                  <div class="item-product__body">
+                    <div class="item-product__content">
+                      <h3 class="item-product__title">
+                        <a href="#" class="item-product__link" id="product-ladies-finger-title">Ladies
+                          Finger</a>
+                      </h3>
+                      <div class="item-product__amount amount-price">
+                        <span class="visually-hidden">Current price:</span>
+                        <span class="amount-price__current"><ins style="text-decoration: none;">$14.99</ins></span>
+                        <!-- <span class="visually-hidden">Old price:</span>
+                                                                                                  <span class="amount-price__old"><del>$20.99</del></span> -->
+                      </div>
+                      <fieldset class="rating">
+                        <legend class="visually-hidden">Raiting of product</legend>
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 5 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="" checked>
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 4 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 3 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 2 stars</span>
+                        </label>
+
+                        <input class="rating__item" type="radio" id="" name="" value="">
+                        <label class="rating__label rating__label--icon-star-full1" for="">
+                          <span class="visually-hidden">Rating 1 stars</span>
+                        </label>
+                      </fieldset>
+                    </div>
+                    <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
+                      aria-label="Add ladies-finger to the cart"></button>
+                  </div>
+                  <div class="item-product__actions">
+                    <button type="button" class="button-wishlist button-wishlist--icon-like"
+                      aria-label="Add ladies-finger to wishlist"></button>
+                    <button type="button" class="button-quick-view button-quick-view--icon-view"
+                      aria-label="Quick view ladies-finger"></button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="subscribe">
+        <div class="subscribe__container">
+          <div class="subscribe__content content-subscribe">
+            <h2 class="content-subscribe__title">Subcribe our Newsletter</h2>
+            <div class="content-subscribe__text">
+              <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu
+                magna.
+              </p>
+            </div>
+          </div>
+          <div class="subscribe__form">
+            <form action="#" class="form-subscribe">
+              <input type="email" class="form-subscribe__input" placeholder="Your email address">
+              <button class="form-subscribe__button button button--big-green">Subscribe</button>
+            </form>
+          </div>
+          <div class="subscribe__actions actions-subscribe">
+            <a href="#" class="social-media-link" aria-label="Facebook">
+              <span class="social-media-link__icon social-media-link__icon--icon-fb" aria-hidden="true"></span>
+            </a>
+            <a href="#" class="social-media-link" aria-label="twitter">
+              <span class="social-media-link__icon social-media-link__icon--icon-twitter" aria-hidden="true"></span>
+            </a>
+            <a href="#" class="social-media-link" aria-label="pinterest">
+              <span class="social-media-link__icon social-media-link__icon--icon-pinterest" aria-hidden="true"></span>
+            </a>
+            <a href="#" class="social-media-link" aria-label="instagram">
+              <span class="social-media-link__icon social-media-link__icon--icon-instagram" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <footer class="footer" aria-labelledby="footer">
+        <div class="footer__body body-footer">
+          <div class="body-footer__container">
+            <div class="body-footer__content content-footer">
+              <figure class="content-footer__logo logo-footer">
+                <a href="./index.html" class="logo-footer__inner" aria-label="Ecobazar - Home page">
+                  <img class="logo-footer__icon" src="/src/assets/icons/logo-leaf.svg" alt="" aria-hidden="true">
+                  <cite class="logo-footer__text">Ecobazar</cite>
+                </a>
+              </figure>
+              <div class="content-footer__text">
+                <p>Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna
+                  congue nec.
+                </p>
+              </div>
+              <div class="content-footer__contacts contacts-footer">
+                <a href="tel:2195550114" class="contacts-footer__phone" aria-label="Call us: (219) 555-0114">(219)
+                  555-0114</a>
+                <span aria-hidden="true">or</span>
+                <a href="emailto:Proxy@gmail.com" class="contacts-footer__email"
+                  aria-label="Email us: Proxy@gmail.com">Proxy@gmail.com</a>
+              </div>
+            </div>
+            <div class="body-footer__column column-footer" aria-labelledby="footer-account">
+              <h4 class="column-footer__title" id="footer-account">My Account</h4>
+              <ul class="column-footer__list">
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">My Account</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Order History</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Shoping Cart</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Wishlist</a>
+                </li>
+              </ul>
+            </div>
+            <div class="body-footer__column column-footer" aria-labelledby="footer-helps">
+              <h4 class="column-footer__title" id="footer-helps">Helps</h4>
+              <ul class="column-footer__list">
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Contact</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Faqs</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Terms & Condition</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+            <div class="body-footer__column column-footer" aria-labelledby="footer-proxy">
+              <h4 class="column-footer__title" id="footer-proxy">Proxy</h4>
+              <ul class="column-footer__list">
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">About</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="./catalog.html" target="_blank" class="column-footer__link">Shop</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Product</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Track Order</a>
+                </li>
+              </ul>
+            </div>
+            <div class="body-footer__column column-footer" aria-labelledby="footer-categories">
+              <h4 class="column-footer__title" id="footer-categories">Categories</h4>
+              <ul class="column-footer__list">
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Fruit & Vegetables</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Meat & Fish</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Bread & Bakery</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Beauty & Health</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom bottom-footer">
+          <div class="bottom-footer__container">
+            <a href="#" class="bottom-footer__copyright">Ecobazar eCommerce © 2021. All Rights Reserved</a>
+            <div class="bottom-footer__payments payments-footer">
+              <h2 class="visually-hidden">Payment methods</h2>
+              <ul class="payments-footer__list">
+                <li class="payments-footer__item">
+                  <a href="#" class="payments-footer__link" aria-label="Apple Pay">
+                    <img src="/src/assets/icons/apple-pay.svg" alt="" aria-hidden="true">
+                  </a>
+                </li>
+                <li class="payments-footer__item">
+                  <a href="#" class="payments-footer__link" aria-label="Visa Card">
+                    <img src="/src/assets/icons/visa-logo.svg" alt="" aria-hidden="true">
+                  </a>
+                </li>
+                <li class="payments-footer__item">
+                  <a href="#" class="payments-footer__link" aria-label="Discover Payment">
+                    <img src="/src/assets/icons/discover-logo.svg" alt="" aria-hidden="true">
+                  </a>
+                </li>
+                <li class="payments-footer__item">
+                  <a href="#" class="payments-footer__link" aria-label="Mastercard">
+                    <img src="/src/assets/icons/mastercard.svg" alt="" aria-hidden="true">
+                  </a>
+                </li>
+                <li class="payments-footer__item payments-footer__item--secure">
+                  <a href="#" class="payments-footer__link payments-footer__link--secure" aria-label="Secure Payment">
+                    <span class="payments-footer__icon payments-footer__icon--icon-locked"
+                      aria-hidden="true">Secure</span>
+                    <span class="payments-footer__secure" aria-hidden="true">Payment</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

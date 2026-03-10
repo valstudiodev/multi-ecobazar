@@ -1,6 +1,7 @@
 @use "sass:math";
 // =====================Pages===========================
 @use './pages/catalog';
+@use './pages/product';
 // =====================Settings===========================
 @use './settings/settings' as *;
 @use './settings/reset';
@@ -188,7 +189,7 @@ html[data-input="touch"] {
          scale: 1;
          opacity: 1;
          z-index: -1;
-         background-color: $gray400;
+         background-color: $brandPrimary;
       }
       &::before {
          color: $white;
