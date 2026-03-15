@@ -22,7 +22,6 @@
     @include adaptiveValue('padding-bottom', 80, 40);
   }
 }
-
 // ===========================================================================================
 // -----------------------------
 // body-product
@@ -105,7 +104,7 @@
         flex-shrink: 0;
         height: 100%;
         min-width: 0;
-        @include adaptiveValue('gap', 56, 20);
+        @include adaptiveValue('gap', 40, 20);
 
         @media (max-width: toEm(990)) {
           // height: toRem(800);
@@ -140,6 +139,7 @@
 
 		// .thumbs-product-slider__btn
 		&__btn {
+      display: block;
       &--prev {
         &::before {
           // rotate: -90deg;
@@ -188,6 +188,18 @@
       height: 100%;
       max-height: toRem(556);
       min-width: 0;
+
+      .swiper-slide {
+        opacity: 0.4;
+        transition: opacity 0.5s ease;
+      }
+
+      .swiper-slide-thumb-active{
+        opacity: 1;
+        border: toRem(1) solid $brandPrimary;
+        border-radius: toRem(10);
+        overflow: hidden;
+      }
 
       @media (max-width: toEm(990)) {
           max-height: 400px;
@@ -508,28 +520,6 @@
       text-align: center;
 		}
 }
-.button {
-
-		// .button--icon-shop-cart
-
-		&--icon-shop-cart {
-		}
-
-		// .button--medium-green
-
-		&--medium-green {
-		}
-}
-.navigation-product {
-
-		// .navigation-product__current
-		&__current {
-		}
-
-		// .navigation-product__tags
-		&__tags {
-		}
-}
 .current-navigation {
   display: flex;
   align-items: center;
@@ -586,7 +576,6 @@
       }
 		}
 }
-
 // ===========================================================================================
 // -----------------------------
 // tabs-product
@@ -734,6 +723,7 @@
       padding: toRem(16) toRem(16) toRem(16) toRem(20);
       aspect-ratio: 1;
       display: flex;
+      flex-shrink: 0;
       justify-content: center;
       align-items: center;
       @include transition;
@@ -795,7 +785,6 @@
       color: $gray500;
 		}
 }
-
 // ===========================================================================================
 // -----------------------------
 // related-product

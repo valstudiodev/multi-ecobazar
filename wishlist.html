@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      /* Миттєвий фон для всього вікна */
+      html {
+        background-color: #fff;
+      }
+
+      /* Ховаємо контент, поки немає статусу "ready" */
+      html[init-page-loader] body {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        overflow: hidden;
+        /* Блокуємо скрол під час завантаження */
+      }
+
+      /* Повертаємо видимість та скрол */
+      html[init-page-loader="ready"] body {
+        opacity: 1 !important;
+        visibility: visible !important;
+        overflow: visible;
+        transition: opacity 0.6s ease-in-out !important;
+      }
+
+      /* Стиль прогрес-бару (щоб не чекати завантаження файлу CSS) */
+      #loader-progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background-color: rgba(0, 179, 7, 1);
+        z-index: 100000;
+        width: 0%;
+        transition: width 0.4s ease, opacity 0.3s ease;
+        box-shadow: 0 0 10px rgba(0, 179, 7, 1);
+      }
+
+    </style>
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+  </head>
+
+  <body>
+
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__top top-header">
+          <div class="top-header__container">
+            <address class="top-header__location">
+              <a href="#" class="top-header__link top-header__link--icon-location"
+                aria-label="Our store location: Lincoln 344, Illinois, Chicago, USA">
+                Store Location: Lincoln-
+                344, Illinois, Chicago, USA
+              </a>
+            </address>
+            <div class="top-header__actions actions-top-header">
+              <div class="actions-top-header__lang lang-currency">
+                <div class="lang-currency__group lang-currency__group--icon-shevron">
+                  <label for="header-language" class="visually-hidden">Select Language</label>
+                  <select name="language" id="header-language" class="lang-currency__select">
+                    <option value="en" class="lang-currency__item">Eng</option>
+                    <option value="uk" class="lang-currency__item">Ukr</option>
+                    <option value="eur" class="lang-currency__item">Eur</option>
+                  </select>
+                </div>
+                <div class="lang-currency__group lang-currency__group--icon-shevron">
+                  <label for="header-currency" class="visually-hidden">Select Currency</label>
+                  <select name="language" id="header-currency" class="lang-currency__select">
+                    <option value="usd" class="lang-currency__item">USD</option>
+                    <option value="uah" class="lang-currency__item">UAH</option>
+                    <option value="eur" class="lang-currency__item">EUR</option>
+                  </select>
+                </div>
+              </div>
+              <nav class="actions-top-header__auth auth-top-header" aria-label="User account">
+                <a href="#" target="_blank" class="auth-top-header__link">Sign In</a>
+                <span aria-hidden="true" class="auth-top-header__separator">/</span>
+                <a href="#" target="_blank" class="auth-top-header__link">Sign Up</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="header__body body-header">
+          <div class="body-header__container">
+            <figure class="body-header__logo logo-header">
+              <a href="./index.html" class="logo-header__inner" aria-label="Ecobazar - Home page">
+                <img class="logo-header__icon" src="/src/assets/icons/logo-leaf.svg" alt="" aria-hidden="true">
+                <span class="logo-header__text">Ecobazar</span>
+              </a>
+            </figure>
+            <div class="body-header__search search-header" role="search">
+              <form action="#" class="search-header__form search-header__form--icon-search">
+                <label for="header-search-input" class="visually-hidden">Search for products</label>
+                <input type="text" id="header-search-input" class="search-header__input" placeholder="Search">
+                <button type="submit" class="search-header__button" aria-label="Submit search">Search</button>
+              </form>
+            </div>
+            <div class="body-header__actions actions-body-header">
+              <a href="#" class="actions-body-header__wishlist" aria-label="Wishlist, 0 items">
+                <span class="actions-body-header__icon actions-body-header__icon--icon-like" aria-hidden="true"></span>
+              </a>
+              <a href="#" class="actions-body-header__cart cart-shopping"
+                aria-label="Shopping cart, 2 items, total price 57 dollars">
+                <div class="cart-shopping__icon cart-shopping__icon--icon-shop-cart" id="cart-counter-container"
+                  aria-label="Shopping cart, 2 items, total price 57 dollars" aria-live="polite" aria-atomic="true">
+                  <span>2</span>
+                </div>
+                <div class="cart-shopping__content content-cart-shopping" aria-hidden="true">
+                  <span class="content-cart-shopping__label">Shopping cart:</span>
+                  <span class="content-cart-shopping__amount">$57.00</span>
+                </div>
+              </a>
+            </div>
+            <button type="button" class="icon-menu" aria-label="Open mobile menu" aria-expanded="false"
+              aria-controls="mobile-navigation">
+              <span></span>
+            </button>
+          </div>
+        </div>
+        <div class="header__bottom bottom-header">
+          <div class="bottom-header__container">
+            <nav class="bottom-header__menu menu-header menu-dropdown" aria-label="Main navigation">
+              <h2 class="visually-hidden">Header menu</h2>
+              <ul class="menu-header__list menu-dropdown__list">
+                <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                  <a href="#" class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron"
+                    aria-haspopup="true" aria-expanded="false" id="home-menu-link">Home</a>
+                  <ul class="menu-dropdown__submenu submenu-dropdown" aria-labelledby="home-menu-link">
+                    <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                    <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                  </ul>
+                </li>
+                <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                  <a href="#" class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron"
+                    aria-haspopup="true" aria-expanded="false" id="shop-menu-link">Shop</a>
+                  <ul class="menu-dropdown__submenu submenu-dropdown" aria-labelledby="shop-menu-link">
+                    <li><a href="#" class="submenu-dropdown__link">Catalog</a></li>
+                  </ul>
+                </li>
+                <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                  <a href="#" class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron"
+                    aria-haspopup="true" aria-expanded="false" id="pages-menu-link">Pages</a>
+                  <ul class="menu-dropdown__submenu submenu-dropdown" aria-labelledby="pages-menu-link">
+                    <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                    <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                    <li><a href="#" class="submenu-dropdown__link">Item 3</a></li>
+                  </ul>
+                </li>
+                <li class="menu-header__item menu-dropdown__item menu-dropdown__item--submenu">
+                  <a href="#" class="menu-header__link menu-dropdown__link menu-dropdown__link--icon-chevron"
+                    aria-haspopup="true" aria-expanded="false" id="blog-menu-link">Blog</a>
+                  <ul class="menu-dropdown__submenu submenu-dropdown" aria-labelledby="blog-menu-link">
+                    <li><a href="#" class="submenu-dropdown__link">Item 1</a></li>
+                    <li><a href="#" class="submenu-dropdown__link">Item 2</a></li>
+                    <li><a href="#" class="submenu-dropdown__link">Item 3</a></li>
+                  </ul>
+                </li>
+                <li class="menu-header__item">
+                  <a href="#" class="menu-header__link">About Us</a>
+                </li>
+                <li class="menu-header__item">
+                  <a href="#" class="menu-header__link">Contact Us</a>
+                </li>
+              </ul>
+            </nav>
+            <a href="#" class="bottom-header__link bottom-header__link--icon-phone"
+              aria-label="Phone number is 219-555-0114">
+              <span aria-hidden="true">(219) 555-0114</span>
+            </a>
+          </div>
+        </div>
+      </header>
+      <aside class="breadcrumbs">
+        <div class="breadcrumbs__container">
+          <ul class="breadcrumbs__list">
+            <li class="breadcrumbs__item">
+              <a href="./index.html" class="breadcrumbs__link breadcrumbs__link--icon-home" aria-label="Home page"></a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="#" class="breadcrumbs__link">Categories</a>
+            </li>
+            <li class="breadcrumbs__item">
+              <a href="#" class="breadcrumbs__link" aria-current="page">Vegetables</a>
+            </li>
+          </ul>
+          <img class="breadcrumbs__image" src="/src/assets/img/banners/breadcrumbs-banner.webp" alt=""
+            aria-hidden="true">
+        </div>
+      </aside>
+      <main class="wishlist">
+        <div class="wishlist__container">
+          <table class="wishlist__table table-wishlist">
+            <caption class="table-wishlist__title">My Wishlist</caption>
+
+            <thead class="table-wishlist__header header-wishlist">
+              <tr>
+                <th>Product</th>
+                <th>price</th>
+                <th>Stock Status</th>
+              </tr>
+            </thead>
+
+            <tbody class="table-wishlist__body body-wishlist">
+              <tr>
+                <td>
+                  <article class="item-product-wishlist">
+                    <a href="#" target="_blank" class="item-product-wishlist__inner">
+                      <figure class="item-product-wishlist__image">
+                        <img src="/src/assets/img/products/product-img-capsicum.webp" alt="">
+                      </figure>
+                      <h4 class="item-product-wishlist__title">Green Capsicum</h4>
+                    </a>
+                  </article>
+                </td>
+                <td>
+                  <div class="body-wishlist__price price-wishlist">
+                    <span class="visually-hidden">Current price:</span>
+                    <span class="price-wishlist__current"><ins style="text-decoration: none;">$14.99</ins></span>
+                    <span class="visually-hidden">Old price:</span>
+                    <span class="price-wishlist__old"><del>$20.99</del></span>
+                  </div>
+                </td>
+                <td>
+                  <a href="#" target="_blank" class="body-wishlist__label body-wishlist__label--stock">In Stock</a>
+                </td>
+                <td>
+                  <div class="body-wishlist__actions actions-wishlist">
+                    <button type="button" class="actions-wishlist__btn button button--medium-green">Add to Cart</button>
+                    <button type="button"
+                      class="actions-wishlist__btn-remove button-remove button-remove--icon-close"></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <article class="item-product-wishlist">
+                    <a href="#" target="_blank" class="item-product-wishlist__inner">
+                      <figure class="item-product-wishlist__image">
+                        <img src="/src/assets/img/products/product-img-cabbage.webp" alt="">
+                      </figure>
+                      <h4 class="item-product-wishlist__title">Chinese Cabbage</h4>
+                    </a>
+                  </article>
+                </td>
+                <td>
+                  <div class="body-wishlist__price price-wishlist">
+                    <span class="visually-hidden">Current price:</span>
+                    <span class="price-wishlist__current"><ins style="text-decoration: none;">$45.00</ins></span>
+                    <!-- <span class="visually-hidden">Old price:</span>
+                    <span class="price-wishlist__old"><del>$20.99</del></span> -->
+                  </div>
+                </td>
+                <td>
+                  <a href="#" target="_blank" class="body-wishlist__label body-wishlist__label--stock">In Stock</a>
+                </td>
+                <td>
+                  <div class="body-wishlist__actions actions-wishlist">
+                    <button type="button" class="actions-wishlist__btn button button--medium-green">Add to Cart</button>
+                    <button type="button"
+                      class="actions-wishlist__btn-remove button-remove button-remove--icon-close"></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <article class="item-product-wishlist">
+                    <a href="#" target="_blank" class="item-product-wishlist__inner">
+                      <figure class="item-product-wishlist__image">
+                        <img src="/src/assets/img/products/product-img-mango.webp" alt="">
+                      </figure>
+                      <h4 class="item-product-wishlist__title">Fresh Sujapuri Mango</h4>
+                    </a>
+                  </article>
+                </td>
+                <td>
+                  <div class="body-wishlist__price price-wishlist">
+                    <span class="visually-hidden">Current price:</span>
+                    <span class="price-wishlist__current"><ins style="text-decoration: none;">$19.00</ins></span>
+                    <!-- <span class="visually-hidden">Old price:</span>
+                                  <span class="price-wishlist__old"><del>$20.99</del></span> -->
+                  </div>
+                </td>
+                <td>
+                  <a href="#" target="_blank" class="body-wishlist__label body-wishlist__label--stock">In Stock</a>
+                </td>
+                <td>
+                  <div class="body-wishlist__actions actions-wishlist">
+                    <button type="button" class="actions-wishlist__btn button button--medium-green">Add to Cart</button>
+                    <button type="button"
+                      class="actions-wishlist__btn-remove button-remove button-remove--icon-close"></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+
+            <tfoot class="table-wishlist__footer footer-wishlist"></tfoot>
+          </table>
+        </div>
+      </main>
+      <aside class="subscribe">
+        <div class="subscribe__container">
+          <div class="subscribe__content content-subscribe">
+            <h2 class="content-subscribe__title">Subcribe our Newsletter</h2>
+            <div class="content-subscribe__text">
+              <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu
+                magna.
+              </p>
+            </div>
+          </div>
+          <div class="subscribe__form">
+            <form action="#" class="form-subscribe">
+              <input type="email" class="form-subscribe__input" placeholder="Your email address">
+              <button class="form-subscribe__button button button--big-green">Subscribe</button>
+            </form>
+          </div>
+          <div class="subscribe__actions actions-subscribe">
+            <a href="#" class="social-media-link" aria-label="Facebook">
+              <span class="social-media-link__icon social-media-link__icon--icon-fb" aria-hidden="true"></span>
+            </a>
+            <a href="#" class="social-media-link" aria-label="twitter">
+              <span class="social-media-link__icon social-media-link__icon--icon-twitter" aria-hidden="true"></span>
+            </a>
+            <a href="#" class="social-media-link" aria-label="pinterest">
+              <span class="social-media-link__icon social-media-link__icon--icon-pinterest" aria-hidden="true"></span>
+            </a>
+            <a href="#" class="social-media-link" aria-label="instagram">
+              <span class="social-media-link__icon social-media-link__icon--icon-instagram" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+      </aside>
+      <footer class="footer" aria-labelledby="footer">
+        <div class="footer__body body-footer">
+          <div class="body-footer__container">
+            <div class="body-footer__content content-footer">
+              <figure class="content-footer__logo logo-footer">
+                <a href="#" class="logo-footer__inner" aria-label="Ecobazar - Home page">
+                  <img class="logo-footer__icon" src="/src/assets/icons/logo-leaf.svg" alt="" aria-hidden="true">
+                  <cite class="logo-footer__text">Ecobazar</cite>
+                </a>
+              </figure>
+              <div class="content-footer__text">
+                <p>Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna
+                  congue nec.
+                </p>
+              </div>
+              <div class="content-footer__contacts contacts-footer">
+                <a href="tel:2195550114" class="contacts-footer__phone" aria-label="Call us: (219) 555-0114">(219)
+                  555-0114</a>
+                <span aria-hidden="true">or</span>
+                <a href="emailto:Proxy@gmail.com" class="contacts-footer__email"
+                  aria-label="Email us: Proxy@gmail.com">Proxy@gmail.com</a>
+              </div>
+            </div>
+            <div class="body-footer__column column-footer" aria-labelledby="footer-account">
+              <h4 class="column-footer__title" id="footer-account">My Account</h4>
+              <ul class="column-footer__list">
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">My Account</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Order History</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Shoping Cart</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Wishlist</a>
+                </li>
+              </ul>
+            </div>
+            <div class="body-footer__column column-footer" aria-labelledby="footer-helps">
+              <h4 class="column-footer__title" id="footer-helps">Helps</h4>
+              <ul class="column-footer__list">
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Contact</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Faqs</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Terms & Condition</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+            <div class="body-footer__column column-footer" aria-labelledby="footer-proxy">
+              <h4 class="column-footer__title" id="footer-proxy">Proxy</h4>
+              <ul class="column-footer__list">
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">About</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Shop</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="./product.html" target="_blank" class="column-footer__link">Product</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Track Order</a>
+                </li>
+              </ul>
+            </div>
+            <div class="body-footer__column column-footer" aria-labelledby="footer-categories">
+              <h4 class="column-footer__title" id="footer-categories">Categories</h4>
+              <ul class="column-footer__list">
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Fruit & Vegetables</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Meat & Fish</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Bread & Bakery</a>
+                </li>
+                <li class="column-footer__item">
+                  <a href="#" class="column-footer__link">Beauty & Health</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom bottom-footer">
+          <div class="bottom-footer__container">
+            <a href="#" class="bottom-footer__copyright">Ecobazar eCommerce © 2021. All Rights Reserved</a>
+            <div class="bottom-footer__payments payments-footer">
+              <h2 class="visually-hidden">Payment methods</h2>
+              <ul class="payments-footer__list">
+                <li class="payments-footer__item">
+                  <a href="#" class="payments-footer__link" aria-label="Apple Pay">
+                    <img src="/src/assets/icons/apple-pay.svg" alt="" aria-hidden="true">
+                  </a>
+                </li>
+                <li class="payments-footer__item">
+                  <a href="#" class="payments-footer__link" aria-label="Visa Card">
+                    <img src="/src/assets/icons/visa-logo.svg" alt="" aria-hidden="true">
+                  </a>
+                </li>
+                <li class="payments-footer__item">
+                  <a href="#" class="payments-footer__link" aria-label="Discover Payment">
+                    <img src="/src/assets/icons/discover-logo.svg" alt="" aria-hidden="true">
+                  </a>
+                </li>
+                <li class="payments-footer__item">
+                  <a href="#" class="payments-footer__link" aria-label="Mastercard">
+                    <img src="/src/assets/icons/mastercard.svg" alt="" aria-hidden="true">
+                  </a>
+                </li>
+                <li class="payments-footer__item payments-footer__item--secure">
+                  <a href="#" class="payments-footer__link payments-footer__link--secure" aria-label="Secure Payment">
+                    <span class="payments-footer__icon payments-footer__icon--icon-locked"
+                      aria-hidden="true">Secure</span>
+                    <span class="payments-footer__secure" aria-hidden="true">Payment</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

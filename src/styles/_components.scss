@@ -366,6 +366,29 @@
      opacity: 1;
    }
 }
+.button-remove {
+  width: toRem(24);
+  height: toRem(24);
+  @include default-border($color: $gray200);
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  @include transition;
+
+  &::before {
+    font-size: toRem(12);
+    color: $gray600;
+    @include transition;
+  }
+
+  @include hover {
+    border-color: $gray600;
+    &::before {
+      color: $gray900;
+    }
+  }
+}
 // ===========================================================================================
 // -----------------------------
 // accordion-menu
