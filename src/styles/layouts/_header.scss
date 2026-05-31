@@ -9,7 +9,12 @@
    left: 0;
    width: 100%;
    z-index: 1000;
-   transition: all 0.3s;
+   transition: translate 0.3s;
+   translate: 0 0;
+
+   &.hide {
+    translate: 0 -100%;
+   }
 
    &__inner {
       display: flex;

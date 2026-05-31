@@ -389,6 +389,22 @@
     }
   }
 }
+.btn-load-more {
+  background-color: rgba(86, 172, 89, 0.1);
+  padding-inline: toRem(32);
+  padding-block: toRem(14);
+  border-radius: toRem(43);
+  font-size: toRem(14);
+  font-weight: 600;
+  line-height: 1.2;
+  color: $brandPrimary;
+  transition: background-color 0.3s,color 0.3s;
+
+  @include hover {
+    background-color: $brandPrimary;
+    color: $white;
+  }
+}
 // ===========================================================================================
 // -----------------------------
 // accordion-menu

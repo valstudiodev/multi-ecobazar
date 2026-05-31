@@ -601,7 +601,7 @@
   @include adaptiveValue('gap', 32, 16);
   flex-wrap: wrap;
   border-bottom: toRem(1) solid $gray100;
-  padding-bottom: toRem(16);
+  // padding-bottom: toRem(16);
   @include adaptiveValue('margin-bottom', 32, 15);
 
   @media (max-width: toEm(490)) {
@@ -620,7 +620,30 @@
 
 		// .navigation-tabs__button
 		&__button { 
+      position: relative;
       @include transition;
+      padding-bottom: toRem(16);
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: $brandPrimary;
+        width: 100%;
+        height: toRem(1);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      &.active {
+        color: $black;
+
+        &::after {
+          opacity: 1;
+        }
+        // border-bottom: toRem(1) solid $brandPrimary;
+      }
 
       @include hover {
         color: $gray900;
@@ -631,7 +654,30 @@
 
 		// .body-tabs-product__item
 		&__item {
+      display: none;
+
+      &.active {
+        display: block;
+      }
 		}
+
+    &__inner {
+      display: flex;
+      @include adaptiveValue('gap',270,50);
+
+      @media (max-width: toEm(1110)) {
+        flex-direction: column;
+        gap: toRem(50);
+      }
+    }
+
+    &__media {
+      flex: 1 1 50%;
+    }
+
+    &__reviews {
+      
+    }
 
 		// .body-tabs-product__descriptions
 		&__descriptions {
@@ -785,6 +831,145 @@
       color: $gray500;
 		}
 }
+.aditional-info {
+  flex: 1 1 50%;
+		// .aditional-info__table
+		&__table {
+		}
+}
+.table-tabs {
+  width: 100%;
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: toRem(12);
+      // align-items: flex-start;
+    }
+
+		// .table-tabs__rows
+		&__rows {
+      display: flex;
+      align-items: flex-start;
+      gap: toRem(20);
+      justify-content: space-between;
+      > th {
+        font-size: toRem(14);
+        color: $gray900;
+        font-weight: 400;
+        width: 20%;
+        text-align: left;
+      }
+      > td {
+        color: $gray600;
+        flex-grow: 1;
+        font-size: toRem(14);
+      }
+		}
+
+		// .table-tabs__list
+		&__list {
+      display: flex;
+		}
+}
+.list-tabs {
+  flex-wrap: wrap;
+		// .list-tabs__item
+		&__item {
+		}
+
+		// .list-tabs__link
+		&__link {
+      @include transition;
+      @include hover {
+        color: $greenGray900;
+        text-decoration: underline;
+      }
+		}
+}
+// ===========================================================================================
+// -----------------------------
+// 
+// -----------------------------
+.reviews-tabs-item {
+  max-width: toRem(760);
+  display: flex;
+  flex-direction: column;
+  gap: toRem(12);
+  
+
+  &:not(:last-child) {  
+    border-bottom: toRem(1) solid $gray100;
+    padding-bottom: toRem(20);
+    margin-bottom: toRem(20);
+  }
+
+		// .reviews-tabs-item__top
+		&__top {
+		}
+
+		// .reviews-tabs-item__body
+		&__body {
+		}
+
+		// .reviews-tabs-item__text
+		&__text {
+      font-size: toRem(14);
+      font-weight: 400;
+      color: $gray500;
+		}
+}
+.top-tabs-review {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+		// .top-tabs-review__img
+		&__wrap {
+      display: flex;
+      align-self:center;
+      gap: toRem(12);
+		}
+
+    &__img {
+      width: toRem(40);
+      height: toRem(40);
+    }
+
+		// .top-tabs-review__content
+		&__content {
+      display: flex;
+      flex-direction: column;
+      gap: toRem(2);
+      align-items: flex-start;
+		}
+
+		// .top-tabs-review__title
+		&__title {
+      font-size: toRem(14);
+      font-weight: 500;
+      color: $greenGray900
+		}
+
+		// .top-tabs-review__stars
+		&__stars {
+		}
+
+		// .top-tabs-review__timing
+		&__timing {
+      font-size: toRem(14);
+      font-weight: 400;
+      color: $greenGray400;
+		}
+}
+.reviews-tabs{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: toRem(24);
+
+}
+
+
+
 // ===========================================================================================
 // -----------------------------
 // related-product

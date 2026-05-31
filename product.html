@@ -384,17 +384,19 @@
           <div class="tabs-product__container">
             <ul class="tabs-product__navigation navigation-tabs">
               <li class="navigation-tabs__item">
-                <button type="button" class="navigation-tabs__button">Descriptions</button>
+                <button type="button" class="navigation-tabs__button active"
+                  data-filter="descriptions">Descriptions</button>
               </li>
               <li class="navigation-tabs__item">
-                <button type="button" class="navigation-tabs__button">Additional Information</button>
+                <button type="button" class="navigation-tabs__button" data-filter="information">Additional
+                  Information</button>
               </li>
               <li class="navigation-tabs__item">
-                <button type="button" class="navigation-tabs__button">Customer Feedback</button>
+                <button type="button" class="navigation-tabs__button" data-filter="feedback">Customer Feedback</button>
               </li>
             </ul>
             <div class="tabs-product__body body-tabs-product">
-              <div class="body-tabs-product__item">
+              <div class="body-tabs-product__item active" data-category="descriptions">
                 <div class="body-tabs-product__descriptions descriptions-tab">
                   <div class="descriptions-tab__content">
                     <p>Sed commodo aliquam dui ac porta. Fusce ipsum felis, imperdiet at posuere ac, viverra at mauris.
@@ -459,416 +461,695 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="body-tabs-product__item"></div>
-              <div class="body-tabs-product__item"></div> -->
+
+              <div class="body-tabs-product__item" data-category="information">
+                <div class="body-tabs-product__inner">
+                  <div class="body-tabs-product__info aditional-info">
+                    <table class="aditional-info__table table-tabs">
+                      <tbody class="table-tabs__body">
+                        <tr class="table-tabs__rows">
+                          <th>Weight:</th>
+                          <td>03</td>
+                        </tr>
+                        <tr class="table-tabs__rows">
+                          <th>Color:</th>
+                          <td>Green</td>
+                        </tr>
+                        <tr class="table-tabs__rows">
+                          <th>Type:</th>
+                          <td>Organic</td>
+                        </tr>
+                        <tr class="table-tabs__rows">
+                          <th>Category:</th>
+                          <td>Vegetables</td>
+                        </tr>
+                        <tr class="table-tabs__rows">
+                          <th>Stock Status:</th>
+                          <td>Available (5,413)</td>
+                        </tr>
+                        <tr class="table-tabs__rows">
+                          <th>Tags:</th>
+                          <td>
+                            <ul class="table-tabs__list list-tabs">
+                              <li class="list-tabs__item">
+                                <a href="#" class="list-tabs__link">Vegetables,</a>
+                              </li>
+                              <li class="list-tabs__item">
+                                <a href="#" class="list-tabs__link">Healthy,</a>
+                              </li>
+                              <li class="list-tabs__item">
+                                <a href="#" class="list-tabs__link">Chinese,</a>
+                              </li>
+                              <li class="list-tabs__item">
+                                <a href="#" class="list-tabs__link">Cabbage,</a>
+                              </li>
+                              <li class="list-tabs__item">
+                                <a href="#" class="list-tabs__link">Green Cabbage,</a>
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="body-tabs-product__media media-tab">
+                    <div class="media-tab__image">
+                      <img src="/src/assets/img/products/product-cabbage/imag-video.webp" alt="">
+                      <button type="button" class="media-tab__play">
+                        <img class="media-tab__icon" src="/src/assets/icons/play.svg" alt="" aria-hidden="true">
+                      </button>
+                    </div>
+                    <div class="media-tab__info info-tab">
+                      <article class="info-tab__item">
+                        <figure class="info-tab__icon">
+                          <img src="/src/assets/icons/discount.svg" alt="" aria-hidden="true">
+                        </figure>
+                        <div class="info-tab__body">
+                          <h5 class="info-tab__title">64% Discount</h5>
+                          <div class="info-tab__text">
+                            <p>Save your 64% money with us</p>
+                          </div>
+                        </div>
+                      </article>
+                      <article class="info-tab__item">
+                        <figure class="info-tab__icon">
+                          <img src="/src/assets/icons/leaf-organic.svg" alt="" aria-hidden="true">
+                        </figure>
+                        <div class="info-tab__body">
+                          <h5 class="info-tab__title">100% Organic</h5>
+                          <div class="info-tab__text">
+                            <p>100% Organic Vegetables</p>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="body-tabs-product__item" data-category="feedback">
+                <div class="body-tabs-product__reviews reviews-tabs">
+                  <div class="reviews-tabs__items">
+                    <article class="reviews-tabs-item">
+                      <div class="reviews-tabs-item__top top-tabs-review">
+                        <figure class="top-tabs-review__wrap">
+                          <img class="top-tabs-review__img" src="/src/assets/img/authors/avatar-01.webp" alt="">
+                          <div class="top-tabs-review__content">
+                            <figcaption class="top-tabs-review__title">Kristin Watson</figcaption>
+                            <div class="top-tabs-review__stars">
+                              <fieldset class="rating">
+                                <legend class="visually-hidden">Raiting of product</legend>
+                                <input class="rating__item" type="radio" id="star5" name="r" value="5">
+                                <label class="rating__label rating__label--icon-star-full1" for="star5">
+                                  <span class="visually-hidden">Rating 5 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star4" name="r" value="4">
+                                <label class="rating__label rating__label--icon-star-full1" for="star4">
+                                  <span class="visually-hidden">Rating 4 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star3" name="r" value="3" checked>
+                                <label class="rating__label rating__label--icon-star-full1" for="star3">
+                                  <span class="visually-hidden">Rating 3 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star2" name="r" value="2">
+                                <label class="rating__label rating__label--icon-star-full1" for="star2">
+                                  <span class="visually-hidden">Rating 2 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star1" name="r" value="1">
+                                <label class="rating__label rating__label--icon-star-full1" for="star1">
+                                  <span class="visually-hidden">Rating 1 stars</span>
+                                </label>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </figure>
+                        <div class="top-tabs-review__timing">
+                          <span>2 min ago</span>
+                        </div>
+                      </div>
+                      <div class="reviews-tabs-item__body">
+                        <p class="reviews-tabs-item__text">Duis at ullamcorper nulla, eu dictum eros.</p>
+                      </div>
+                    </article>
+                    <article class="reviews-tabs-item">
+                      <div class="reviews-tabs-item__top top-tabs-review">
+                        <figure class="top-tabs-review__wrap">
+                          <img class="top-tabs-review__img" src="/src/assets/img/authors/avatar-02.webp" alt="">
+                          <div class="top-tabs-review__content">
+                            <figcaption class="top-tabs-review__title">Jacob Jones</figcaption>
+                            <div class="top-tabs-review__stars">
+                              <fieldset class="rating">
+                                <legend class="visually-hidden">Raiting of product</legend>
+                                <input class="rating__item" type="radio" id="star5" name="r" value="5">
+                                <label class="rating__label rating__label--icon-star-full1" for="star5">
+                                  <span class="visually-hidden">Rating 5 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star4" name="r" value="4">
+                                <label class="rating__label rating__label--icon-star-full1" for="star4">
+                                  <span class="visually-hidden">Rating 4 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star3" name="r" value="3" checked>
+                                <label class="rating__label rating__label--icon-star-full1" for="star3">
+                                  <span class="visually-hidden">Rating 3 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star2" name="r" value="2">
+                                <label class="rating__label rating__label--icon-star-full1" for="star2">
+                                  <span class="visually-hidden">Rating 2 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star1" name="r" value="1">
+                                <label class="rating__label rating__label--icon-star-full1" for="star1">
+                                  <span class="visually-hidden">Rating 1 stars</span>
+                                </label>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </figure>
+                        <div class="top-tabs-review__timing">
+                          <span>30 Apr, 2021</span>
+                        </div>
+                      </div>
+                      <div class="reviews-tabs-item__body">
+                        <p class="reviews-tabs-item__text">Keep the soil evenly moist for the healthiest growth. If the
+                          sun gets too hot, Chinese cabbage tends to "bolt" or go to
+                          seed; in long periods of heat, some kind of shade may be helpful. Watch out for snails, as
+                          they
+                          will harm the plants.</p>
+                      </div>
+                    </article>
+                    <article class="reviews-tabs-item">
+                      <div class="reviews-tabs-item__top top-tabs-review">
+                        <figure class="top-tabs-review__wrap">
+                          <img class="top-tabs-review__img" src="/src/assets/img/authors/avatar-03.webp" alt="">
+                          <div class="top-tabs-review__content">
+                            <figcaption class="top-tabs-review__title">Ralph Edwards</figcaption>
+                            <div class="top-tabs-review__stars">
+                              <fieldset class="rating">
+                                <legend class="visually-hidden">Raiting of product</legend>
+                                <input class="rating__item" type="radio" id="star5" name="r" value="5">
+                                <label class="rating__label rating__label--icon-star-full1" for="star5">
+                                  <span class="visually-hidden">Rating 5 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star4" name="r" value="4">
+                                <label class="rating__label rating__label--icon-star-full1" for="star4">
+                                  <span class="visually-hidden">Rating 4 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star3" name="r" value="3" checked>
+                                <label class="rating__label rating__label--icon-star-full1" for="star3">
+                                  <span class="visually-hidden">Rating 3 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star2" name="r" value="2">
+                                <label class="rating__label rating__label--icon-star-full1" for="star2">
+                                  <span class="visually-hidden">Rating 2 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star1" name="r" value="1">
+                                <label class="rating__label rating__label--icon-star-full1" for="star1">
+                                  <span class="visually-hidden">Rating 1 stars</span>
+                                </label>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </figure>
+                        <div class="top-tabs-review__timing">
+                          <span>2 min ago</span>
+                        </div>
+                      </div>
+                      <div class="reviews-tabs-item__body">
+                        <p class="reviews-tabs-item__text">200+ Canton Pak Choi Bok Choy Chinese Cabbage Seeds
+                          Heirloom Non-GMO Productive Brassica rapa VAR. chinensis, a.k.a.
+                          Canton's Choice, Bok Choi, from USA</p>
+                      </div>
+                    </article>
+                    <article class="reviews-tabs-item">
+                      <div class="reviews-tabs-item__top top-tabs-review">
+                        <figure class="top-tabs-review__wrap">
+                          <img class="top-tabs-review__img" src="/src/assets/img/authors/author-img-02.webp" alt="">
+                          <div class="top-tabs-review__content">
+                            <figcaption class="top-tabs-review__title">Jane Cooper</figcaption>
+                            <div class="top-tabs-review__stars">
+                              <fieldset class="rating">
+                                <legend class="visually-hidden">Raiting of product</legend>
+                                <input class="rating__item" type="radio" id="star5" name="r" value="5">
+                                <label class="rating__label rating__label--icon-star-full1" for="star5">
+                                  <span class="visually-hidden">Rating 5 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star4" name="r" value="4">
+                                <label class="rating__label rating__label--icon-star-full1" for="star4">
+                                  <span class="visually-hidden">Rating 4 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star3" name="r" value="3" checked>
+                                <label class="rating__label rating__label--icon-star-full1" for="star3">
+                                  <span class="visually-hidden">Rating 3 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star2" name="r" value="2">
+                                <label class="rating__label rating__label--icon-star-full1" for="star2">
+                                  <span class="visually-hidden">Rating 2 stars</span>
+                                </label>
+
+                                <input class="rating__item" type="radio" id="star1" name="r" value="1">
+                                <label class="rating__label rating__label--icon-star-full1" for="star1">
+                                  <span class="visually-hidden">Rating 1 stars</span>
+                                </label>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </figure>
+                        <div class="top-tabs-review__timing">
+                          <span>2 min ago</span>
+                        </div>
+                      </div>
+                      <div class="reviews-tabs-item__body">
+                        <p class="reviews-tabs-item__text">Vivamus eget euismod magna. Nam sed lacinia nibh, et lacinia
+                          lacus.</p>
+                      </div>
+                    </article>
+                  </div>
+                  <button type="button" class="btn-load-more">Load More</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+    </div>
 
-        <section class="product__related related-product">
-          <div class="related-product__container">
-            <h2 class="related-product__title">Related Products</h2>
-            <div class="related-product__items">
-              <!-- green apple -->
-              <article class="item-product item-product--border-radius" aria-labelledby="product-green-apple-title">
-                <div class="item-product__inner">
-                  <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
-                    <img src="/src/assets/img/products/product-img-apple.webp" alt="product cauliflower">
-                  </a>
-                  <div class="item-product__body">
-                    <div class="item-product__content">
-                      <h3 class="item-product__title">
-                        <a href="#" class="item-product__link" id="product-green-apple-title">Green
-                          Apple</a>
-                      </h3>
-                      <div class="item-product__amount amount-price">
-                        <span class="visually-hidden">Current price:</span>
-                        <span class="amount-price__current"><ins style="text-decoration: none;">$14.99</ins></span>
-                      </div>
-                      <fieldset class="rating">
-                        <legend class="visually-hidden">Raiting of product</legend>
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 5 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="" checked>
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 4 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 3 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 2 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 1 stars</span>
-                        </label>
-                      </fieldset>
-                    </div>
-                    <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
-                      aria-label="Add cauliflower to the cart"></button>
+    <section class="product__related related-product">
+      <div class="related-product__container">
+        <h2 class="related-product__title">Related Products</h2>
+        <div class="related-product__items">
+          <!-- green apple -->
+          <article class="item-product item-product--border-radius" aria-labelledby="product-green-apple-title">
+            <div class="item-product__inner">
+              <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
+                <img src="/src/assets/img/products/product-img-apple.webp" alt="product cauliflower">
+              </a>
+              <div class="item-product__body">
+                <div class="item-product__content">
+                  <h3 class="item-product__title">
+                    <a href="#" class="item-product__link" id="product-green-apple-title">Green
+                      Apple</a>
+                  </h3>
+                  <div class="item-product__amount amount-price">
+                    <span class="visually-hidden">Current price:</span>
+                    <span class="amount-price__current"><ins style="text-decoration: none;">$14.99</ins></span>
                   </div>
-                  <div class="item-product__actions">
-                    <button type="button" class="button-wishlist button-wishlist--icon-like"
-                      aria-label="Add to wishlist"></button>
-                    <button type="button" class="button-quick-view button-quick-view--icon-view"
-                      aria-label="Quick view cauliflower"></button>
-                  </div>
+                  <fieldset class="rating">
+                    <legend class="visually-hidden">Raiting of product</legend>
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 5 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="" checked>
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 4 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 3 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 2 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 1 stars</span>
+                    </label>
+                  </fieldset>
                 </div>
-              </article>
-              <!-- Fresh Cauliflower -->
-              <article class="item-product item-product--border-radius" aria-labelledby="product-cauliflower-title">
-                <div class="item-product__inner">
-                  <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
-                    <img src="/src/assets/img/products/product-img-cauliflower.webp" alt="product cauliflower">
-                  </a>
-                  <div class="item-product__body">
-                    <div class="item-product__content">
-                      <h3 class="item-product__title">
-                        <a href="#" class="item-product__link" id="product-cauliflower-title">Fresh
-                          Cauliflower</a>
-                      </h3>
-                      <div class="item-product__amount amount-price">
-                        <span class="visually-hidden">Current price:</span>
-                        <span class="amount-price__current"><ins style="text-decoration: none;">$12.00</ins></span>
-                      </div>
-                      <fieldset class="rating">
-                        <legend class="visually-hidden">Raiting of product</legend>
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 5 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="" checked>
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 4 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 3 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 2 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 1 stars</span>
-                        </label>
-                      </fieldset>
-                    </div>
-                    <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
-                      aria-label="Add cauliflower to the cart"></button>
-                  </div>
-                  <div class="item-product__actions">
-                    <button type="button" class="button-wishlist button-wishlist--icon-like"
-                      aria-label="Add to wishlist"></button>
-                    <button type="button" class="button-quick-view button-quick-view--icon-view"
-                      aria-label="Quick view cauliflower"></button>
-                  </div>
-                </div>
-              </article>
-              <!-- Green Capsicum -->
-              <article class="item-product item-product--border-radius" aria-labelledby="product-green-capsicum-title">
-                <div class="item-product__inner">
-                  <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
-                    <img src="/src/assets/img/products/product-img-capsicum.webp" alt="product capsicum">
-                  </a>
-                  <div class="item-product__labels">
-                    <a href="#" class="item-sale-label item-sale-label--orange">
-                      <span class="visually-hidden">Discount:</span>
-                      <span class="item-sale-label__title">Sale</span>
-                      <span class="item-sale-label__label">50%</span>
-                    </a>
-                  </div>
-                  <div class="item-product__body">
-                    <div class="item-product__content">
-                      <h3 class="item-product__title">
-                        <a href="#" class="item-product__link" id="product-green-capsicum-title">Green
-                          Capsicum</a>
-                      </h3>
-                      <div class="item-product__amount amount-price">
-                        <span class="visually-hidden">Current price:</span>
-                        <span class="amount-price__current"><ins style="text-decoration: none;">$9.00</ins></span>
-                        <span class="visually-hidden">Old price:</span>
-                        <span class="amount-price__old"><del>$20.99</del></span>
-                      </div>
-                      <fieldset class="rating">
-                        <legend class="visually-hidden">Raiting of product</legend>
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 5 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="" checked>
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 4 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 3 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 2 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 1 stars</span>
-                        </label>
-                      </fieldset>
-                    </div>
-                    <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
-                      aria-label="Add green capsicum to the cart"></button>
-                  </div>
-                  <div class="item-product__actions">
-                    <button type="button" class="button-wishlist button-wishlist--icon-like"
-                      aria-label="Add to wishlist"></button>
-                    <button type="button" class="button-quick-view button-quick-view--icon-view"
-                      aria-label="Quick view green capsicum"></button>
-                  </div>
-                </div>
-              </article>
-              <!-- ladies-finger -->
-              <article class="item-product item-product--border-radius" aria-labelledby="product-ladies-finger-title">
-                <div class="item-product__inner">
-                  <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
-                    <img src="/src/assets/img/products/product-img-ledies-finger.webp" alt="product ladies-finger">
-                  </a>
-                  <div class="item-product__body">
-                    <div class="item-product__content">
-                      <h3 class="item-product__title">
-                        <a href="#" class="item-product__link" id="product-ladies-finger-title">Ladies
-                          Finger</a>
-                      </h3>
-                      <div class="item-product__amount amount-price">
-                        <span class="visually-hidden">Current price:</span>
-                        <span class="amount-price__current"><ins style="text-decoration: none;">$14.99</ins></span>
-                        <!-- <span class="visually-hidden">Old price:</span>
-                                                                                                  <span class="amount-price__old"><del>$20.99</del></span> -->
-                      </div>
-                      <fieldset class="rating">
-                        <legend class="visually-hidden">Raiting of product</legend>
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 5 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="" checked>
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 4 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 3 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 2 stars</span>
-                        </label>
-
-                        <input class="rating__item" type="radio" id="" name="" value="">
-                        <label class="rating__label rating__label--icon-star-full1" for="">
-                          <span class="visually-hidden">Rating 1 stars</span>
-                        </label>
-                      </fieldset>
-                    </div>
-                    <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
-                      aria-label="Add ladies-finger to the cart"></button>
-                  </div>
-                  <div class="item-product__actions">
-                    <button type="button" class="button-wishlist button-wishlist--icon-like"
-                      aria-label="Add ladies-finger to wishlist"></button>
-                    <button type="button" class="button-quick-view button-quick-view--icon-view"
-                      aria-label="Quick view ladies-finger"></button>
-                  </div>
-                </div>
-              </article>
+                <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
+                  aria-label="Add cauliflower to the cart"></button>
+              </div>
+              <div class="item-product__actions">
+                <button type="button" class="button-wishlist button-wishlist--icon-like"
+                  aria-label="Add to wishlist"></button>
+                <button type="button" class="button-quick-view button-quick-view--icon-view"
+                  aria-label="Quick view cauliflower"></button>
+              </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </article>
+          <!-- Fresh Cauliflower -->
+          <article class="item-product item-product--border-radius" aria-labelledby="product-cauliflower-title">
+            <div class="item-product__inner">
+              <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
+                <img src="/src/assets/img/products/product-img-cauliflower.webp" alt="product cauliflower">
+              </a>
+              <div class="item-product__body">
+                <div class="item-product__content">
+                  <h3 class="item-product__title">
+                    <a href="#" class="item-product__link" id="product-cauliflower-title">Fresh
+                      Cauliflower</a>
+                  </h3>
+                  <div class="item-product__amount amount-price">
+                    <span class="visually-hidden">Current price:</span>
+                    <span class="amount-price__current"><ins style="text-decoration: none;">$12.00</ins></span>
+                  </div>
+                  <fieldset class="rating">
+                    <legend class="visually-hidden">Raiting of product</legend>
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 5 stars</span>
+                    </label>
 
-      <aside class="subscribe">
-        <div class="subscribe__container">
-          <div class="subscribe__content content-subscribe">
-            <h2 class="content-subscribe__title">Subcribe our Newsletter</h2>
-            <div class="content-subscribe__text">
-              <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu
-                magna.
+                    <input class="rating__item" type="radio" id="" name="" value="" checked>
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 4 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 3 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 2 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 1 stars</span>
+                    </label>
+                  </fieldset>
+                </div>
+                <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
+                  aria-label="Add cauliflower to the cart"></button>
+              </div>
+              <div class="item-product__actions">
+                <button type="button" class="button-wishlist button-wishlist--icon-like"
+                  aria-label="Add to wishlist"></button>
+                <button type="button" class="button-quick-view button-quick-view--icon-view"
+                  aria-label="Quick view cauliflower"></button>
+              </div>
+            </div>
+          </article>
+          <!-- Green Capsicum -->
+          <article class="item-product item-product--border-radius" aria-labelledby="product-green-capsicum-title">
+            <div class="item-product__inner">
+              <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
+                <img src="/src/assets/img/products/product-img-capsicum.webp" alt="product capsicum">
+              </a>
+              <div class="item-product__labels">
+                <a href="#" class="item-sale-label item-sale-label--orange">
+                  <span class="visually-hidden">Discount:</span>
+                  <span class="item-sale-label__title">Sale</span>
+                  <span class="item-sale-label__label">50%</span>
+                </a>
+              </div>
+              <div class="item-product__body">
+                <div class="item-product__content">
+                  <h3 class="item-product__title">
+                    <a href="#" class="item-product__link" id="product-green-capsicum-title">Green
+                      Capsicum</a>
+                  </h3>
+                  <div class="item-product__amount amount-price">
+                    <span class="visually-hidden">Current price:</span>
+                    <span class="amount-price__current"><ins style="text-decoration: none;">$9.00</ins></span>
+                    <span class="visually-hidden">Old price:</span>
+                    <span class="amount-price__old"><del>$20.99</del></span>
+                  </div>
+                  <fieldset class="rating">
+                    <legend class="visually-hidden">Raiting of product</legend>
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 5 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="" checked>
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 4 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 3 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 2 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 1 stars</span>
+                    </label>
+                  </fieldset>
+                </div>
+                <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
+                  aria-label="Add green capsicum to the cart"></button>
+              </div>
+              <div class="item-product__actions">
+                <button type="button" class="button-wishlist button-wishlist--icon-like"
+                  aria-label="Add to wishlist"></button>
+                <button type="button" class="button-quick-view button-quick-view--icon-view"
+                  aria-label="Quick view green capsicum"></button>
+              </div>
+            </div>
+          </article>
+          <!-- ladies-finger -->
+          <article class="item-product item-product--border-radius" aria-labelledby="product-ladies-finger-title">
+            <div class="item-product__inner">
+              <a href="#" class="item-product__image" tabindex="-1" aria-hidden="true" focusable="false">
+                <img src="/src/assets/img/products/product-img-ledies-finger.webp" alt="product ladies-finger">
+              </a>
+              <div class="item-product__body">
+                <div class="item-product__content">
+                  <h3 class="item-product__title">
+                    <a href="#" class="item-product__link" id="product-ladies-finger-title">Ladies
+                      Finger</a>
+                  </h3>
+                  <div class="item-product__amount amount-price">
+                    <span class="visually-hidden">Current price:</span>
+                    <span class="amount-price__current"><ins style="text-decoration: none;">$14.99</ins></span>
+                    <!-- <span class="visually-hidden">Old price:</span>
+                                                                                                  <span class="amount-price__old"><del>$20.99</del></span> -->
+                  </div>
+                  <fieldset class="rating">
+                    <legend class="visually-hidden">Raiting of product</legend>
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 5 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="" checked>
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 4 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 3 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 2 stars</span>
+                    </label>
+
+                    <input class="rating__item" type="radio" id="" name="" value="">
+                    <label class="rating__label rating__label--icon-star-full1" for="">
+                      <span class="visually-hidden">Rating 1 stars</span>
+                    </label>
+                  </fieldset>
+                </div>
+                <button type="button" class="item-product__button button-shop-cart button-shop-cart--icon-shop-cart"
+                  aria-label="Add ladies-finger to the cart"></button>
+              </div>
+              <div class="item-product__actions">
+                <button type="button" class="button-wishlist button-wishlist--icon-like"
+                  aria-label="Add ladies-finger to wishlist"></button>
+                <button type="button" class="button-quick-view button-quick-view--icon-view"
+                  aria-label="Quick view ladies-finger"></button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <aside class="subscribe">
+      <div class="subscribe__container">
+        <div class="subscribe__content content-subscribe">
+          <h2 class="content-subscribe__title">Subcribe our Newsletter</h2>
+          <div class="content-subscribe__text">
+            <p>Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu
+              magna.
+            </p>
+          </div>
+        </div>
+        <div class="subscribe__form">
+          <form action="#" class="form-subscribe">
+            <input type="email" class="form-subscribe__input" placeholder="Your email address">
+            <button class="form-subscribe__button button button--big-green">Subscribe</button>
+          </form>
+        </div>
+        <div class="subscribe__actions actions-subscribe">
+          <a href="#" class="social-media-link" aria-label="Facebook">
+            <span class="social-media-link__icon social-media-link__icon--icon-fb" aria-hidden="true"></span>
+          </a>
+          <a href="#" class="social-media-link" aria-label="twitter">
+            <span class="social-media-link__icon social-media-link__icon--icon-twitter" aria-hidden="true"></span>
+          </a>
+          <a href="#" class="social-media-link" aria-label="pinterest">
+            <span class="social-media-link__icon social-media-link__icon--icon-pinterest" aria-hidden="true"></span>
+          </a>
+          <a href="#" class="social-media-link" aria-label="instagram">
+            <span class="social-media-link__icon social-media-link__icon--icon-instagram" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <footer class="footer" aria-labelledby="footer">
+      <div class="footer__body body-footer">
+        <div class="body-footer__container">
+          <div class="body-footer__content content-footer">
+            <figure class="content-footer__logo logo-footer">
+              <a href="./index.html" class="logo-footer__inner" aria-label="Ecobazar - Home page">
+                <img class="logo-footer__icon" src="/src/assets/icons/logo-leaf.svg" alt="" aria-hidden="true">
+                <cite class="logo-footer__text">Ecobazar</cite>
+              </a>
+            </figure>
+            <div class="content-footer__text">
+              <p>Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna
+                congue nec.
               </p>
             </div>
+            <div class="content-footer__contacts contacts-footer">
+              <a href="tel:2195550114" class="contacts-footer__phone" aria-label="Call us: (219) 555-0114">(219)
+                555-0114</a>
+              <span aria-hidden="true">or</span>
+              <a href="emailto:Proxy@gmail.com" class="contacts-footer__email"
+                aria-label="Email us: Proxy@gmail.com">Proxy@gmail.com</a>
+            </div>
           </div>
-          <div class="subscribe__form">
-            <form action="#" class="form-subscribe">
-              <input type="email" class="form-subscribe__input" placeholder="Your email address">
-              <button class="form-subscribe__button button button--big-green">Subscribe</button>
-            </form>
+          <div class="body-footer__column column-footer" aria-labelledby="footer-account">
+            <h4 class="column-footer__title" id="footer-account">My Account</h4>
+            <ul class="column-footer__list">
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">My Account</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Order History</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Shoping Cart</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Wishlist</a>
+              </li>
+            </ul>
           </div>
-          <div class="subscribe__actions actions-subscribe">
-            <a href="#" class="social-media-link" aria-label="Facebook">
-              <span class="social-media-link__icon social-media-link__icon--icon-fb" aria-hidden="true"></span>
-            </a>
-            <a href="#" class="social-media-link" aria-label="twitter">
-              <span class="social-media-link__icon social-media-link__icon--icon-twitter" aria-hidden="true"></span>
-            </a>
-            <a href="#" class="social-media-link" aria-label="pinterest">
-              <span class="social-media-link__icon social-media-link__icon--icon-pinterest" aria-hidden="true"></span>
-            </a>
-            <a href="#" class="social-media-link" aria-label="instagram">
-              <span class="social-media-link__icon social-media-link__icon--icon-instagram" aria-hidden="true"></span>
-            </a>
+          <div class="body-footer__column column-footer" aria-labelledby="footer-helps">
+            <h4 class="column-footer__title" id="footer-helps">Helps</h4>
+            <ul class="column-footer__list">
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Contact</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Faqs</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Terms & Condition</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+          <div class="body-footer__column column-footer" aria-labelledby="footer-proxy">
+            <h4 class="column-footer__title" id="footer-proxy">Proxy</h4>
+            <ul class="column-footer__list">
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">About</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="./catalog.html" target="_blank" class="column-footer__link">Shop</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Product</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Track Order</a>
+              </li>
+            </ul>
+          </div>
+          <div class="body-footer__column column-footer" aria-labelledby="footer-categories">
+            <h4 class="column-footer__title" id="footer-categories">Categories</h4>
+            <ul class="column-footer__list">
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Fruit & Vegetables</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Meat & Fish</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Bread & Bakery</a>
+              </li>
+              <li class="column-footer__item">
+                <a href="#" class="column-footer__link">Beauty & Health</a>
+              </li>
+            </ul>
           </div>
         </div>
-      </aside>
-
-      <footer class="footer" aria-labelledby="footer">
-        <div class="footer__body body-footer">
-          <div class="body-footer__container">
-            <div class="body-footer__content content-footer">
-              <figure class="content-footer__logo logo-footer">
-                <a href="./index.html" class="logo-footer__inner" aria-label="Ecobazar - Home page">
-                  <img class="logo-footer__icon" src="/src/assets/icons/logo-leaf.svg" alt="" aria-hidden="true">
-                  <cite class="logo-footer__text">Ecobazar</cite>
+      </div>
+      <div class="footer__bottom bottom-footer">
+        <div class="bottom-footer__container">
+          <a href="#" class="bottom-footer__copyright">Ecobazar eCommerce © 2021. All Rights Reserved</a>
+          <div class="bottom-footer__payments payments-footer">
+            <h2 class="visually-hidden">Payment methods</h2>
+            <ul class="payments-footer__list">
+              <li class="payments-footer__item">
+                <a href="#" class="payments-footer__link" aria-label="Apple Pay">
+                  <img src="/src/assets/icons/apple-pay.svg" alt="" aria-hidden="true">
                 </a>
-              </figure>
-              <div class="content-footer__text">
-                <p>Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna
-                  congue nec.
-                </p>
-              </div>
-              <div class="content-footer__contacts contacts-footer">
-                <a href="tel:2195550114" class="contacts-footer__phone" aria-label="Call us: (219) 555-0114">(219)
-                  555-0114</a>
-                <span aria-hidden="true">or</span>
-                <a href="emailto:Proxy@gmail.com" class="contacts-footer__email"
-                  aria-label="Email us: Proxy@gmail.com">Proxy@gmail.com</a>
-              </div>
-            </div>
-            <div class="body-footer__column column-footer" aria-labelledby="footer-account">
-              <h4 class="column-footer__title" id="footer-account">My Account</h4>
-              <ul class="column-footer__list">
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">My Account</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Order History</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Shoping Cart</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Wishlist</a>
-                </li>
-              </ul>
-            </div>
-            <div class="body-footer__column column-footer" aria-labelledby="footer-helps">
-              <h4 class="column-footer__title" id="footer-helps">Helps</h4>
-              <ul class="column-footer__list">
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Contact</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Faqs</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Terms & Condition</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Privacy Policy</a>
-                </li>
-              </ul>
-            </div>
-            <div class="body-footer__column column-footer" aria-labelledby="footer-proxy">
-              <h4 class="column-footer__title" id="footer-proxy">Proxy</h4>
-              <ul class="column-footer__list">
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">About</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="./catalog.html" target="_blank" class="column-footer__link">Shop</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Product</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Track Order</a>
-                </li>
-              </ul>
-            </div>
-            <div class="body-footer__column column-footer" aria-labelledby="footer-categories">
-              <h4 class="column-footer__title" id="footer-categories">Categories</h4>
-              <ul class="column-footer__list">
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Fruit & Vegetables</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Meat & Fish</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Bread & Bakery</a>
-                </li>
-                <li class="column-footer__item">
-                  <a href="#" class="column-footer__link">Beauty & Health</a>
-                </li>
-              </ul>
-            </div>
+              </li>
+              <li class="payments-footer__item">
+                <a href="#" class="payments-footer__link" aria-label="Visa Card">
+                  <img src="/src/assets/icons/visa-logo.svg" alt="" aria-hidden="true">
+                </a>
+              </li>
+              <li class="payments-footer__item">
+                <a href="#" class="payments-footer__link" aria-label="Discover Payment">
+                  <img src="/src/assets/icons/discover-logo.svg" alt="" aria-hidden="true">
+                </a>
+              </li>
+              <li class="payments-footer__item">
+                <a href="#" class="payments-footer__link" aria-label="Mastercard">
+                  <img src="/src/assets/icons/mastercard.svg" alt="" aria-hidden="true">
+                </a>
+              </li>
+              <li class="payments-footer__item payments-footer__item--secure">
+                <a href="#" class="payments-footer__link payments-footer__link--secure" aria-label="Secure Payment">
+                  <span class="payments-footer__icon payments-footer__icon--icon-locked"
+                    aria-hidden="true">Secure</span>
+                  <span class="payments-footer__secure" aria-hidden="true">Payment</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="footer__bottom bottom-footer">
-          <div class="bottom-footer__container">
-            <a href="#" class="bottom-footer__copyright">Ecobazar eCommerce © 2021. All Rights Reserved</a>
-            <div class="bottom-footer__payments payments-footer">
-              <h2 class="visually-hidden">Payment methods</h2>
-              <ul class="payments-footer__list">
-                <li class="payments-footer__item">
-                  <a href="#" class="payments-footer__link" aria-label="Apple Pay">
-                    <img src="/src/assets/icons/apple-pay.svg" alt="" aria-hidden="true">
-                  </a>
-                </li>
-                <li class="payments-footer__item">
-                  <a href="#" class="payments-footer__link" aria-label="Visa Card">
-                    <img src="/src/assets/icons/visa-logo.svg" alt="" aria-hidden="true">
-                  </a>
-                </li>
-                <li class="payments-footer__item">
-                  <a href="#" class="payments-footer__link" aria-label="Discover Payment">
-                    <img src="/src/assets/icons/discover-logo.svg" alt="" aria-hidden="true">
-                  </a>
-                </li>
-                <li class="payments-footer__item">
-                  <a href="#" class="payments-footer__link" aria-label="Mastercard">
-                    <img src="/src/assets/icons/mastercard.svg" alt="" aria-hidden="true">
-                  </a>
-                </li>
-                <li class="payments-footer__item payments-footer__item--secure">
-                  <a href="#" class="payments-footer__link payments-footer__link--secure" aria-label="Secure Payment">
-                    <span class="payments-footer__icon payments-footer__icon--icon-locked"
-                      aria-hidden="true">Secure</span>
-                    <span class="payments-footer__secure" aria-hidden="true">Payment</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
+      </div>
+    </footer>
 
     </div>
 
