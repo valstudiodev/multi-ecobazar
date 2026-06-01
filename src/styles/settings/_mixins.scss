@@ -844,3 +844,25 @@ $item-sale-options: (
       }
    }
 }
+
+// ========================================
+@mixin rating-review(
+  $class:'rating-review',
+  $width: 16px,
+  $height: 16px
+  ){
+  display: flex;
+  align-items: center;
+  gap: toRem(4);
+  flex-direction: row-reverse;
+
+  .#{$class}
+    {
+      background: url("/src/assets/icons/star-full-color.svg") 0 0 / 100% no-repeat;
+      width: $width;
+      height: $height;
+		}
+}
+
+
+		
