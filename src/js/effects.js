@@ -103,7 +103,7 @@ function scrollHeaderHide() {
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
 
-    if (currentScroll <= 50) {
+    if (currentScroll <= 100) {
       header.classList.remove('hide');
       return;
     }

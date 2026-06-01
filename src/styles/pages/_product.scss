@@ -764,10 +764,10 @@
 		&__play {
       @include abs-center;
       width: toRem(50);
+      height: toRem(50);
       background-color: $brandPrimary;
       border-radius: 50%;
       padding: toRem(16) toRem(16) toRem(16) toRem(20);
-      aspect-ratio: 1;
       display: flex;
       flex-shrink: 0;
       justify-content: center;
