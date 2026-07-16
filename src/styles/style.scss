@@ -3,6 +3,7 @@
 @use './pages/catalog';
 @use './pages/product';
 @use './pages/wishlist';
+@use './pages/newsletter';
 // =====================Settings===========================
 @use './settings/settings' as *;
 @use './settings/reset';
@@ -23,8 +24,8 @@
 // -----------------------------
 // html-styles
 // -----------------------------
-html,
-body {
+html {
+  scrollbar-gutter: stable;
 }
 
 // ===========================================================================================
@@ -32,36 +33,40 @@ body {
 // body-styles
 // -----------------------------
 body {
-   font-family: "Poppins", sans-serif;
-   line-height: 1.5;
-   color: $gray900;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  color: $gray900;
 
-   &.scroll-lock {
+  &.scroll-lock {
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
+
+    &.menu-open {
       overflow: hidden;
-      touch-action: none;
-      overscroll-behavior: none;
+    }
+  }
 
-      &.menu-open {
-         overflow: hidden;
-      }
-   }
+  &.lock {
+    overflow: hidden !important;
+  }
 }
 
 .wrapper {
-   min-height: 100%;
-   display: flex;
-   flex-direction: column;
-   overflow: clip;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
 
-   >main {
-      flex-grow: 1;
-   }
+  >main {
+    flex-grow: 1;
+  }
 }
 
 [class*="__container"] {
-   max-width: toRem($containerWidth);
-   padding-inline: toRem(math.div($containerPadding, 2));
-   margin: 0 auto;
+  max-width: toRem($containerWidth);
+  padding-inline: toRem(math.div($containerPadding, 2));
+  margin: 0 auto;
 }
 
 // ===========================================================================================
@@ -71,105 +76,108 @@ body {
 
 // --- 2. MOUSE MODE ---
 html[data-input="mouse"] {
-   :focus:not(:focus-visible) {
-      outline: none;
-   }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
 
-   &:focus-visible {
-      .lang-currency__group {
-         &::before {
-            rotate: 180deg;
-         }
+  &:focus-visible {
+    .lang-currency__group {
+      &::before {
+        rotate: 180deg;
       }
-   }
+    }
+  }
 
 }
 
 // --- 1. KEYBOARD MODE ---
 html[data-input="keyboard"] {
-   :focus-visible {
-      outline: toRem(2) solid $black;
-      outline-offset: toRem(4);
-   }
+  :focus-visible {
+    outline: toRem(2) solid $black;
+    outline-offset: toRem(4);
+  }
 
-   & footer :focus-visible {
-      outline-color: $white;
-   }
+  & footer :focus-visible {
+    outline-color: $white;
+  }
 
-   .is-active {
-      .submenu-dropdowne {
-         display: block;
+  .is-active {
+    .submenu-dropdowne {
+      display: block;
+    }
+
+    .menu-dropdown__link {
+      &::before {
+        rotate: 0deg;
       }
+    }
+  }
 
-      .menu-dropdown__link {
-         &::before {
-            rotate: 0deg;
-         }
+  .item-product {
+    &:focus-within {
+      .item-product__actions {
+        translate: 0 0;
       }
-   }
+    }
 
-   .item-product {
-      &:focus-within {
-         .item-product__actions {
-            translate: 0 0;
-         }
-      }
-      &:focus-visible {
-         .item-product__title {
-            color: $brandDark;
-         }
-      }
-   }
-
-   .button-quick-view,
-   .button-shop-cart,
-   .button-wishlist {
-      &:focus,
-      &:focus-visible {
-         &::before {
-            color: $brandPrimary;
-         }
-      }
-   }
-
-   :focus-visible {
-    .item-categories__title  {
+    &:focus-visible {
+      .item-product__title {
         color: $brandDark;
-        outline-color: red;
       }
-   }
+    }
+  }
+
+  .button-quick-view,
+  .button-shop-cart,
+  .button-wishlist {
+
+    &:focus,
+    &:focus-visible {
+      &::before {
+        color: $brandPrimary;
+      }
+    }
+  }
+
+  :focus-visible {
+    .item-categories__title {
+      color: $brandDark;
+      outline-color: red;
+    }
+  }
 }
 
 // --- 3. TOUCH MODE ---
 html[data-input="touch"] {
-   .menu-dropdown__item--submenu {
-      &.is-active {
-         .menu-dropdown__link {
-            &::before {
-               rotate: 0deg;
-            }
-         }
+  .menu-dropdown__item--submenu {
+    &.is-active {
+      .menu-dropdown__link {
+        &::before {
+          rotate: 0deg;
+        }
       }
-   }
-   .item-product__actions {
-      translate: 0 0;
-   }
-   &:focus-visible {
-      .lang-currency__group {
-         &::before {
-            rotate: 90deg;
-         }
+    }
+  }
+
+  .item-product__actions {
+    translate: 0 0;
+  }
+
+  &:focus-visible {
+    .lang-currency__group {
+      &::before {
+        rotate: 90deg;
       }
-   }
-   .social-media-link__icon{
- 
-   }
+    }
+  }
+
+  .social-media-link__icon {}
 }
 
 .item-filter[open] {
-   .item-filter__icon {
-      &::before {
-         rotate: 180deg;
-      }
-   }
+  .item-filter__icon {
+    &::before {
+      rotate: 180deg;
+    }
+  }
 }

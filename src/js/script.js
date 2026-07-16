@@ -7,24 +7,26 @@ import { formUtils } from './formUtils';
 import { initUtils } from './initUtils';
 import { initLoadAnimation } from './appInit';
 import { movingElements } from './movingElements';
+import { PopUpInitial } from './popup'
 // ===========================================================================================
 // -----------------------------
 // ГОЛОВНИЙ ЗАПУСК
 // -----------------------------
 function initApp() {
-   initInputMode()
-   initLoadAnimation()
-   initUtils()
-   initDropdowns()
-   initEffects()
-   movingElements()
-   // formUtils()
+  initInputMode()
+  initLoadAnimation()
+  initUtils()
+  initDropdowns()
+  initEffects()
+  movingElements()
+  // formUtils()
+  PopUpInitial()
 }
 
 if (document.readyState === 'loading') {
-   document.addEventListener('DOMContentLoaded', initApp);
+  document.addEventListener('DOMContentLoaded', initApp);
 } else {
-   initApp();
+  initApp();
 }
 
 

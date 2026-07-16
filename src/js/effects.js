@@ -95,23 +95,45 @@ export function initEffects() {
 //   window.addEventListener('scroll', onScroll, { passive: true });
 // }
 
+// function scrollHeaderHide() {
+//   const header = document.querySelector('.header');
+
+//   let lastScroll = 0;
+
+//   window.addEventListener('scroll', () => {
+//     const currentScroll = window.scrollY;
+
+//     if (currentScroll <= 100) {
+//       header.classList.remove('hide');
+//       return;
+//     }
+
+//     if (currentScroll > lastScroll) {
+//       header.classList.remove('hide');
+//     } else {
+//       header.classList.remove('hide');
+//     }
+
+//     lastScroll = currentScroll;
+//   });
+// }
+
 function scrollHeaderHide() {
   const header = document.querySelector('.header');
 
   let lastScroll = 0;
 
   window.addEventListener('scroll', () => {
+    if (!header) return;
+
     const currentScroll = window.scrollY;
 
-    if (currentScroll <= 100) {
-      header.classList.remove('hide');
-      return;
-    }
-
-    if (currentScroll > lastScroll) {
-      header.classList.add('hide');
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      // вниз
+      header.classList.add('is-hidden');
     } else {
-      header.classList.remove('hide');
+      // вверх
+      header.classList.remove('is-hidden');
     }
 
     lastScroll = currentScroll;

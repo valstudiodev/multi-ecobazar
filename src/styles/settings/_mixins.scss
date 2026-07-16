@@ -863,6 +863,114 @@ $item-sale-options: (
       height: $height;
 		}
 }
-
-
 		
+@mixin checkbox(
+  $input-class: "checkbox__input", 
+  $size: 20px,
+  $inner-size: 50%,        // Для радіо — розмір крапки, для чекбокса — галочки
+  $radius: 4px,
+  $border-width: 2px,
+
+  $border: #c4c4c4,
+  $bg: #fff,
+  $gap: 10px,
+  // Універсальний колір акценту (для чекбокса це буде фон, для радіо — обідок і крапка)
+  $accent-color: #84D187, 
+  $check-color: #fff,      // Колір самої галочки в чекбоксі
+
+  $is-radio: false,        
+  $transition: .3s
+) {
+
+  // АВТО-ЛОГІКА КОЛЬОРІВ:
+  // Якщо це РАДІО:
+  // 1. Обідок при кліку стає акцентним ($accent-color)
+  // 2. Фон залишається білим ($bg)
+  // 3. Крапка всередині стає акцентною ($accent-color)
+  $final-checked-border: $accent-color;
+  $final-checked-bg: if($is-radio, $bg, $accent-color);
+  $final-inner-color: if($is-radio, $accent-color, $check-color);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: $gap;
+  cursor: pointer;
+
+  .#{$input-class} {
+    appearance: none;
+    position: relative;
+
+    width: $size;
+    height: $size;
+    margin: 0;
+    flex-shrink: 0;
+
+    border: $border-width solid $border;
+    border-radius: if($is-radio, 50%, $radius); 
+    background: $bg;
+
+    transition:
+      background-color $transition ease,
+      border-color $transition ease,
+      transform $transition ease;
+
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      @if $is-radio {
+        width: $inner-size;   
+        height: $inner-size;
+        background-color: $final-inner-color; // Використовуємо розумний колір
+        border-radius: 50%;
+
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform $transition ease, opacity $transition ease;
+      } @else {
+        width: calc($inner-size * 0.7); 
+        height: calc($inner-size * 1.2);
+        
+        border-right: 2px solid $final-inner-color; // Використовуємо розумний колір
+        border-bottom: 2px solid $final-inner-color;
+
+        transform: translate(-50%, -60%) rotate(45deg) scale(0);
+        transition: transform $transition ease, opacity $transition ease;
+      }
+
+      opacity: 0;
+    }
+
+    &:checked {
+      background: $final-checked-bg;       // Авто-фон
+      border-color: $final-checked-border; // Авто-обідок
+
+      &::after {
+        opacity: 1;
+
+        @if $is-radio {
+          transform: translate(-50%, -50%) scale(1);
+        } @else {
+          transform: translate(-50%, -60%) rotate(45deg) scale(1);
+        }
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba($accent-color, .4);
+      outline-offset: 2px;
+    }
+  }
+}
+
+@mixin hide-input {
+  appearance: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}

@@ -2535,7 +2535,8 @@
           <div class="subscribe__form">
             <form action="#" class="form-subscribe">
               <input type="email" class="form-subscribe__input" placeholder="Your email address">
-              <button class="form-subscribe__button button button--big-green">Subscribe</button>
+              <button class="form-subscribe__button button button--big-green" id="open-popup-btn" type="button"
+                class="btn-open-popup" data-popup-open="newsletter">Subscribe</button>
             </form>
           </div>
           <div class="subscribe__actions actions-subscribe">
@@ -2689,6 +2690,35 @@
 
     </div>
 
+    <div class="popup newsletter" id="main-popup" aria-hidden="true" role="dialog" data-popup="newsletter">
+      <div class="popup__overlay" tabindex="-1">
+        <div class="newsletter__body popup__window">
+          <div class="newsletter__inner popup__content">
+            <div class="newsletter__image">
+              <img src="/src/assets/img/newsletter/newsletter-img.webp" alt="Special discount offer preview">
+            </div>
+            <div class="newsletter__content content-newsletter">
+              <h2 class="content-newsletter__title" id="newsletter-title">Subscribe to Our Newsletter</h2>
+              <div class="content-newsletter__text">
+                <p>Subscribe to our newslletter and Save your <span>20% money</span> with discount code today.</p>
+              </div>
+              <form action="#" class="content-newsletter__form form-subscribe" novalidate>
+                <label for="newsletter-email" class="visually-hidden">Email address</label>
+                <input type="email" class="form-subscribe__input" placeholder="Your email address" required
+                  autocomplete="email">
+                <button class="form-subscribe__button button button--big-green">Subscribe</button>
+              </form>
+              <label for="hide-popup" class="content-newsletter__label">
+                <input id="hide-popup" type="checkbox" class="content-newsletter__input checkbox__input">
+                <span class="content-newsletter__span">Do not show this window</span>
+              </label>
+            </div>
+          </div>
+          <button class="popup__close-btn" type="button" aria-label="Закрити модальне вікно"
+            data-popup-close>&times;</button>
+        </div>
+      </div>
+    </div>
 
     <div id="app"></div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
